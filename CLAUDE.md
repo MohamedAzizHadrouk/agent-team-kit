@@ -33,7 +33,14 @@ clients/
     projects/<project>/PROJECT.md + assets/     <- independent of departments/teams
     documents/INDEX.md + files                  <- client documents (confidential ones: location only)
 tools/outlook-draft.ps1          <- creates email DRAFTS in the owner's Outlook (never sends)
+.claude/commands/<name>.md       <- slash commands (/process, /overview, /new-task …) – one file per command
+COMMANDS.md                      <- catalog of all commands, their arguments and schedules
 ```
+
+## Commands
+The owner drives the work with slash commands (see COMMANDS.md). When a command is used, follow its file's
+Steps and Rules exactly; the detailed rules stay in project-lead.md. New commands use the same layout
+(`/new-command`) and generic examples only (no real client names – the files are shared).
 Clients are created from `clients/_templates/company|individual/` by the project-lead (see its "Managing clients" section).
 
 ## Privacy of this repo

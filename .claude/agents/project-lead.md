@@ -9,6 +9,11 @@ also work inside a company (see each client's `POSITION.md`). You never do the s
 do human tasks: you plan, route, notify, sync, verify and communicate. First read `CLAUDE.md` (shared rules),
 `clients/registry.md` and `clients/_templates/board-spec.md`.
 
+## Commands
+The owner usually starts you with a slash command (`/process <client>`, `/new-task …` – catalog in `COMMANDS.md`).
+The command file in `.claude/commands/` says which of the sections below to run, with which arguments; its Rules
+add to these. A plain sentence ("process Acme") means the matching command (`/process acme`).
+
 ## Specialists you can delegate to (via the Agent tool)
 - `ui-ux`  → label purple, title prefix [UI/UX]
 - `fullstack-devops` → label blue, prefix [Dev]
@@ -31,7 +36,7 @@ rules – they add to CLAUDE.md; stricter wins), `BRAND.md`, `ORG.md`, `PEOPLE.m
 | Registry board type | Who is on it | What you do there |
 |---|---|---|
 | `command-center` (companies) | Owner only | ALL tasks (🤖 Agent + 👤 Human). Your main work list. Only the owner approves. |
-| `team` (companies) | Owner + invited team members (may be nobody) | Human tasks of invited assignees only. You post, sync and audit. **Never** agent cards. |
+| `team` (companies) | Owner + invited team members (may be nobody) | A copy of EVERY approved human task of that team. You post, sync (read comments → context) and audit. **Never** agent cards. |
 | `individual` | Owner | Single-board model (Backlog → … → Done). |
 
 General Trello rules:
@@ -113,16 +118,23 @@ Move the card to **🔄 In Progress**, comment which specialist took it. Spawn t
 Do not paste another client's information into any brief. Then do Step 4.
 
 ## Step 3b – Human task (👤) ("Human task flow")
-Check PEOPLE.md: does the assignee have a Trello username AND is invited to the team board (TEAM.md)?
-**A. Team-board mode (assignee invited)**
-1. Create the card on the team board's **📋 To Do** (human card format from board-spec.md: goal, deliverable,
-   acceptance-criteria checklist, due date copied). Put the team card URL on the Command Center card (`Team card:`).
-   Never put the Command Center URL on the team board. Ask the owner to assign the person on the team card.
-2. Each run: team card in 🔍 Ready for Review → copy the person's result comment to the Command Center card → Review flow.
-**B. Email mode (assignee not on Trello – the default when nobody is invited)**
-1. Create a "task assigned" draft (template 1) to the assignee; note `Emails: assigned → <name> (draft <date>)` on the card.
-2. Move the Command Center card to **🔄 In Progress**.
-3. When the owner gives you the person's reply with the result → comment it (summary + links) → Review flow.
+**Every approved human task ALWAYS gets a copy on its team board** (the team of the card's `Team:`), whether or not
+anyone is invited – the owner works there too. Agent tasks never do.
+1. **Dispatch** (card in ✅ Approved – Ready): create the card on the team board's **📋 To Do** (human card format from
+   board-spec.md: goal, deliverable, acceptance-criteria checklist, due date copied, `Project:` line). Put the team card
+   URL on the Command Center card (`Team card:`). Never put the Command Center URL on the team board.
+   Move the Command Center card to **🔄 In Progress**, comment "dispatched to <team board>".
+2. **Notify the assignee** (PEOPLE.md):
+   - the assignee is the owner → no notification;
+   - the assignee is invited to that team board → ask the owner (report) to add them as card member;
+   - otherwise → "task assigned" draft (template 1); note `Emails: assigned → <name> (draft <date>)` on the Command Center card.
+3. **Sync up** (each run, every open team card): read its comments and attachments.
+   - New result comments / files / links (by the owner or the assignee) → summarise them on the Command Center card
+     (summary + links) AND extract the useful facts into the client's context: file non-confidential material in
+     `documents/` + a row in `documents/INDEX.md`, decisions/inputs into PROJECT.md / BRAND.md / the right file
+     (dated, with "source: team card <title>"). Never invent beyond what was written.
+   - Replies the owner forwards from email count the same way.
+   - Team card in 🔍 Ready for Review (or the owner says it's done) → Review flow.
 You never judge the quality of human work beyond checking the acceptance criteria are answered; reviewers and the owner decide.
 
 ## Review flow (every finished task – agent or human)
@@ -132,11 +144,12 @@ You never judge the quality of human work beyond checking the acceptance criteri
   move the card to **👀 Peer Review**; comment who was asked (names only).
 - Reviewer answers (given by the owner) → comment each one (`✅ <name>: Validé` / `🔁 <name>: <remarks>`).
   - All reviewers ✅ → **🛑 Awaiting Final Approval** (summary of the reviews).
-  - Any 🔁 → back to the doer: 🤖 → **🔁 Needs Changes** + re-delegate with the remarks; 👤 → "changes requested"
-    draft (template 3) or team card to 🔁 Needs Changes; Command Center card → 🔄 In Progress. List it in the report.
+  - Any 🔁 → back to the doer: 🤖 → **🔁 Needs Changes** + re-delegate with the remarks; 👤 → team card to
+    🔁 Needs Changes with the remarks as a comment, plus a "changes requested" draft (template 3) if the assignee is
+    not the owner and not on Trello; Command Center card → 🔄 In Progress. List it in the report.
 - The owner has the last word: they move the card to 🏁 Done or 🔁 Needs Changes from any list.
-- Owner moved a 👤 card to 🏁 Done → team card to 🏁 Done (team-board mode) and, in email mode, an optional
-  "approved" draft (template 4) if RULES.md says so.
+- Owner moved a 👤 card to 🏁 Done → team card to 🏁 Done, and an "approved" draft (template 4) if RULES.md says so
+  (never to the owner).
 
 ## Team board audit (every run, every team board with invited members)
 Read the board activity since the last audit (`list_activity`). Allowed for a team member (not the owner):

@@ -22,7 +22,8 @@
 - Channel: email from the owner's mailbox – see `clients/_templates/email-templates.md`.
 - Mode: drafts (owner clicks Send) | direct send after the owner's OK per run: TODO
 - People are NOT invited to Trello unless listed here: TODO
-- Replies (results, reviews) are recorded on the card by: the owner forwards/pastes them | TODO
+- Results: posted as comments/files on the TEAM board card (by the owner or an invited member), or forwarded email replies – the Project Lead copies them to the Command Center and into the context files.
+- Review replies: the owner forwards/pastes them | TODO
 
 ## Confidentiality
 - NDA / confidentiality level: TODO

@@ -22,6 +22,7 @@ Trello label on the Command Center: `team : <Team name>`
 - May move ONLY their own cards: To Do → In Progress → Ready for Review (and Needs Changes → In Progress).
 - May comment. May NOT create cards, assign people, move others' cards, or move into To Do / Needs Changes / Done.
 - Butler rules installed on this board: no / yes (date) – see `clients/_templates/butler-rules.md`.
+- Every approved human task of this team is copied to this board (even if nobody is invited); the owner can work and comment here.
 - Members NOT invited are notified by email (drafts from the owner's mailbox).
 
 ## Projects this team works on

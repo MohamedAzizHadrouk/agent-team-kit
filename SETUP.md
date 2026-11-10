@@ -83,9 +83,16 @@ The Project Lead must be the main agent because sub-agents cannot launch other s
 - New info about a client: just tell it; it updates CLIENT.md / BRAND.md / TEAM.md / PROJECT.md and logs the change.
 - Archiving: say "Archive client <name>" → it sets Status: archived in the registry.
 
+## Daily commands (full list: COMMANDS.md, or type `/list-commands`)
+- `/process <client>` – the daily run · `/overview <client> [project|team]` – where things stand (read-only)
+- `/new-task <client> <project|none> <description>` – draft a card · `/plan-project <client> <project>` – plan a project
+- `/reply <client> <card> <pasted email>` – record an email answer · `/sync <client>` – read team boards only
+- `/add-people`, `/add-document`, `/update-context` – keep the client context up to date
+- `/check-privacy` before every commit/push
+
 ## Daily use (companies)
-- Write every task (agent or human) on the Command Center in 📥 Proposed → move to ✅ Approved – Ready when complete.
-- Run: "Process <client>" (or "Process all client boards").
+- Write every task (agent or human) on the Command Center in 📥 Proposed (or `/new-task`) → move to ✅ Approved – Ready when complete.
+- Run: `/process <client>` (or `/process all`).
 - Assign people on new team-board cards (the connector cannot assign members).
 - Approve everything in 🛑 Awaiting Final Approval: move to 🏁 Done or 🔁 Needs Changes (with a comment).
   The Project Lead applies your decision to the team board on the next run.
@@ -96,8 +103,9 @@ The Project Lead must be the main agent because sub-agents cannot launch other s
 - You write cards in Backlog → move to Ready when complete. Approve items in "Awaiting Human Approval" yourself.
 
 ## Later: automation (after 1–2 weeks of manual runs)
-- Run it on a schedule, e.g. a cron job or scheduled task calling: `claude -p "Process all client boards" --agent project-lead`
-  (test the exact command by hand first). Start hourly during working hours, not every minute (cost).
+- Run a schedulable command automatically with `/schedule-local "/process <client>" 30m mon-fri 08:00-18:00`
+  (it runs `claude -p "/process <client>" --agent project-lead` on this computer). Test the command by hand first.
+  Start with 30–60 min during working hours, not every minute (each run costs usage).
 - Agent SDK / webhooks for real-time triggers: only if you need it.
 
 ## Good habits

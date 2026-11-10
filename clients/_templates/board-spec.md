@@ -69,7 +69,7 @@ Deliverable:
 Constraints:
 Language(s):
 Priority:
-Team card: (filled by the Project Lead – team-board mode only)
+Team card: (filled by the Project Lead – every human task)
 Emails: (filled by the Project Lead – drafts prepared)
 ```
 + a checklist **Acceptance criteria** (verifiable items).
@@ -80,8 +80,10 @@ Emails: (filled by the Project Lead – drafts prepared)
 ## 2. Human Team Board  —  `<Company> – <Team name>`
 Visibility: **Private**. Members: the owner (Admin) + the team members the owner CHOSE to invite (may be nobody).
 Invite each person ONLY to their own team board → teams never see each other's work.
-If nobody is invited, the board stays empty and that team's human tasks run by email from the Command Center
-(see project-lead › Human task flow, email mode). Filter the Command Center by `team : <name>` to see a team's work.
+**Every approved human task of the team gets a copy here** (in 📋 To Do), even if nobody is invited: the owner can
+open the team board, work on the card and post results (comments, files, links). The Project Lead reads those
+comments every run, copies a summary to the Command Center card and saves the useful facts into the client's
+context files. People who are not invited are notified by email drafts.
 **No agent cards ever go on a team board**, and agent work is never mentioned there.
 
 | List | Who may move cards INTO it |
