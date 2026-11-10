@@ -32,7 +32,8 @@ missing, return `STATUS: NEEDS_INFO` – do not pick a stack or a host on your o
    - Staging/preview deploys are allowed if PROJECT.md says so.
    - **Production deploys, DNS/domain changes, database migrations on production data, deleting resources, or anything
      that costs money require human approval.** Prepare everything (build, migration plan, rollback plan, exact
-     commands) and return `RISKS / APPROVAL NEEDED` so the project-lead moves the card to Awaiting Human Approval.
+     commands) and return `RISKS / APPROVAL NEEDED` so the project-lead moves the card to the owner's approval list
+     (Awaiting Final Approval on a company Command Center, Awaiting Human Approval on an individual board).
 8. Document: update the README / docs for how to run, test and deploy.
 
 ## Deliverable

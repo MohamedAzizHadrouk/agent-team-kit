@@ -4,6 +4,17 @@ Slug: <client-slug>
 Status: active
 Created: <YYYY-MM-DD>
 
+## Context map (read in this order)
+| File | What it holds |
+|---|---|
+| `CLIENT.md` | this file – identity, goals, PRIVACY & CONSENT, decisions log |
+| `POSITION.md` | **the owner's role** for this client |
+| `RULES.md` | rules for this client: approvals, privacy limits, communication |
+| `BRAND.md` | personal brand |
+| `PEOPLE.md` | optional – their collaborators (work contacts only), Project Lead only |
+| `projects/<project>/PROJECT.md` | one per project |
+| `documents/INDEX.md` | their documents: what exists and where |
+
 ## Identity
 - Public name to use: TODO
 - Profession / activity: TODO
@@ -29,9 +40,8 @@ Created: <YYYY-MM-DD>
 - Consent recorded (date + how): TODO
 - Data protection / legal pages needed for their country: TODO (flag for legal review)
 
-## Constraints
-- Things we must never do or say: TODO
-- Where credentials live (e.g. "client's password manager", never the secrets themselves): TODO
+## Trello
+- Board: <Person> – <Project> · <URL> (single-board model)
 
 ## Projects
 - <project-slug> → projects/<project-slug>/PROJECT.md

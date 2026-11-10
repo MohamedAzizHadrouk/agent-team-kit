@@ -18,19 +18,40 @@ added over time: nothing in this repo is hard-coded to a specific client.
 CLAUDE.md                        <- this file
 .claude/agents/                  <- the 5 agents
 clients/
-  registry.md                    <- maps every Trello board -> client + project (source of truth)
-  _templates/                    <- templates used to create new clients/projects
-  <client-slug>/
-    CLIENT.md                    <- who the client is (type: company | individual)
+  registry.md                    <- maps every Trello board -> client + board type (PRIVATE, git-ignored)
+  _templates/                    <- shared: board-spec, Butler rules, email templates, onboarding, registry example
+    company/  individual/        <- skeleton folders copied for every new client
+  <client-slug>/                 <- PRIVATE, git-ignored (one folder = one client's whole context)
+    CLIENT.md                    <- entry point: identity, type, context map, decisions log
+    POSITION.md                  <- the owner's position / role / authority in or for this client
+    RULES.md                     <- this client's rules (approvals, reviews, notifications, confidentiality)
     BRAND.md                     <- identity, tone, assets
-    projects/<project-slug>/
-      PROJECT.md                 <- scope, stack, repo, deploy, decisions log
-      assets/                    <- project files (design, media, docs)
+    ORG.md                       <- companies: departments -> teams, what the owner manages
+    PEOPLE.md                    <- employees / collaborators, WORK contacts only (Project Lead only)
+    departments/<dept>/DEPARTMENT.md            <- companies only
+      teams/<team>/TEAM.md                      <- teams of managed departments
+    projects/<project>/PROJECT.md + assets/     <- independent of departments/teams
+    documents/INDEX.md + files                  <- client documents (confidential ones: location only)
+tools/outlook-draft.ps1          <- creates email DRAFTS in the owner's Outlook (never sends)
 ```
-Clients are created from `clients/_templates/` by the project-lead (see its "Managing clients" section).
+Clients are created from `clients/_templates/company|individual/` by the project-lead (see its "Managing clients" section).
+
+## Privacy of this repo
+The repo shares only the **structure** (agents, rules, templates, tools) so anyone can reuse it.
+Everything under `clients/` except `_templates/` is git-ignored: client folders and `registry.md` stay on this
+computer only. Never commit, push or paste client data, people, emails or documents anywhere else.
+
+## Trello model (details in clients/_templates/board-spec.md)
+- **Company** → one private `<Company> – Command Center` (owner + agents only) holding ALL tasks, agent AND human,
+  where the owner approves everything; plus one `<Company> – <Team>` board per human team, synced by the project-lead.
+- **Individual** → one board per client project (single-board model).
+- Agent work is NEVER shown on team boards. Staff are invited only to their own team board (if at all), never to
+  the Command Center. People who are not on Trello are notified by email drafts the owner sends.
+- A task may belong to a project or to none; assignee and reviewers are chosen by name (PEOPLE.md);
+  start / due dates are optional; reviewers review first, the owner has the last word.
 
 ## Golden rules (apply to ALL agents)
-1. **Client isolation.** Work for one client/project at a time. Never read, copy,
+1. **Client isolation.** Work for one client at a time. Never read, copy,
    mention or reuse another client's files, brand, copy, code, data or assets.
 2. **Never guess missing context.** If the client type, brand, stack, audience,
    deadline, legal facts, access or acceptance criteria are missing or ambiguous,
@@ -48,11 +69,16 @@ Clients are created from `clients/_templates/` by the project-lead (see its "Man
 6. **No fabrication.** No invented testimonials, reviews, statistics, client names, awards,
    or legal claims. Mark assumptions explicitly.
 7. **Everything goes through the Trello card.** Deliverables come back with a short summary
-   and links; decisions and answers are saved into CLIENT.md / PROJECT.md (decisions log) so
+   and links; decisions and answers are saved into the client's files (decisions logs) so
    no question is asked twice.
 8. **Language.** Talk to the owner in the language they write in. Write deliverables in the
    languages listed in the client's CLIENT.md.
 9. **Small, reviewable steps.** One card = one reviewable deliverable.
+10. **People's data.** PEOPLE.md is read only by the project-lead. Specialists never receive emails
+    or contact details; Trello cards name people but never show their emails. No email is ever sent by
+    an agent: only drafts in the owner's Outlook, which the owner sends.
+11. **Know the owner's position.** Read the client's POSITION.md: it says who the owner is there,
+    what they manage and what they may approve. Never act beyond that authority.
 
 ## Specialist return format (all specialists)
 ```

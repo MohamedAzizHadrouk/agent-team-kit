@@ -25,12 +25,16 @@ Accept "I don't know yet" → write `TODO`. Never invent answers. Privacy first:
 13. May we use their photos / face / voice? Which ones exactly? (Default: no.) Consent recorded how and when?
 14. Any legal pages or data-protection needs for their country? (Flag for legal review.)
 
-## E. First project (create PROJECT.md)
+## E. Your role (→ POSITION.md)
+- What is your role for this person (freelancer, agency, coach, friend…)? What can you decide alone?
+
+## F. First project (create PROJECT.md)
 15. What is the project (portfolio, personal site, branding, social presence…)? Scope and deadline?
 16. Technical: existing site/repo, hosting, domain owner, who owns the accounts?
-17. Which Trello board will be used? (Create one from board-spec.md if none.)
+17. Which Trello board will be used? (Individuals use ONE board: board-spec.md § 3 "Individual client board".)
 
 ## After the answers
-- Create `clients/<slug>/CLIENT.md` (template CLIENT-individual.md) and `BRAND.md`, `projects/<project>/PROJECT.md`.
-- Add the rows to `clients/registry.md`.
+- Copy `clients/_templates/individual/` to `clients/<slug>/` (rename `example-project`) and fill only what was said:
+  CLIENT.md, POSITION.md, RULES.md, BRAND.md, projects/<project>/PROJECT.md (PEOPLE.md and documents/ if needed).
+- Add the board row to `clients/registry.md` (board type `individual`).
 - Summarize to the owner what is filled and what is still TODO, and ask the missing items.
