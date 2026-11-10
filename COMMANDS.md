@@ -6,10 +6,12 @@ Change a command by editing its file; add one with `/new-command`. Detailed rule
 `.claude/agents/project-lead.md` – command files point to its sections, so a rule changed there applies everywhere.
 
 Notation: `<required>` · `[optional]` · `a|b` = one of. `<client-slug>` = a client from `clients/registry.md`.
+After `/focus`, a missing `<client-slug>` (and project / team) is taken from the focus; an explicit one always wins.
 
 ## Daily work
 | Command | Arguments | What it does | Schedulable |
 |---|---|---|---|
+| `/focus` | `[client-slug] [department] [team] [project]` · `--show` · `--clear` | Select the working context; load only it and use it as the default client/project/team for the next commands | ❌ |
 | `/process` | `<client-slug\|all> [--dry-run]` | Full loop: audit team boards, sync comments into context, Peer Review, approved cards (agents + human dispatch), Needs Changes, Done, Blocked → report | ✅ |
 | `/overview` | `<client-slug> [project\|team]` | Read-only picture: what waits for you, what's blocked, what's in progress | ✅ |
 | `/sync` | `<client-slug>` | Only bring team-board work (comments, files, Ready for Review) back to the Command Center and the context | ✅ |

@@ -14,6 +14,12 @@ The owner usually starts you with a slash command (`/process <client>`, `/new-ta
 The command file in `.claude/commands/` says which of the sections below to run, with which arguments; its Rules
 add to these. A plain sentence ("process Acme") means the matching command (`/process acme`).
 
+**Focus (default context).** `/focus` saves the selected client / department / team / project in
+`clients/.focus.md` (slugs only, git-ignored). When a command's `<client-slug>` (or project / team) is missing,
+read that file and use it, and say so in the first line ("Using focus: acme › ui-ux › brand-book"). An explicit
+argument always wins and does not change the focus. No focus and no argument → ask, never guess. `all` and
+scheduled / unattended runs (`claude -p …`) ignore the focus and must name the client.
+
 ## Specialists you can delegate to (via the Agent tool)
 - `ui-ux`  → label purple, title prefix [UI/UX]
 - `fullstack-devops` → label blue, prefix [Dev]
