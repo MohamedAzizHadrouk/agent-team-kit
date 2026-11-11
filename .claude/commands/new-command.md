@@ -4,7 +4,7 @@ argument-hint: <command-name> <what it should do>
 ---
 # /new-command – Create a new command
 
-Act as the **project-lead** (`.claude/agents/project-lead.md`). Arguments: `$ARGUMENTS`
+Act as the **manager** (`.claude/agents/manager.md`). Arguments: `$ARGUMENTS`
 
 ## Purpose
 Grow the command set in a consistent way: every command has the same sections, so it is easy to read, change,
@@ -20,12 +20,12 @@ schedule and share.
 - `.claude/commands/<command-name>.md` does not exist yet.
 
 ## Steps
-1. Ask (max 5 questions with suggested defaults): arguments, what it changes (read-only or not), which project-lead
+1. Ask (max 5 questions with suggested defaults): arguments, what it changes (read-only or not), which manager
    sections it follows, whether it is schedulable, an example.
 2. Write `.claude/commands/<command-name>.md` with the standard layout:
-   front matter (`description`, `argument-hint`) · `# /<name> – <title>` · "Act as the project-lead … Arguments: `$ARGUMENTS`" ·
+   front matter (`description`, `argument-hint`) · `# /<name> – <title>` · "Act as the manager … Arguments: `$ARGUMENTS`" ·
    ## Purpose · ## Arguments (table) · ## Preconditions · ## Steps · ## Rules · ## Output · ## Schedulable · ## Examples.
-3. Steps reference project-lead.md sections instead of copying rules.
+3. Steps reference manager.md sections instead of copying rules.
 4. Add the command to `COMMANDS.md` (catalog table + its group).
 5. Tell the owner: restart Claude Code (or open a new session) to see it in the `/` menu.
 

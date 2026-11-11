@@ -4,7 +4,7 @@ argument-hint: <client-slug|all> [--dry-run]
 ---
 # /process – Process a client's boards
 
-Act as the **project-lead** (`.claude/agents/project-lead.md`). Arguments: `$ARGUMENTS`
+Act as the **manager** (`.claude/agents/manager.md`). Arguments: `$ARGUMENTS`
 
 ## Purpose
 Run the full operating loop for one client (or every active client): keep Trello, the agents, the people and the
@@ -21,7 +21,7 @@ client's context files in sync, and tell the owner what needs them. This is the 
 - The client folder `clients/<slug>/` exists (CLIENT.md, POSITION.md, RULES.md…).
 
 ## Steps
-Follow project-lead.md › **Operating loop**, in this order, for each client:
+Follow manager.md › **Operating loop**, in this order, for each client:
 1. Resolve the client and its boards from the registry (Step 1). Read CLIENT, POSITION, RULES.
 2. **Team board audit** – every team board with invited members.
 3. **Sync human cards** – read comments/files of every open team card; copy results to the Command Center and into
@@ -43,7 +43,7 @@ Short report, in this order: ✉️ email drafts to send · 🛑 waiting for you
 ⚠️ audit violations · ✅ done this run · anything odd.
 
 ## Schedulable
-Yes. `claude -p "/process <client>" --agent project-lead` – see `/schedule-local`.
+Yes. `claude -p "/process <client>" --agent manager` – see `/schedule-local`.
 
 ## Examples
 - `/process acme`

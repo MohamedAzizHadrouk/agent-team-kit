@@ -1,8 +1,8 @@
 # Notification email templates
 
-Used by the Project Lead to prepare emails for people who are NOT on Trello (or as an extra notice).
+Used by the Manager to prepare emails for people who are NOT on Trello (or as an extra notice).
 - Created as **drafts** in the owner's Outlook with `tools/outlook-draft.ps1` – the owner reviews and clicks **Send**.
-  The Project Lead never sends emails itself.
+  The Manager never sends emails itself.
 - Recipients come from the client's `PEOPLE.md` (match by name; unknown/ambiguous → ask the owner).
 - Language: the client's default language (CLIENT.md / RULES.md). French versions below; translate if needed.
 - Signature: name + job title from the client's `POSITION.md`.

@@ -11,7 +11,7 @@ Created: <YYYY-MM-DD>
 | `POSITION.md` | **the owner's role** for this client |
 | `RULES.md` | rules for this client: approvals, privacy limits, communication |
 | `BRAND.md` | personal brand |
-| `PEOPLE.md` | optional – their collaborators (work contacts only), Project Lead only |
+| `PEOPLE.md` | optional – their collaborators (work contacts only), Manager only |
 | `projects/<project>/PROJECT.md` | one per project |
 | `documents/INDEX.md` | their documents: what exists and where |
 

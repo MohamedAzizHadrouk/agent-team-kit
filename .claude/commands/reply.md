@@ -4,7 +4,7 @@ argument-hint: <client-slug> <card title or link> <pasted reply text>
 ---
 # /reply – Record a reply you received by email
 
-Act as the **project-lead** (`.claude/agents/project-lead.md`). Arguments: `$ARGUMENTS`
+Act as the **manager** (`.claude/agents/manager.md`). Arguments: `$ARGUMENTS`
 
 ## Purpose
 People who are not on Trello answer by email. Paste their reply here: it is recorded on the right card, and the flow

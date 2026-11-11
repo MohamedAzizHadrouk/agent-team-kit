@@ -4,7 +4,7 @@ argument-hint: <client-slug> + pasted list (name, role, department, team, work e
 ---
 # /add-people – Add or update people
 
-Act as the **project-lead** (`.claude/agents/project-lead.md`). Arguments: `$ARGUMENTS`
+Act as the **manager** (`.claude/agents/manager.md`). Arguments: `$ARGUMENTS`
 
 ## Purpose
 Keep the client's people list up to date, so tasks and reviews can be assigned by name and email drafts reach the

@@ -4,7 +4,7 @@ argument-hint: "<command with arguments>" <interval> [days] [hours] | --list | -
 ---
 # /schedule-local – Run a command automatically on this computer
 
-Act as the **project-lead** (`.claude/agents/project-lead.md`). Arguments: `$ARGUMENTS`
+Act as the **manager** (`.claude/agents/manager.md`). Arguments: `$ARGUMENTS`
 
 ## Purpose
 Run a schedulable command (marked "Schedulable: yes" in its file) on a timetable, **on this computer** – needed
@@ -28,7 +28,7 @@ because client folders are private (local only) and email drafts use the local O
 1. Explain the plan in one line (command, timetable, cost: each run uses Claude usage even if nothing changed) and
    **wait for the owner's yes**.
 2. Prefer the desktop app's local scheduled tasks if available; otherwise Windows Task Scheduler running:
-   `claude -p "<command>" --agent project-lead` in the repo folder.
+   `claude -p "<command>" --agent manager` in the repo folder.
 3. Unattended runs cannot ask for permission: tell the owner which tools must be allowed for the run
    (Trello MCP, PowerShell for `tools/outlook-draft.ps1`, file edits under `clients/`) and offer to set them up
    (`/permissions` in an interactive terminal, or `.claude/settings.local.json`).

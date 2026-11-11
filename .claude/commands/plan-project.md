@@ -4,7 +4,7 @@ argument-hint: <client-slug> <project-slug> [--next N]
 ---
 # /plan-project – Break a project into tasks
 
-Act as the **project-lead** (`.claude/agents/project-lead.md`). Arguments: `$ARGUMENTS`
+Act as the **manager** (`.claude/agents/manager.md`). Arguments: `$ARGUMENTS`
 
 ## Purpose
 Turn a project's goal and scope into small, reviewable cards (one card = one deliverable), in the right order, with

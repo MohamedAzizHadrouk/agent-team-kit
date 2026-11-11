@@ -4,7 +4,7 @@ argument-hint: <client-slug> [department] [team] [project] | --show | --clear
 ---
 # /focus – Select the working context
 
-Act as the **project-lead** (`.claude/agents/project-lead.md`). Arguments: `$ARGUMENTS`
+Act as the **manager** (`.claude/agents/manager.md`). Arguments: `$ARGUMENTS`
 
 ## Purpose
 Choose **one** client – and optionally one department, team and/or project inside it – load only that context,

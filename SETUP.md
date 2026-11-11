@@ -1,7 +1,11 @@
 # Setup guide – Agent Team + Trello (about 20 minutes)
 
+> **Fastest way:** open this folder in Claude Code (`claude --agent manager`) and type **`/setup`**. It checks the
+> tools, builds your private `ecosystem/` (profile, skills, news) and guides you through the steps below.
+> This file is the detailed manual version.
+
 ## What this kit contains
-- CLAUDE.md (shared rules), the 5 agents, the client system: `clients/_templates/` with a **company** and an
+- CLAUDE.md (shared rules), the 7 agents, the personal ecosystem skeleton (`ecosystem/_templates/`), the client system: `clients/_templates/` with a **company** and an
   **individual** skeleton folder (CLIENT, POSITION, RULES, BRAND, ORG, PEOPLE, departments, teams, projects,
   documents), board spec, Butler rules, email templates, onboarding questionnaires, registry example.
 - `tools/outlook-draft.ps1` – creates email drafts in your Outlook (Windows, Outlook desktop). Never sends.
@@ -9,7 +13,7 @@
   computer. Share the repo freely – your clients, people and documents are never committed.
 
 ## Trello templates (one time)
-Ask the Project Lead: **"Create the Trello templates from board-spec.md"**. It creates:
+Ask the Manager: **"Create the Trello templates from board-spec.md"**. It creates:
 - "🧩 TEMPLATE – Company Command Center" – private board of a company: ALL tasks (agent + human), you approve here
 - "🧩 TEMPLATE – Human Team Board" – one per human team of a company: human tasks only
 - "🧩 TEMPLATE – Client Project Board (Agent Team)" – single board for an individual client
@@ -37,7 +41,7 @@ Use `/mcp` inside Claude Code (or the plugin marketplace) to add the Figma and G
 The agents work without them but will be limited (no Figma files, no pull requests).
 
 ### 4. Check that the agents are loaded
-Inside Claude Code type `/agents`. You should see: project-lead, ui-ux, fullstack-devops, marketing, media.
+Inside Claude Code type `/agents`. You should see: manager, ui-ux, fullstack-devops, marketing, media, learning-coach, news-curator.
 
 ### 5. Create the Trello labels (a few minutes – the connector cannot do this)
 Do it on the TEMPLATE boards before copying them, so every new board inherits the labels.
@@ -51,18 +55,18 @@ Butler rules are per board: after creating each team board, paste the rules from
 (Copying a board in Trello may or may not copy its rules – check the Automation panel.)
 
 ### 5c. Your private registry and email drafts
-- Copy `clients/_templates/registry.example.md` to `clients/registry.md` (git-ignored) – or let the Project Lead do it.
+- Copy `clients/_templates/registry.example.md` to `clients/registry.md` (git-ignored) – or let the Manager do it.
 - Email notifications: Outlook desktop must be installed and signed in on this Windows computer (any account type,
   including on-premises Exchange). Test without creating anything:
   `powershell -NoProfile -File tools/outlook-draft.ps1 -To you@company.com -Subject test -BodyFile <any .txt> -DryRun`
 
-### 6. Start the Project Lead as the main agent
+### 6. Start the Manager as the main agent
 ```
-claude --agent project-lead
+claude --agent manager
 ```
 (If your version does not have `--agent`, start `claude` normally and say:
-"Act as the project-lead agent defined in .claude/agents/project-lead.md and delegate to the other agents".)
-The Project Lead must be the main agent because sub-agents cannot launch other sub-agents.
+"Act as the manager agent defined in .claude/agents/manager.md and delegate to the other agents".)
+The Manager must be the main agent because sub-agents cannot launch other sub-agents.
 
 ## First run (test with something harmless)
 1. Tell it: **"Onboard a new client"**. It asks "company or individual?" and runs the matching questionnaire,
@@ -95,7 +99,7 @@ The Project Lead must be the main agent because sub-agents cannot launch other s
 - Run: `/process <client>` (or `/process all`).
 - Assign people on new team-board cards (the connector cannot assign members).
 - Approve everything in 🛑 Awaiting Final Approval: move to 🏁 Done or 🔁 Needs Changes (with a comment).
-  The Project Lead applies your decision to the team board on the next run.
+  The Manager applies your decision to the team board on the next run.
 - Read the audit section of the report: forbidden moves by team members are reverted and listed there.
 - Free plan: ~10 collaborators per workspace in total – invite each person only to their own team board.
 
@@ -104,7 +108,7 @@ The Project Lead must be the main agent because sub-agents cannot launch other s
 
 ## Later: automation (after 1–2 weeks of manual runs)
 - Run a schedulable command automatically with `/schedule-local "/process <client>" 30m mon-fri 08:00-18:00`
-  (it runs `claude -p "/process <client>" --agent project-lead` on this computer). Test the command by hand first.
+  (it runs `claude -p "/process <client>" --agent manager` on this computer). Test the command by hand first.
   Start with 30–60 min during working hours, not every minute (each run costs usage).
 - Agent SDK / webhooks for real-time triggers: only if you need it.
 
@@ -117,5 +121,5 @@ The Project Lead must be the main agent because sub-agents cannot launch other s
 ## Troubleshooting
 - Agent not listed in /agents → check the folder is `.claude/agents/` at the root where you start `claude`.
 - Trello tools missing → `/mcp` and re-authenticate.
-- Project Lead can't delegate → make sure you started it as the main agent (step 6).
-- A tool name differs (e.g. Agent vs Task) → run `/agents` and ask Claude to adapt the frontmatter of project-lead.md.
+- Manager can't delegate → make sure you started it as the main agent (step 6).
+- A tool name differs (e.g. Agent vs Task) → run `/agents` and ask Claude to adapt the frontmatter of manager.md.

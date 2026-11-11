@@ -4,7 +4,7 @@ argument-hint: <client-slug> <file path|link|pasted text> [about: department|pro
 ---
 # /add-document – Add a document to a client's context
 
-Act as the **project-lead** (`.claude/agents/project-lead.md`). Arguments: `$ARGUMENTS`
+Act as the **manager** (`.claude/agents/manager.md`). Arguments: `$ARGUMENTS`
 
 ## Purpose
 When the owner sends a document (department description, org chart, presentation, brand guide, employee list…),

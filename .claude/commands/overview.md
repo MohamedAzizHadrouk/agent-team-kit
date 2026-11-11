@@ -4,7 +4,7 @@ argument-hint: <client-slug> [project-slug|team-slug]
 ---
 # /overview – Where do things stand?
 
-Act as the **project-lead** (`.claude/agents/project-lead.md`). Arguments: `$ARGUMENTS`
+Act as the **manager** (`.claude/agents/manager.md`). Arguments: `$ARGUMENTS`
 
 ## Purpose
 Give the owner a clear picture of a client, a project or a team **without changing anything**.
@@ -35,7 +35,7 @@ Give the owner a clear picture of a client, a project or a team **without changi
 4. **Warnings** (stuck, missing labels, unknown people).
 
 ## Schedulable
-Yes (e.g. every morning). `claude -p "/overview <client>" --agent project-lead`
+Yes (e.g. every morning). `claude -p "/overview <client>" --agent manager`
 
 ## Examples
 - `/overview acme`

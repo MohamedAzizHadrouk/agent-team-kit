@@ -4,7 +4,7 @@ argument-hint: <client-slug>
 ---
 # /sync – Bring team-board work back into the Command Center
 
-Act as the **project-lead** (`.claude/agents/project-lead.md`). Arguments: `$ARGUMENTS`
+Act as the **manager** (`.claude/agents/manager.md`). Arguments: `$ARGUMENTS`
 
 ## Purpose
 A light version of `/process`: collect what people (or the owner) wrote on team boards, without starting any new
@@ -19,9 +19,9 @@ work, delegating to agents or dispatching new cards.
 - The client has team boards in the registry.
 
 ## Steps
-1. **Team board audit** (project-lead.md › Team board audit) on boards with invited members.
+1. **Team board audit** (manager.md › Team board audit) on boards with invited members.
 2. For every open team card: read new comments, attachments and links since the last sync.
-3. Summarise them on the linked Command Center card (`🤖 Project Lead:` comment, summary + links).
+3. Summarise them on the linked Command Center card (`🤖 Manager:` comment, summary + links).
 4. Save useful facts into the client's context: non-confidential files → `documents/` + a row in `documents/INDEX.md`;
    decisions/inputs → PROJECT.md / BRAND.md / the right file, dated, "source: team card <title>".
 5. Team card in 🔍 Ready for Review → start the **Review flow** for its Command Center card.
@@ -34,7 +34,7 @@ work, delegating to agents or dispatching new cards.
 Per team: cards updated, facts saved (file + line), cards sent to review.
 
 ## Schedulable
-Yes – e.g. every 15 min if you work on team boards a lot. `claude -p "/sync <client>" --agent project-lead`
+Yes – e.g. every 15 min if you work on team boards a lot. `claude -p "/sync <client>" --agent manager`
 
 ## Examples
 - `/sync acme`

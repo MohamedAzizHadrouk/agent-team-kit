@@ -1,22 +1,35 @@
 # Agent Team – Shared Rules (read first, every agent)
 
-This folder is the workspace of a one-person agency that works for MANY clients
-(companies and individuals) on many different projects. Clients and projects are
-added over time: nothing in this repo is hard-coded to a specific client.
+This folder is the owner's ecosystem in Claude, with two sides:
+- **Clients**: a one-person agency that works for MANY clients (companies and individuals) on many projects.
+  Clients and projects are added over time: nothing in this repo is hard-coded to a specific client.
+- **Personal ecosystem** (`ecosystem/`): who the owner is (PROFILE.md), their skills and learning (knowledge/),
+  and their daily news, trends and to-do (news/). Set up with `/setup`.
+Anyone can clone this repo and run `/setup` to build their own ecosystem – nothing personal is shared.
 
 ## The team
 | Agent | File | Role |
 |---|---|---|
-| project-lead | .claude/agents/project-lead.md | Orchestrator. Reads Trello, resolves client + project, delegates, reviews. Runs as the MAIN agent. |
+| manager | .claude/agents/manager.md | Orchestrator. Reads Trello, resolves client + project, delegates, reviews. Runs as the MAIN agent. |
 | ui-ux | .claude/agents/ui-ux.md | Wireframes, mockups, design systems, graphics, UI handoff |
 | fullstack-devops | .claude/agents/fullstack-devops.md | Frontend, backend, database, tests, CI/CD, deployment |
 | marketing | .claude/agents/marketing.md | Social strategy + copy (Meta, Instagram, LinkedIn, TikTok...), SEO, GEO |
 | media | .claude/agents/media.md | Post/carousel templates, video scripts, storyboards, simple videos |
+| learning-coach | .claude/agents/learning-coach.md | Personal: learning roadmaps, real resources, practice projects, progress reviews |
+| news-curator | .claude/agents/news-curator.md | Personal: daily news + trends from the owner's preferences, always with sources |
 
 ## Folder map
 ```
 CLAUDE.md                        <- this file
-.claude/agents/                  <- the 5 agents
+README.md  SETUP.md              <- overview / detailed manual setup
+.claude/agents/                  <- the 7 agents
+ecosystem/                       <- PRIVATE, git-ignored except _templates/
+  _templates/                    <- shared skeletons: PROFILE, SKILLS, skill folder, news preferences, day files
+  PROFILE.md                     <- who the owner is, goals, how to work with them
+  knowledge/SKILLS.md            <- skills I have / learning now / backlog
+  knowledge/skills/<skill>/      <- SKILL.md + resources/ + books/ + courses/ + projects/<project>/
+  news/PREFERENCES.md            <- news + trends preferences
+  news/<YYYY>/<MM>/<DD>/         <- TODO.md, NEWS.md, TRENDS.md of that day
 clients/
   registry.md                    <- maps every Trello board -> client + board type (PRIVATE, git-ignored)
   _templates/                    <- shared: board-spec, Butler rules, email templates, onboarding, registry example
@@ -27,7 +40,7 @@ clients/
     RULES.md                     <- this client's rules (approvals, reviews, notifications, confidentiality)
     BRAND.md                     <- identity, tone, assets
     ORG.md                       <- companies: departments -> teams, what the owner manages
-    PEOPLE.md                    <- employees / collaborators, WORK contacts only (Project Lead only)
+    PEOPLE.md                    <- employees / collaborators, WORK contacts only (Manager only)
     departments/<dept>/DEPARTMENT.md            <- companies only
       teams/<team>/TEAM.md                      <- teams of managed departments
     projects/<project>/PROJECT.md + assets/     <- independent of departments/teams
@@ -39,18 +52,20 @@ COMMANDS.md                      <- catalog of all commands, their arguments and
 
 ## Commands
 The owner drives the work with slash commands (see COMMANDS.md). When a command is used, follow its file's
-Steps and Rules exactly; the detailed rules stay in project-lead.md. New commands use the same layout
+Steps and Rules exactly; the detailed rules stay in manager.md. New commands use the same layout
 (`/new-command`) and generic examples only (no real client names – the files are shared).
-Clients are created from `clients/_templates/company|individual/` by the project-lead (see its "Managing clients" section).
+Clients are created from `clients/_templates/company|individual/` by the manager (see its "Managing clients" section).
 
 ## Privacy of this repo
 The repo shares only the **structure** (agents, rules, templates, tools) so anyone can reuse it.
 Everything under `clients/` except `_templates/` is git-ignored: client folders and `registry.md` stay on this
 computer only. Never commit, push or paste client data, people, emails or documents anywhere else.
+The same applies to `ecosystem/` (except `_templates/`): the owner's profile, skills, news and to-dos stay local.
+Client data and personal data never mix (no client info in `ecosystem/`, no personal info in client files or cards).
 
 ## Trello model (details in clients/_templates/board-spec.md)
 - **Company** → one private `<Company> – Command Center` (owner + agents only) holding ALL tasks, agent AND human,
-  where the owner approves everything; plus one `<Company> – <Team>` board per human team, synced by the project-lead.
+  where the owner approves everything; plus one `<Company> – <Team>` board per human team, synced by the manager.
 - **Individual** → one board per client project (single-board model).
 - Agent work is NEVER shown on team boards. Staff are invited only to their own team board (if at all), never to
   the Command Center. People who are not on Trello are notified by email drafts the owner sends.
@@ -81,7 +96,7 @@ computer only. Never commit, push or paste client data, people, emails or docume
 8. **Language.** Talk to the owner in the language they write in. Write deliverables in the
    languages listed in the client's CLIENT.md.
 9. **Small, reviewable steps.** One card = one reviewable deliverable.
-10. **People's data.** PEOPLE.md is read only by the project-lead. Specialists never receive emails
+10. **People's data.** PEOPLE.md is read only by the manager. Specialists never receive emails
     or contact details; Trello cards name people but never show their emails. No email is ever sent by
     an agent: only drafts in the owner's Outlook, which the owner sends.
 11. **Know the owner's position.** Read the client's POSITION.md: it says who the owner is there,

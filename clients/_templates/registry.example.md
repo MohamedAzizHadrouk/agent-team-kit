@@ -1,8 +1,8 @@
 # Client & Project Registry (source of truth)
 <!-- Copy this file to clients/registry.md (git-ignored – it contains your clients) and fill it. -->
 
-The project-lead uses this table to know, for every Trello board, WHICH client it belongs to.
-A board that is not listed here is never processed: the project-lead stops and asks.
+The manager uses this table to know, for every Trello board, WHICH client it belongs to.
+A board that is not listed here is never processed: the manager stops and asks.
 
 - Board types:
   - `command-center` – company, private (owner + agents), ALL tasks; name `<Company> – Command Center`

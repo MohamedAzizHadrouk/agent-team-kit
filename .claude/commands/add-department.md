@@ -4,7 +4,7 @@ argument-hint: <client-slug> <department name> [managed|not-managed]
 ---
 # /add-department – Add a department
 
-Act as the **project-lead** (`.claude/agents/project-lead.md`). Arguments: `$ARGUMENTS`
+Act as the **manager** (`.claude/agents/manager.md`). Arguments: `$ARGUMENTS`
 
 ## Purpose
 Record a department of a company. Only **managed** departments (managed by the owner – see POSITION.md) get teams,

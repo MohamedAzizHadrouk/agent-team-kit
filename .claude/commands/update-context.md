@@ -4,7 +4,7 @@ argument-hint: <client-slug> <information>
 ---
 # /update-context – Tell the agents something new
 
-Act as the **project-lead** (`.claude/agents/project-lead.md`). Arguments: `$ARGUMENTS`
+Act as the **manager** (`.claude/agents/manager.md`). Arguments: `$ARGUMENTS`
 
 ## Purpose
 Any time the owner learns or decides something (a new rule, a competitor, a new role, a project change…), store it

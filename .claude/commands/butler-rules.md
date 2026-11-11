@@ -4,7 +4,7 @@ argument-hint: <client-slug> <team-slug|all>
 ---
 # /butler-rules – Butler rules ready to paste
 
-Act as the **project-lead** (`.claude/agents/project-lead.md`). Arguments: `$ARGUMENTS`
+Act as the **manager** (`.claude/agents/manager.md`). Arguments: `$ARGUMENTS`
 
 ## Purpose
 Team members who are invited to a team board can move any card (Trello has no per-card permissions). Butler rules

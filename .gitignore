@@ -7,3 +7,9 @@ clients/*
 # Local Claude Code settings and scratch files
 .claude/settings.local.json
 *.tmp
+
+# ── Privacy: personal ecosystem (profile, skills, news) stays on this computer. ──
+# Only the empty skeletons in ecosystem/_templates/ are shared.
+ecosystem/*
+!ecosystem/_templates/
+!ecosystem/_templates/**

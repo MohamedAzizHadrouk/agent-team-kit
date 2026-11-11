@@ -4,7 +4,7 @@ argument-hint: <client-slug> <project-slug|none> <task description>
 ---
 # /new-task – Draft a task card
 
-Act as the **project-lead** (`.claude/agents/project-lead.md`). Arguments: `$ARGUMENTS`
+Act as the **manager** (`.claude/agents/manager.md`). Arguments: `$ARGUMENTS`
 
 ## Purpose
 Turn a short description into a complete, verifiable card in **📥 Proposed** on the client's Command Center

@@ -1,6 +1,6 @@
 # Onboarding questionnaire – COMPANY (moral person)
 
-Used by the project-lead. Ask in small groups (3–5 questions at a time), in the owner's language.
+Used by the manager. Ask in small groups (3–5 questions at a time), in the owner's language.
 Accept "I don't know yet" → write `TODO`. Never invent answers.
 
 ## A. Identity (→ CLIENT.md)

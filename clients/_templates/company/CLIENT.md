@@ -12,7 +12,7 @@ Created: <YYYY-MM-DD>
 | `RULES.md` | rules of this company: approvals, confidentiality, how tasks, reviews and notifications work |
 | `BRAND.md` | identity, tone, visual assets |
 | `ORG.md` | structure: departments → teams, who leads what, what the owner manages |
-| `PEOPLE.md` | employees (work contacts only) – **read by the Project Lead only** |
+| `PEOPLE.md` | employees (work contacts only) – **read by the Manager only** |
 | `departments/<dept>/DEPARTMENT.md` | one per department; `teams/<team>/TEAM.md` inside |
 | `projects/<project>/PROJECT.md` | one per project (independent of teams/departments) |
 | `documents/INDEX.md` | company documents: what exists and where |

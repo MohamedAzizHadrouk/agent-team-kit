@@ -1,6 +1,6 @@
 # RULES – <Company>
 <!-- Company-specific rules. They ADD to CLAUDE.md (which always applies). If a rule here conflicts with
-     CLAUDE.md, the stricter one wins and the Project Lead asks the owner. -->
+     CLAUDE.md, the stricter one wins and the Manager asks the owner. -->
 
 ## Approvals
 - Final approver of every task: the owner (see POSITION.md) – unless stated otherwise here.
@@ -22,7 +22,7 @@
 - Channel: email from the owner's mailbox – see `clients/_templates/email-templates.md`.
 - Mode: drafts (owner clicks Send) | direct send after the owner's OK per run: TODO
 - People are NOT invited to Trello unless listed here: TODO
-- Results: posted as comments/files on the TEAM board card (by the owner or an invited member), or forwarded email replies – the Project Lead copies them to the Command Center and into the context files.
+- Results: posted as comments/files on the TEAM board card (by the owner or an invited member), or forwarded email replies – the Manager copies them to the Command Center and into the context files.
 - Review replies: the owner forwards/pastes them | TODO
 
 ## Confidentiality

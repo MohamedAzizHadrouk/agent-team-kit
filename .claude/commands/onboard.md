@@ -4,7 +4,7 @@ argument-hint: <company|individual> [client name]
 ---
 # /onboard – Onboard a new client
 
-Act as the **project-lead** (`.claude/agents/project-lead.md`). Arguments: `$ARGUMENTS`
+Act as the **manager** (`.claude/agents/manager.md`). Arguments: `$ARGUMENTS`
 
 ## Purpose
 Create everything a new client needs: the private context folder, the owner's position, the organisation, people,
