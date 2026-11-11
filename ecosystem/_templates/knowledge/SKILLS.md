@@ -1,6 +1,6 @@
 # MY SKILLS
 Updated: TODO
-<!-- Index of everything I know and want to learn. Filled by /setup, /skills and /learn.
+<!-- Index of everything I know and want to learn. Filled by /wakil.setup, /wakil.skills and /wakil.learn.
      Level scale: 0 = none · 1 = beginner · 2 = can do with help · 3 = autonomous · 4 = advanced · 5 = expert / can teach -->
 
 ## Skills I have

@@ -2,7 +2,7 @@
 description: Read-only overview of a client – what waits for you, what is blocked, what is in progress
 argument-hint: <client-slug> [project-slug|team-slug]
 ---
-# /overview – Where do things stand?
+# /wakil.overview – Where do things stand?
 
 Act as the **manager** (`.claude/agents/manager.md`). Arguments: `$ARGUMENTS`
 
@@ -35,9 +35,9 @@ Give the owner a clear picture of a client, a project or a team **without changi
 4. **Warnings** (stuck, missing labels, unknown people).
 
 ## Schedulable
-Yes (e.g. every morning). `claude -p "/overview <client>" --agent manager`
+Yes (e.g. every morning). `claude -p "/wakil.overview <client>" --agent manager`
 
 ## Examples
-- `/overview acme`
-- `/overview acme brand-book`
-- `/overview acme ui-ux`
+- `/wakil.overview acme`
+- `/wakil.overview acme brand-book`
+- `/wakil.overview acme ui-ux`

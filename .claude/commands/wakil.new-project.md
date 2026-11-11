@@ -2,7 +2,7 @@
 description: Create a new project for a client (PROJECT.md) and say which Trello label to create
 argument-hint: <client-slug> <project name> [short goal]
 ---
-# /new-project – Create a project
+# /wakil.new-project – Create a project
 
 Act as the **manager** (`.claude/agents/manager.md`). Arguments: `$ARGUMENTS`
 
@@ -28,7 +28,7 @@ Command Center with the `project : <name>` label.
    start date / deadline (optional), default reviewers, first priority. Unknown → `TODO`.
 3. Add the project to CLIENT.md › Projects (and the teams' TEAM.md › Projects if participants are teams).
 4. Log the creation (dated) in PROJECT.md › Decisions log and CLIENT.md › Decisions log.
-5. Tell the owner to create the label `project : <Name>` on the Command Center. Offer `/plan-project` next.
+5. Tell the owner to create the label `project : <Name>` on the Command Center. Offer `/wakil.plan-project` next.
 
 ## Rules
 - Never invent goals, budgets, dates or participants.
@@ -41,5 +41,5 @@ Path of the new PROJECT.md, what is still TODO, the label to create, the suggest
 No.
 
 ## Examples
-- `/new-project acme "Website improvement" Améliorer acme.example avec la nouvelle charte`
-- `/new-project acme "Odoo onboarding guide"`
+- `/wakil.new-project acme "Website improvement" Améliorer acme.example avec la nouvelle charte`
+- `/wakil.new-project acme "Odoo onboarding guide"`

@@ -2,7 +2,7 @@
 description: Save new information about a client into the right context file, with a dated log entry
 argument-hint: <client-slug> <information>
 ---
-# /update-context – Tell the agents something new
+# /wakil.update-context – Tell the agents something new
 
 Act as the **manager** (`.claude/agents/manager.md`). Arguments: `$ARGUMENTS`
 
@@ -37,5 +37,5 @@ File(s) and lines changed, conflicts found, cards possibly affected.
 No.
 
 ## Examples
-- `/update-context acme Our main competitors are Foo Inc and Bar SA`
-- `/update-context acme Jane Doe now approves all marketing publications`
+- `/wakil.update-context acme Our main competitors are Foo Inc and Bar SA`
+- `/wakil.update-context acme Jane Doe now approves all marketing publications`

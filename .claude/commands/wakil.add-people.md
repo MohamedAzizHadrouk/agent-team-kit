@@ -2,7 +2,7 @@
 description: Add or update people in a client's PEOPLE.md (work contacts only)
 argument-hint: <client-slug> + pasted list (name, role, department, team, work email)
 ---
-# /add-people – Add or update people
+# /wakil.add-people – Add or update people
 
 Act as the **manager** (`.claude/agents/manager.md`). Arguments: `$ARGUMENTS`
 
@@ -39,4 +39,4 @@ Added / updated / skipped rows (names only), and what is still TODO.
 No.
 
 ## Examples
-- `/add-people acme` then paste: `Jane Doe – Head of Sales – Sales – jane.doe@acme.example`
+- `/wakil.add-people acme` then paste: `Jane Doe – Head of Sales – Sales – jane.doe@acme.example`

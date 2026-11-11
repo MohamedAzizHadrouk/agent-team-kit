@@ -2,7 +2,7 @@
 description: Draft a complete task card in Proposed (team, executor, assignee, reviewers, criteria, labels)
 argument-hint: <client-slug> <project-slug|none> <task description>
 ---
-# /new-task – Draft a task card
+# /wakil.new-task – Draft a task card
 
 Act as the **manager** (`.claude/agents/manager.md`). Arguments: `$ARGUMENTS`
 
@@ -19,7 +19,7 @@ Turn a short description into a complete, verifiable card in **📥 Proposed** o
 
 ## Preconditions
 - The client has a Command Center (company) or a board (individual) in the registry.
-- If a project is given, `projects/<project>/PROJECT.md` exists (else propose `/new-project` first).
+- If a project is given, `projects/<project>/PROJECT.md` exists (else propose `/wakil.new-project` first).
 
 ## Steps
 1. Read CLIENT, POSITION, RULES, ORG, the PROJECT.md (if any) and PEOPLE.md (names only).
@@ -44,5 +44,5 @@ The card link, a 3-line summary, and anything the owner must check or add (label
 No.
 
 ## Examples
-- `/new-task acme brand-book Media: templates de posts LinkedIn avec la nouvelle charte, relecture Jane Doe`
-- `/new-task acme none Human: Jane prépare le calendrier éditorial de décembre`
+- `/wakil.new-task acme brand-book Media: templates de posts LinkedIn avec la nouvelle charte, relecture Jane Doe`
+- `/wakil.new-task acme none Human: Jane prépare le calendrier éditorial de décembre`

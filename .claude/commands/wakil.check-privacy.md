@@ -2,7 +2,7 @@
 description: Check that no client data, people or emails would be committed or pushed to git
 argument-hint: [--staged-only]
 ---
-# /check-privacy – Is the repo safe to share?
+# /wakil.check-privacy – Is the repo safe to share?
 
 Act as the **manager** (`.claude/agents/manager.md`). Arguments: `$ARGUMENTS`
 
@@ -37,8 +37,8 @@ every commit or push.
 ✅ safe to commit/push, or ❌ with each problem (file, line, what was found) and the fix to apply.
 
 ## Schedulable
-Yes. `claude -p "/check-privacy" --agent manager`
+Yes. `claude -p "/wakil.check-privacy" --agent manager`
 
 ## Examples
-- `/check-privacy`
-- `/check-privacy --staged-only`
+- `/wakil.check-privacy`
+- `/wakil.check-privacy --staged-only`

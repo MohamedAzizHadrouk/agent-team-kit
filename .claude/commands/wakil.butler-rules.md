@@ -2,7 +2,7 @@
 description: Print the Butler rules for a team board, filled and ready to paste in Trello
 argument-hint: <client-slug> <team-slug|all>
 ---
-# /butler-rules – Butler rules ready to paste
+# /wakil.butler-rules – Butler rules ready to paste
 
 Act as the **manager** (`.claude/agents/manager.md`). Arguments: `$ARGUMENTS`
 
@@ -36,5 +36,5 @@ The rules, one block per rule, ready to copy.
 No.
 
 ## Examples
-- `/butler-rules acme mobile-app`
-- `/butler-rules acme all`
+- `/wakil.butler-rules acme mobile-app`
+- `/wakil.butler-rules acme all`

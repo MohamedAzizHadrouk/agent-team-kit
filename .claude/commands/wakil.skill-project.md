@@ -2,7 +2,7 @@
 description: Create, update or close a practice (academic) project for one of your skills
 argument-hint: <skill> <project-name> [goal] | <skill> <project> --done
 ---
-# /skill-project – Practice project for a skill
+# /wakil.skill-project – Practice project for a skill
 
 Act as the **manager** (`.claude/agents/manager.md`). Arguments: `$ARGUMENTS`
 
@@ -19,7 +19,7 @@ Learn by doing: each practice project proves one roadmap milestone. Creates
 | `--done` | no | close the project: review + level update | – |
 
 ## Preconditions
-- The skill folder exists (else `/learn <skill>`).
+- The skill folder exists (else `/wakil.learn <skill>`).
 
 ## Steps
 1. **New**: ask (or let the learning-coach propose) the milestone it serves, goal, must-haves, "done when" checks,
@@ -42,5 +42,5 @@ PROJECT.md path, what changed, the next step.
 No.
 
 ## Examples
-- `/skill-project python "invoice report script" "read a CSV and produce a monthly PDF summary"`
-- `/skill-project python invoice-report-script --done`
+- `/wakil.skill-project python "invoice report script" "read a CSV and produce a monthly PDF summary"`
+- `/wakil.skill-project python invoice-report-script --done`

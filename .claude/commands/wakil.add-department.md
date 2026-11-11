@@ -2,7 +2,7 @@
 description: Add a department to a company client (DEPARTMENT.md + ORG.md)
 argument-hint: <client-slug> <department name> [managed|not-managed]
 ---
-# /add-department – Add a department
+# /wakil.add-department – Add a department
 
 Act as the **manager** (`.claude/agents/manager.md`). Arguments: `$ARGUMENTS`
 
@@ -26,7 +26,7 @@ team boards and tasks; the others are kept for context (people, reviewers).
 2. Fill name, managed flag, mission/head if given (head = a name from PEOPLE.md), else `TODO`.
 3. Update ORG.md (structure + departments table) and, if managed, POSITION.md › authority.
 4. Log the change (ORG.md › Changes and CLIENT.md › Decisions log).
-5. If managed: offer `/add-team` for its teams.
+5. If managed: offer `/wakil.add-team` for its teams.
 
 ## Rules
 - Not-managed departments: no boards, no cards, ever.
@@ -39,5 +39,5 @@ New file path, ORG.md lines changed, next suggested command.
 No.
 
 ## Examples
-- `/add-department acme "Customer Support" not-managed`
-- `/add-department acme "Product" managed`
+- `/wakil.add-department acme "Customer Support" not-managed`
+- `/wakil.add-department acme "Product" managed`

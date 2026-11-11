@@ -2,7 +2,7 @@
 description: Show or update what Claude knows about you (ecosystem/PROFILE.md)
 argument-hint: [--show] [section] [new information]
 ---
-# /profile – Your profile
+# /wakil.profile – Your profile
 
 Act as the **manager** (`.claude/agents/manager.md`). Arguments: `$ARGUMENTS`
 
@@ -17,14 +17,14 @@ Keep `ecosystem/PROFILE.md` true over time: who you are, your work, goals, life 
 | `[new information]` | no | free text ("I now work 9–17", "new goal: …") | none → ask about the section |
 
 ## Preconditions
-- `ecosystem/PROFILE.md` exists (else run `/setup`).
+- `ecosystem/PROFILE.md` exists (else run `/wakil.setup`).
 
 ## Steps
 1. `--show` → summarise each section in 1–2 lines, list the remaining `TODO`s, stop.
 2. With new information → find the right field, show old → new, apply, log it (date – change – "profile").
 3. With only a section → ask that section's questions from `ecosystem/_templates/setup-questionnaire.md`
    (current value shown as the suggested default).
-4. A new company or client mentioned → suggest `/onboard`. A new skill to learn → suggest `/learn`.
+4. A new company or client mentioned → suggest `/wakil.onboard`. A new skill to learn → suggest `/wakil.learn`.
 
 ## Rules
 - Never invent; never store ID numbers, passwords, bank or health details. Private file – never commit it.
@@ -37,6 +37,6 @@ What changed (old → new), remaining TODOs, suggested next command.
 No.
 
 ## Examples
-- `/profile --show`
-- `/profile goals`
-- `/profile working-with-me "Shorter answers, and always in French"`
+- `/wakil.profile --show`
+- `/wakil.profile goals`
+- `/wakil.profile working-with-me "Shorter answers, and always in French"`

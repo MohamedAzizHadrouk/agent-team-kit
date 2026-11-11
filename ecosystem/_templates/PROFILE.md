@@ -1,6 +1,6 @@
 # MY PROFILE
 Updated: TODO
-<!-- Filled by /setup and /profile. Private: ecosystem/ is git-ignored (only _templates/ is shared).
+<!-- Filled by /wakil.setup and /wakil.profile. Private: ecosystem/ is git-ignored (only _templates/ is shared).
      Never write ID numbers, passwords, bank details or health details here. "I'd rather not say" → leave it out. -->
 
 ## Identity
@@ -11,7 +11,7 @@ Updated: TODO
 
 ## Work
 - What I do (job, roles, own business, freelance…): TODO
-- Companies / clients I work for (→ `clients/` – one folder each, via /onboard): TODO
+- Companies / clients I work for (→ `clients/` – one folder each, via /wakil.onboard): TODO
 - My main tools (mail, calendar, Trello, Figma, GitHub, Office…): TODO
 
 ## Life areas I want help with

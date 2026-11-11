@@ -2,7 +2,7 @@
 description: "I want to learn X" – create the skill folder, set level and goal, propose a roadmap with real resources and a first practice project
 argument-hint: <skill> [goal]
 ---
-# /learn – Start learning a skill
+# /wakil.learn – Start learning a skill
 
 Act as the **manager** (`.claude/agents/manager.md`). Arguments: `$ARGUMENTS`
 
@@ -18,8 +18,8 @@ a roadmap with real resources and a first practice (academic) project.
 | `[goal]` | no | what you want to be able to do | asked |
 
 ## Preconditions
-- `ecosystem/knowledge/SKILLS.md` exists (else run `/setup` or `/skills`).
-- The skill folder does not exist yet. If it does → show it and offer `/skills --review <skill>` instead.
+- `ecosystem/knowledge/SKILLS.md` exists (else run `/wakil.setup` or `/wakil.skills`).
+- The skill folder does not exist yet. If it does → show it and offer `/wakil.skills --review <skill>` instead.
 
 ## Steps
 1. Ask (max 5, suggested defaults): why · level now (0–5) and what you can already do · target level and a concrete
@@ -31,7 +31,7 @@ a roadmap with real resources and a first practice (academic) project.
    verified by web search) and one first practice project.
 4. Show the proposal. After the owner's OK: fill the roadmap, add the resources to the three INDEX.md files, create
    `projects/<project-slug>/PROJECT.md` for the first project, add the skill to SKILLS.md › Learning now.
-5. Ask whether to add the first steps to today's to-do (`/todo add`).
+5. Ask whether to add the first steps to today's to-do (`/wakil.todo add`).
 
 ## Rules
 - Max 3 active skills – otherwise suggest the backlog or pausing one.
@@ -45,5 +45,5 @@ The skill folder path, the roadmap, the resources added, the first project, the 
 No.
 
 ## Examples
-- `/learn "UX research"`
-- `/learn python "automate my reports with scripts within 3 months"`
+- `/wakil.learn "UX research"`
+- `/wakil.learn python "automate my reports with scripts within 3 months"`

@@ -1,8 +1,8 @@
 ---
-description: Schedule a command to run automatically on this computer (e.g. /process every 30 min on workdays)
+description: Schedule a command to run automatically on this computer (e.g. /wakil.process every 30 min on workdays)
 argument-hint: "<command with arguments>" <interval> [days] [hours] | --list | --remove <name>
 ---
-# /schedule-local – Run a command automatically on this computer
+# /wakil.schedule-local – Run a command automatically on this computer
 
 Act as the **manager** (`.claude/agents/manager.md`). Arguments: `$ARGUMENTS`
 
@@ -13,7 +13,7 @@ because client folders are private (local only) and email drafts use the local O
 ## Arguments
 | Argument | Required | Values | Default |
 |---|---|---|---|
-| `"<command>"` | yes | a schedulable command with its arguments, e.g. `"/process acme"` | – |
+| `"<command>"` | yes | a schedulable command with its arguments, e.g. `"/wakil.process acme"` | – |
 | `<interval>` | yes | `15m`, `30m`, `1h`, `daily 08:30` … | – |
 | `[days]` | no | `mon-fri`, `every-day`, `mon,wed,fri` | `mon-fri` |
 | `[hours]` | no | `08:00-18:00` | `08:00-18:00` |
@@ -46,6 +46,6 @@ The schedule created (name, command, timetable), how to pause or remove it, the 
 No (it creates schedules).
 
 ## Examples
-- `/schedule-local "/process acme" 30m mon-fri 08:00-18:00`
-- `/schedule-local "/overview acme" "daily 08:30"`
-- `/schedule-local --list`
+- `/wakil.schedule-local "/wakil.process acme" 30m mon-fri 08:00-18:00`
+- `/wakil.schedule-local "/wakil.overview acme" "daily 08:30"`
+- `/wakil.schedule-local --list`

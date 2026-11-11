@@ -1,5 +1,5 @@
 # TO-DO – YYYY-MM-DD
-<!-- Created by /news or /todo. Managed with /todo add|done|show. Open items move to the next day if PREFERENCES.md says so. -->
+<!-- Created by /wakil.news or /wakil.todo. Managed with /wakil.todo add|done|show. Open items move to the next day if PREFERENCES.md says so. -->
 
 ## Must do today
 - [ ] TODO
@@ -11,4 +11,4 @@
 - [ ] TODO
 
 ## Done
-<!-- moved here by /todo done -->
+<!-- moved here by /wakil.todo done -->

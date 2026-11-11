@@ -2,7 +2,7 @@
 description: Add a book, course or resource (article, video, tool, community) to one of your skills
 argument-hint: <skill> <book|course|resource> <title|link> [notes]
 ---
-# /add-resource – Add a learning resource
+# /wakil.add-resource – Add a learning resource
 
 Act as the **manager** (`.claude/agents/manager.md`). Arguments: `$ARGUMENTS`
 
@@ -19,7 +19,7 @@ optionally linked to a roadmap milestone.
 | `[notes]` | no | free text, status (to-read, in-progress, done), milestone number | status = to-read / planned |
 
 ## Preconditions
-- The skill folder exists (else offer `/learn <skill>`).
+- The skill folder exists (else offer `/wakil.learn <skill>`).
 
 ## Steps
 1. Identify the item: with a link, read the page for title, author/provider, length, free/paid; with only a title,
@@ -38,6 +38,6 @@ The row added/updated and the file path.
 No.
 
 ## Examples
-- `/add-resource ux-research book "Just Enough Research"`
-- `/add-resource python course https://example.com/python-course "milestone 2"`
-- `/add-resource ux-research resource https://example.com/article done`
+- `/wakil.add-resource ux-research book "Just Enough Research"`
+- `/wakil.add-resource python course https://example.com/python-course "milestone 2"`
+- `/wakil.add-resource ux-research resource https://example.com/article done`

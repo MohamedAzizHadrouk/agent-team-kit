@@ -2,7 +2,7 @@
 description: Select the working context (client, department, team, project) so the next commands use it by default
 argument-hint: <client-slug> [department] [team] [project] | --show | --clear
 ---
-# /focus – Select the working context
+# /wakil.focus – Select the working context
 
 Act as the **manager** (`.claude/agents/manager.md`). Arguments: `$ARGUMENTS`
 
@@ -65,15 +65,15 @@ and projects. If a name matches more than one kind (e.g. a team and a project), 
 2. **Owner's position** here (one line from POSITION.md: role, what they may approve).
 3. **Key rules** from RULES.md (max 5 bullets).
 4. **Scope**: goal / status of the focused project, team or department (2–4 lines).
-5. **Next**: commands that will now use this focus by default (e.g. `/overview`, `/new-task <description>`).
+5. **Next**: commands that will now use this focus by default (e.g. `/wakil.overview`, `/wakil.new-task <description>`).
 
 ## Schedulable
 No (it sets an interactive default). Scheduled runs must always pass `<client-slug>` explicitly.
 
 ## Examples
-- `/focus` – pick from a list
-- `/focus acme`
-- `/focus acme marketing` – a department
-- `/focus acme ui-ux brand-book` – a team and a project
-- `/focus --show`
-- `/focus --clear`
+- `/wakil.focus` – pick from a list
+- `/wakil.focus acme`
+- `/wakil.focus acme marketing` – a department
+- `/wakil.focus acme ui-ux brand-book` – a team and a project
+- `/wakil.focus --show`
+- `/wakil.focus --clear`

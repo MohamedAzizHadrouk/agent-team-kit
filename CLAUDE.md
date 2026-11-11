@@ -4,8 +4,8 @@ This folder is the owner's ecosystem in Claude, with two sides:
 - **Clients**: a one-person agency that works for MANY clients (companies and individuals) on many projects.
   Clients and projects are added over time: nothing in this repo is hard-coded to a specific client.
 - **Personal ecosystem** (`ecosystem/`): who the owner is (PROFILE.md), their skills and learning (knowledge/),
-  and their daily news, trends and to-do (news/). Set up with `/setup`.
-Anyone can clone this repo and run `/setup` to build their own ecosystem – nothing personal is shared.
+  and their daily news, trends and to-do (news/). Set up with `/wakil.setup`.
+Anyone can clone this repo and run `/wakil.setup` to build their own ecosystem – nothing personal is shared.
 
 ## The team
 | Agent | File | Role |
@@ -38,6 +38,7 @@ clients/
     CLIENT.md                    <- entry point: identity, type, context map, decisions log
     POSITION.md                  <- the owner's position / role / authority in or for this client
     RULES.md                     <- this client's rules (approvals, reviews, notifications, confidentiality)
+    .resume.md                   <- checkpoints: where the owner stopped (per client / project / team) – /wakil.resume
     BRAND.md                     <- identity, tone, assets
     ORG.md                       <- companies: departments -> teams, what the owner manages
     PEOPLE.md                    <- employees / collaborators, WORK contacts only (Manager only)
@@ -46,14 +47,13 @@ clients/
     projects/<project>/PROJECT.md + assets/     <- independent of departments/teams
     documents/INDEX.md + files                  <- client documents (confidential ones: location only)
 tools/outlook-draft.ps1          <- creates email DRAFTS in the owner's Outlook (never sends)
-.claude/commands/<name>.md       <- slash commands (/process, /overview, /new-task …) – one file per command
+.claude/commands/wakil.<name>.md <- slash commands (/wakil.process, /wakil.overview, /wakil.new-task …) – one file per command
 COMMANDS.md                      <- catalog of all commands, their arguments and schedules
 ```
 
 ## Commands
 The owner drives the work with slash commands (see COMMANDS.md). When a command is used, follow its file's
-Steps and Rules exactly; the detailed rules stay in manager.md. New commands use the same layout
-(`/new-command`) and generic examples only (no real client names – the files are shared).
+Steps and Rules exactly; the detailed rules stay in manager.md. All commands are prefixed `wakil.` (e.g. `/wakil.process`). New commands use the same layout (`/wakil.new-command`) and generic examples only (no real client names – the files are shared).
 Clients are created from `clients/_templates/company|individual/` by the manager (see its "Managing clients" section).
 
 ## Privacy of this repo

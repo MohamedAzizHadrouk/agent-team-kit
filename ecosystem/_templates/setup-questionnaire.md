@@ -1,6 +1,6 @@
 # Setup questionnaire – the owner's ecosystem
 
-Used by `/setup` and `/profile`. Ask 3–5 questions at a time, in the owner's language, each with a suggested default.
+Used by `/wakil.setup` and `/wakil.profile`. Ask 3–5 questions at a time, in the owner's language, each with a suggested default.
 "I don't know yet" → `TODO`. "I'd rather not say" → leave it out. Never invent answers.
 Never ask for or store: ID numbers, passwords, bank details, health details, other people's private data.
 
@@ -8,7 +8,7 @@ Never ask for or store: ID numbers, passwords, bank details, health details, oth
 1. What should I call you? Which language(s) should I answer in?
 2. Where are you (country / city) and what is your time zone? Usual work hours?
 
-## B. Your work (→ PROFILE.md › Work, then `clients/` via /onboard)
+## B. Your work (→ PROFILE.md › Work, then `clients/` via /wakil.onboard)
 3. What do you do? (employee, own company, freelance, agency, student…) – one line per role.
 4. Which companies or clients do you work for? For each: company or individual? (each one becomes a client folder later)
 5. Which tools do you use daily? (mail/Outlook, Trello, Figma, GitHub, calendar…)
@@ -24,7 +24,7 @@ Never ask for or store: ID numbers, passwords, bank details, health details, oth
 11. Daily rhythm you want? (e.g. morning news + to-do at 08:00, evening review)
 
 ## E. Next modules (each one is optional – run it now or later)
-- Skills and learning → `/skills`, then `/learn <skill>` for each skill to learn
-- News and trends → `/news-preferences`, then `/news`
-- First client → `/onboard <company|individual> [name]`
-- Trello → `/setup-trello --templates`
+- Skills and learning → `/wakil.skills`, then `/wakil.learn <skill>` for each skill to learn
+- News and trends → `/wakil.news-preferences`, then `/wakil.news`
+- First client → `/wakil.onboard <company|individual> [name]`
+- Trello → `/wakil.setup-trello --templates`

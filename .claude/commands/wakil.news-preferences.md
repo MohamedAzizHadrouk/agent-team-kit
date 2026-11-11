@@ -1,8 +1,8 @@
 ---
-description: Interview or update your news and trend preferences (news/PREFERENCES.md) used by /news
+description: Interview or update your news and trend preferences (news/PREFERENCES.md) used by /wakil.news
 argument-hint: [--show] [news|trends|general|todo] [change]
 ---
-# /news-preferences – Your news & trends preferences
+# /wakil.news-preferences – Your news & trends preferences
 
 Act as the **manager** (`.claude/agents/manager.md`). Arguments: `$ARGUMENTS`
 
@@ -27,7 +27,7 @@ length, trends areas, things to never show. Stored in `ecosystem/news/PREFERENCE
    - News: topics with priority must / nice / never; preferred and avoided sources; never-show list; always-tell-me list.
    - Trends: areas, kind of trends, link to skills? link to clients?
    - To-do: carry over open items? add learning steps?
-3. Offer a test run: `/news`.
+3. Offer a test run: `/wakil.news`.
 
 ## Rules
 - Linking trends to clients: only client **sectors** from their CLIENT.md, never confidential data, never one
@@ -40,6 +40,6 @@ The preferences summary (or the change), the next step.
 No.
 
 ## Examples
-- `/news-preferences`
-- `/news-preferences --show`
-- `/news-preferences news "add 'AI regulation' as must, remove sports"`
+- `/wakil.news-preferences`
+- `/wakil.news-preferences --show`
+- `/wakil.news-preferences news "add 'AI regulation' as must, remove sports"`

@@ -2,7 +2,7 @@
 description: Onboard a new client (company or individual) – questionnaire, client folder, boards, registry
 argument-hint: <company|individual> [client name]
 ---
-# /onboard – Onboard a new client
+# /wakil.onboard – Onboard a new client
 
 Act as the **manager** (`.claude/agents/manager.md`). Arguments: `$ARGUMENTS`
 
@@ -17,7 +17,7 @@ first projects, Trello boards and the registry rows.
 | `[name]` | no | legal / trade name, or the person's public name | asked |
 
 ## Preconditions
-- No client folder with the same slug exists (else propose `/update-context`).
+- No client folder with the same slug exists (else propose `/wakil.update-context`).
 
 ## Steps
 1. Run the questionnaire `clients/_templates/onboarding-<type>.md`, 3–5 questions at a time, in the owner's language.
@@ -26,10 +26,10 @@ first projects, Trello boards and the registry rows.
 3. Fill CLIENT.md, **POSITION.md** (always), RULES.md, BRAND.md; for companies ORG.md, departments, teams, PEOPLE.md;
    the first projects. Log every answer (dated) in the decisions logs.
 4. Trello: create (or register the owner's copies of) the boards – company: `<Company> – Command Center` + one board per
-   team of a managed department; individual: one board. See `/setup-trello`.
+   team of a managed department; individual: one board. See `/wakil.setup-trello`.
 5. Add the rows to `clients/registry.md` (create it from `registry.example.md` if missing).
 6. Give the owner the manual Trello steps: labels (`team : …`, `project : …`), Butler rules if anyone is invited
-   (`/butler-rules`), invitations (only if chosen).
+   (`/wakil.butler-rules`), invitations (only if chosen).
 
 ## Rules
 - Never invent answers. Work contacts only in PEOPLE.md. Never store ID numbers or secrets.
@@ -38,11 +38,11 @@ first projects, Trello boards and the registry rows.
 
 ## Output
 What was created (files, boards), what is still TODO, the owner's manual steps, the suggested next command
-(`/plan-project`).
+(`/wakil.plan-project`).
 
 ## Schedulable
 No.
 
 ## Examples
-- `/onboard company "Acme Ltd"`
-- `/onboard individual "Jane Doe"`
+- `/wakil.onboard company "Acme Ltd"`
+- `/wakil.onboard individual "Jane Doe"`

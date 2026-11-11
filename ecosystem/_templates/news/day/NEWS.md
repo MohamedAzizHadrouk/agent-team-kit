@@ -1,6 +1,6 @@
 # NEWS – YYYY-MM-DD
 Built: YYYY-MM-DD HH:MM (time zone) · Preferences: news/PREFERENCES.md (version of YYYY-MM-DD)
-<!-- Written by /news (news-curator). Every item has a source link and a publication date. No invented facts.
+<!-- Written by /wakil.news (news-curator). Every item has a source link and a publication date. No invented facts.
      Summaries in my own words – no long quotes. If sources disagree, say so. -->
 
 ## In 30 seconds

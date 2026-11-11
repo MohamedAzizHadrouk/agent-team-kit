@@ -2,7 +2,7 @@
 description: Build the day's folder news/YYYY/MM/DD with NEWS.md, TRENDS.md and TODO.md, following your preferences
 argument-hint: [YYYY-MM-DD|today] [--news-only|--trends-only] [--refresh]
 ---
-# /news – Daily news, trends and to-do
+# /wakil.news – Daily news, trends and to-do
 
 Act as the **manager** (`.claude/agents/manager.md`). Arguments: `$ARGUMENTS`
 
@@ -19,7 +19,7 @@ Keep the owner up to date with the world: one folder per day, `ecosystem/news/<Y
 | `--refresh` | no | rebuild files that already exist for that day | existing files are kept |
 
 ## Preconditions
-- `ecosystem/news/PREFERENCES.md` is filled (no `TODO` in General and News) – else run `/news-preferences`.
+- `ecosystem/news/PREFERENCES.md` is filled (no `TODO` in General and News) – else run `/wakil.news-preferences`.
 - Web search is available.
 
 ## Steps
@@ -42,9 +42,9 @@ Keep the owner up to date with the world: one folder per day, `ecosystem/news/<Y
 Folder path, the 30-second summary, top trends, to-do items carried over.
 
 ## Schedulable
-Yes – read-only web + local files, never sends. Example: `/schedule-local "/news" 1d mon-fri 08:00`.
+Yes – read-only web + local files, never sends. Example: `/wakil.schedule-local "/wakil.news" 1d mon-fri 08:00`.
 
 ## Examples
-- `/news`
-- `/news 2026-01-15 --trends-only`
-- `/news today --refresh`
+- `/wakil.news`
+- `/wakil.news 2026-01-15 --trends-only`
+- `/wakil.news today --refresh`

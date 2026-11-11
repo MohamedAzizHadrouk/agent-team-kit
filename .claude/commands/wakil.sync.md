@@ -2,12 +2,12 @@
 description: Only read team boards (comments, files, Ready for Review) into the Command Center and context files
 argument-hint: <client-slug>
 ---
-# /sync – Bring team-board work back into the Command Center
+# /wakil.sync – Bring team-board work back into the Command Center
 
 Act as the **manager** (`.claude/agents/manager.md`). Arguments: `$ARGUMENTS`
 
 ## Purpose
-A light version of `/process`: collect what people (or the owner) wrote on team boards, without starting any new
+A light version of `/wakil.process`: collect what people (or the owner) wrote on team boards, without starting any new
 work, delegating to agents or dispatching new cards.
 
 ## Arguments
@@ -34,7 +34,7 @@ work, delegating to agents or dispatching new cards.
 Per team: cards updated, facts saved (file + line), cards sent to review.
 
 ## Schedulable
-Yes – e.g. every 15 min if you work on team boards a lot. `claude -p "/sync <client>" --agent manager`
+Yes – e.g. every 15 min if you work on team boards a lot. `claude -p "/wakil.sync <client>" --agent manager`
 
 ## Examples
-- `/sync acme`
+- `/wakil.sync acme`

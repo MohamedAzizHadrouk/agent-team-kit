@@ -2,7 +2,7 @@
 description: Propose a task breakdown for a project, then create the cards in Proposed after your OK
 argument-hint: <client-slug> <project-slug> [--next N]
 ---
-# /plan-project – Break a project into tasks
+# /wakil.plan-project – Break a project into tasks
 
 Act as the **manager** (`.claude/agents/manager.md`). Arguments: `$ARGUMENTS`
 
@@ -25,7 +25,7 @@ the right executor for each – then create them on the board once the owner agr
 1. Read CLIENT, POSITION, RULES, BRAND, ORG and PROJECT.md. Check which cards of this project already exist (label/`Project:`).
 2. Propose a table: # · card title · executor (agent/person) · team · depends on · reviewers.
 3. **Wait for the owner's OK** (or changes). Save the agreed plan in PROJECT.md (section "Plan", dated).
-4. Create the first N cards in 📥 Proposed exactly like `/new-task` (description, checklist, labels).
+4. Create the first N cards in 📥 Proposed exactly like `/wakil.new-task` (description, checklist, labels).
 5. Log in PROJECT.md › Decisions log which cards were created.
 
 ## Rules
@@ -39,5 +39,5 @@ The agreed plan, the links of the created cards, what the owner must do next (la
 No.
 
 ## Examples
-- `/plan-project acme brand-book`
-- `/plan-project acme website-improvement --next 2`
+- `/wakil.plan-project acme brand-book`
+- `/wakil.plan-project acme website-improvement --next 2`

@@ -1,13 +1,13 @@
 # MY NEWS & TRENDS PREFERENCES
 Updated: TODO
-<!-- Filled by /news-preferences. Used by /news and the news-curator to build each day's NEWS.md and TRENDS.md. -->
+<!-- Filled by /wakil.news-preferences. Used by /wakil.news and the news-curator to build each day's NEWS.md and TRENDS.md. -->
 
 ## General
 - Languages of the summaries: TODO
 - Regions I follow (world / country / city): TODO
 - Format: short bullets | short paragraphs | headline + why it matters
 - Length: TODO (e.g. 10 news items, 5 trends – about 5 minutes of reading)
-- When: TODO (e.g. every workday at 08:00 via /schedule-local)
+- When: TODO (e.g. every workday at 08:00 via /wakil.schedule-local)
 - Listen or read: read | listen-friendly (written to be read aloud)
 
 ## News

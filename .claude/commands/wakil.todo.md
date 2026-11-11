@@ -2,7 +2,7 @@
 description: Show, add or tick today's to-do items (news/YYYY/MM/DD/TODO.md)
 argument-hint: show | add <item> [--learning] | done <number|text> [YYYY-MM-DD]
 ---
-# /todo – Today's to-do
+# /wakil.todo – Today's to-do
 
 Act as the **manager** (`.claude/agents/manager.md`). Arguments: `$ARGUMENTS`
 
@@ -17,7 +17,7 @@ A simple daily to-do list that lives next to the day's news: `ecosystem/news/<YY
 | `[date]` | no | `YYYY-MM-DD` | today (owner's time zone) |
 
 ## Preconditions
-- `ecosystem/` exists (else `/setup`).
+- `ecosystem/` exists (else `/wakil.setup`).
 
 ## Steps
 1. Open the day's TODO.md; missing → create it from `ecosystem/_templates/news/day/TODO.md` (with the carry-over
@@ -28,7 +28,7 @@ A simple daily to-do list that lives next to the day's news: `ecosystem/news/<YY
    SKILL.md › Progress log.
 
 ## Rules
-- Client tasks belong on the client's Trello board – if an item is clearly a client task, suggest `/new-task` instead
+- Client tasks belong on the client's Trello board – if an item is clearly a client task, suggest `/wakil.new-task` instead
   (and never write client confidential details here).
 
 ## Output
@@ -38,7 +38,7 @@ The updated list.
 `show` only.
 
 ## Examples
-- `/todo`
-- `/todo add "Call the printer about the brochure"`
-- `/todo add "Chapter 3 of the UX book" --learning`
-- `/todo done 2`
+- `/wakil.todo`
+- `/wakil.todo add "Call the printer about the brochure"`
+- `/wakil.todo add "Chapter 3 of the UX book" --learning`
+- `/wakil.todo done 2`

@@ -2,7 +2,7 @@
 description: Record an email reply (a person's result or a reviewer's answer) on the right card
 argument-hint: <client-slug> <card title or link> <pasted reply text>
 ---
-# /reply – Record a reply you received by email
+# /wakil.reply – Record a reply you received by email
 
 Act as the **manager** (`.claude/agents/manager.md`). Arguments: `$ARGUMENTS`
 
@@ -26,7 +26,7 @@ continues (review, final approval, or changes).
    - **Result** from the assignee → comment summary + links on the Command Center card (and the team card) → Review flow.
    - **Review answer** from a reviewer → comment `✅ <name>: Validé` or `🔁 <name>: <remarks>` → Review flow rules
      (all ✅ → Awaiting Final Approval; any 🔁 → back to the doer).
-3. Extract useful facts into the context files (like `/sync` step 4).
+3. Extract useful facts into the context files (like `/wakil.sync` step 4).
 4. If the reply had attachments, ask the owner to drop them in `documents/` or attach them to the card.
 
 ## Rules
@@ -40,5 +40,5 @@ What was recorded, where the card moved, what is next.
 No (needs the pasted text).
 
 ## Examples
-- `/reply acme "Plateforme de marque" Bonjour Sam, ✅ Validé de mon côté. John`
-- `/reply acme https://trello.com/c/xxxx 🔁 Modifications : changer la couleur du titre…`
+- `/wakil.reply acme "Plateforme de marque" Bonjour Sam, ✅ Validé de mon côté. John`
+- `/wakil.reply acme https://trello.com/c/xxxx 🔁 Modifications : changer la couleur du titre…`

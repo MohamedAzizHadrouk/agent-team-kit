@@ -8,7 +8,7 @@ A ready-to-use setup for [Claude Code](https://claude.com/claude-code) that orga
   (roadmaps, books, courses, resources, practice projects) and keeps you **up to date with the world**
   (daily news, trends and to-do, following your own preferences).
 
-Clone it, run `/setup`, answer a few questions – you have your own ecosystem. Nothing personal is ever shared.
+Clone it, run `/wakil.setup`, answer a few questions – you have your own ecosystem. Nothing personal is ever shared.
 
 ## Quick start
 ```bash
@@ -18,11 +18,11 @@ claude --agent manager
 ```
 Then type:
 ```
-/setup
+/wakil.setup
 ```
-`/setup` checks your tools (git, Trello / Figma / GitHub connectors, Outlook), creates your private `ecosystem/`
+`/wakil.setup` checks your tools (git, Trello / Figma / GitHub connectors, Outlook), creates your private `ecosystem/`
 folder, asks about you, and then offers to set up skills, news and your first client. You can stop any time and
-continue with `/setup --resume`. Manual, step-by-step version: [SETUP.md](SETUP.md).
+continue with `/wakil.setup --resume`. Manual, step-by-step version: [SETUP.md](SETUP.md).
 
 ## What's inside
 ```
@@ -52,21 +52,21 @@ clients/registry.md                 Trello boards → client
 ## Main commands
 | Area | Commands |
 |---|---|
-| Start | `/setup` · `/profile` · `/list-commands` |
-| Learning | `/skills` · `/learn <skill>` · `/add-resource` · `/skill-project` |
-| News | `/news-preferences` · `/news` · `/todo` |
-| Clients | `/onboard` · `/focus` · `/new-task` · `/plan-project` · `/process` · `/overview` · `/reply` |
-| Maintenance | `/setup-trello` · `/schedule-local` · `/check-privacy` · `/new-command` |
+| Start | `/wakil.setup` · `/wakil.profile` · `/wakil.resume` · `/wakil.list-commands` |
+| Learning | `/wakil.skills` · `/wakil.learn <skill>` · `/wakil.add-resource` · `/wakil.skill-project` |
+| News | `/wakil.news-preferences` · `/wakil.news` · `/wakil.todo` |
+| Clients | `/wakil.onboard` · `/wakil.focus` · `/wakil.new-task` · `/wakil.plan-project` · `/wakil.process` · `/wakil.overview` · `/wakil.reply` |
+| Maintenance | `/wakil.setup-trello` · `/wakil.schedule-local` · `/wakil.check-privacy` · `/wakil.new-command` |
 
 Full list with arguments: [COMMANDS.md](COMMANDS.md).
 
 ### Examples
 ```
-/learn "UX research"                      → skill folder, roadmap, real books/courses, first practice project
-/add-resource ux-research book "<title>"  → added to that skill's books/INDEX.md
-/news                                      → news/<today>/NEWS.md, TRENDS.md, TODO.md
-/schedule-local "/news" 1d mon-fri 08:00   → your news every workday morning
-/onboard company "Acme"                    → client folder + Trello boards
+/wakil.learn "UX research"                      → skill folder, roadmap, real books/courses, first practice project
+/wakil.add-resource ux-research book "<title>"  → added to that skill's books/INDEX.md
+/wakil.news                                      → news/<today>/NEWS.md, TRENDS.md, TODO.md
+/wakil.schedule-local "/wakil.news" 1d mon-fri 08:00   → your news every workday morning
+/wakil.onboard company "Acme"                    → client folder + Trello boards
 ```
 
 ## How the agents work
@@ -77,7 +77,7 @@ Full list with arguments: [COMMANDS.md](COMMANDS.md).
 
 ## Privacy
 This repo shares only the **structure**. `.gitignore` keeps everything under `clients/` and `ecosystem/` (except
-their `_templates/`) on your computer. Run `/check-privacy` before every commit or push.
+their `_templates/`) on your computer. Run `/wakil.check-privacy` before every commit or push.
 Client data and personal data never mix.
 
 ## Requirements

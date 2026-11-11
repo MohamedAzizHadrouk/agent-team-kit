@@ -1,6 +1,6 @@
 # Setup guide – Agent Team + Trello (about 20 minutes)
 
-> **Fastest way:** open this folder in Claude Code (`claude --agent manager`) and type **`/setup`**. It checks the
+> **Fastest way:** open this folder in Claude Code (`claude --agent manager`) and type **`/wakil.setup`**. It checks the
 > tools, builds your private `ecosystem/` (profile, skills, news) and guides you through the steps below.
 > This file is the detailed manual version.
 
@@ -87,16 +87,16 @@ The Manager must be the main agent because sub-agents cannot launch other sub-ag
 - New info about a client: just tell it; it updates CLIENT.md / BRAND.md / TEAM.md / PROJECT.md and logs the change.
 - Archiving: say "Archive client <name>" → it sets Status: archived in the registry.
 
-## Daily commands (full list: COMMANDS.md, or type `/list-commands`)
-- `/process <client>` – the daily run · `/overview <client> [project|team]` – where things stand (read-only)
-- `/new-task <client> <project|none> <description>` – draft a card · `/plan-project <client> <project>` – plan a project
-- `/reply <client> <card> <pasted email>` – record an email answer · `/sync <client>` – read team boards only
-- `/add-people`, `/add-document`, `/update-context` – keep the client context up to date
-- `/check-privacy` before every commit/push
+## Daily commands (full list: COMMANDS.md, or type `/wakil.list-commands`)
+- `/wakil.process <client>` – the daily run · `/wakil.overview <client> [project|team]` – where things stand (read-only)
+- `/wakil.new-task <client> <project|none> <description>` – draft a card · `/wakil.plan-project <client> <project>` – plan a project
+- `/wakil.reply <client> <card> <pasted email>` – record an email answer · `/wakil.sync <client>` – read team boards only
+- `/wakil.add-people`, `/wakil.add-document`, `/wakil.update-context` – keep the client context up to date
+- `/wakil.check-privacy` before every commit/push
 
 ## Daily use (companies)
-- Write every task (agent or human) on the Command Center in 📥 Proposed (or `/new-task`) → move to ✅ Approved – Ready when complete.
-- Run: `/process <client>` (or `/process all`).
+- Write every task (agent or human) on the Command Center in 📥 Proposed (or `/wakil.new-task`) → move to ✅ Approved – Ready when complete.
+- Run: `/wakil.process <client>` (or `/wakil.process all`).
 - Assign people on new team-board cards (the connector cannot assign members).
 - Approve everything in 🛑 Awaiting Final Approval: move to 🏁 Done or 🔁 Needs Changes (with a comment).
   The Manager applies your decision to the team board on the next run.
@@ -107,8 +107,8 @@ The Manager must be the main agent because sub-agents cannot launch other sub-ag
 - You write cards in Backlog → move to Ready when complete. Approve items in "Awaiting Human Approval" yourself.
 
 ## Later: automation (after 1–2 weeks of manual runs)
-- Run a schedulable command automatically with `/schedule-local "/process <client>" 30m mon-fri 08:00-18:00`
-  (it runs `claude -p "/process <client>" --agent manager` on this computer). Test the command by hand first.
+- Run a schedulable command automatically with `/wakil.schedule-local "/wakil.process <client>" 30m mon-fri 08:00-18:00`
+  (it runs `claude -p "/wakil.process <client>" --agent manager` on this computer). Test the command by hand first.
   Start with 30–60 min during working hours, not every minute (each run costs usage).
 - Agent SDK / webhooks for real-time triggers: only if you need it.
 

@@ -2,7 +2,7 @@
 description: Process a client's boards – audit, sync, reviews, approved cards, report
 argument-hint: <client-slug|all> [--dry-run]
 ---
-# /process – Process a client's boards
+# /wakil.process – Process a client's boards
 
 Act as the **manager** (`.claude/agents/manager.md`). Arguments: `$ARGUMENTS`
 
@@ -43,9 +43,9 @@ Short report, in this order: ✉️ email drafts to send · 🛑 waiting for you
 ⚠️ audit violations · ✅ done this run · anything odd.
 
 ## Schedulable
-Yes. `claude -p "/process <client>" --agent manager` – see `/schedule-local`.
+Yes. `claude -p "/wakil.process <client>" --agent manager` – see `/wakil.schedule-local`.
 
 ## Examples
-- `/process acme`
-- `/process all`
-- `/process acme --dry-run`
+- `/wakil.process acme`
+- `/wakil.process all`
+- `/wakil.process acme --dry-run`

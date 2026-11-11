@@ -2,7 +2,7 @@
 description: Show all available commands with their arguments and examples (COMMANDS.md)
 argument-hint: [command-name]
 ---
-# /list-commands – What can I ask?
+# /wakil.list-commands – What can I ask?
 
 Arguments: `$ARGUMENTS`
 
@@ -32,5 +32,5 @@ The catalog, or one command's details.
 No.
 
 ## Examples
-- `/list-commands`
-- `/list-commands process`
+- `/wakil.list-commands`
+- `/wakil.list-commands process`

@@ -2,7 +2,7 @@
 description: File a client document, index it, and extract useful facts into the context files
 argument-hint: <client-slug> <file path|link|pasted text> [about: department|project|company] [--confidential]
 ---
-# /add-document – Add a document to a client's context
+# /wakil.add-document – Add a document to a client's context
 
 Act as the **manager** (`.claude/agents/manager.md`). Arguments: `$ARGUMENTS`
 
@@ -42,5 +42,5 @@ Where the document was filed, the INDEX row, the facts extracted (file + section
 No.
 
 ## Examples
-- `/add-document acme C:\Users\me\Downloads\sales-department.pdf department:sales`
-- `/add-document acme https://drive.example.com/org-chart --confidential`
+- `/wakil.add-document acme C:\Users\me\Downloads\sales-department.pdf department:sales`
+- `/wakil.add-document acme https://drive.example.com/org-chart --confidential`

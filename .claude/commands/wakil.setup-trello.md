@@ -2,7 +2,7 @@
 description: Create the Trello templates, or a client's boards, from board-spec.md
 argument-hint: [client-slug] [--templates]
 ---
-# /setup-trello – Create Trello templates or a client's boards
+# /wakil.setup-trello – Create Trello templates or a client's boards
 
 Act as the **manager** (`.claude/agents/manager.md`). Arguments: `$ARGUMENTS`
 
@@ -41,5 +41,5 @@ Board links created, registry rows added, the owner's manual checklist.
 No.
 
 ## Examples
-- `/setup-trello --templates`
-- `/setup-trello acme`
+- `/wakil.setup-trello --templates`
+- `/wakil.setup-trello acme`

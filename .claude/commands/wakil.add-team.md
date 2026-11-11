@@ -2,7 +2,7 @@
 description: Add a team to a managed department – TEAM.md, team board, registry row, label to create
 argument-hint: <client-slug> <department-slug> <team name>
 ---
-# /add-team – Add a team
+# /wakil.add-team – Add a team
 
 Act as the **manager** (`.claude/agents/manager.md`). Arguments: `$ARGUMENTS`
 
@@ -17,7 +17,7 @@ Create a human team inside a managed department, with its Trello team board (hum
 | `<team name>` | yes | free text | – |
 
 ## Preconditions
-- The department exists and is managed (else propose `/add-department … managed`).
+- The department exists and is managed (else propose `/wakil.add-department … managed`).
 
 ## Steps
 1. Copy `clients/_templates/company/departments/example-department/teams/example-team/TEAM.md` to
@@ -26,7 +26,7 @@ Create a human team inside a managed department, with its Trello team board (hum
    "📘 How this board works – please read" card (or register the owner's copy of the Human Team Board template).
 3. Add the registry row (board type `team`, slug `<dept>/<team>`), the team to ORG.md and DEPARTMENT.md.
 4. Tell the owner: create the label `team : <Team name>` on the Command Center; invite people only if chosen;
-   if invited → `/butler-rules <client> <team>`.
+   if invited → `/wakil.butler-rules <client> <team>`.
 5. Log the change.
 
 ## Rules
@@ -40,4 +40,4 @@ TEAM.md path, board link, registry row, the owner's manual steps.
 No.
 
 ## Examples
-- `/add-team acme product "Mobile App"`
+- `/wakil.add-team acme product "Mobile App"`
