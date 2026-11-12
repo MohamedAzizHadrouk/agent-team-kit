@@ -2,8 +2,9 @@
 
 A ready-to-use setup for [Claude Code](https://claude.com/claude-code) that organises **your work and your life**:
 
-- **Clients** – a small agent team (manager + UI/UX, dev, marketing, media) that runs your clients' tasks from
-  Trello, prepares email drafts in Outlook, and asks you before anything important.
+- **Entities** – the companies, associations, clubs and individuals you work for or with. A small agent team
+  (manager + UI/UX, dev, marketing, media) runs their tasks from Trello, prepares email drafts in Outlook, and asks
+  you before anything important.
 - **Personal ecosystem** – Claude learns who you are (profile), tracks your **skills and learning**
   (roadmaps, books, courses, resources, practice projects) and keeps you **up to date with the world**
   (daily news, trends and to-do, following your own preferences).
@@ -32,7 +33,7 @@ SETUP.md                detailed manual setup
 .claude/agents/         manager (main) + ui-ux, fullstack-devops, marketing, media, learning-coach, news-curator
 .claude/commands/       one file per slash command
 ecosystem/_templates/   skeletons for your personal ecosystem (shared)
-clients/_templates/     skeletons for clients, Trello board spec, Butler rules, email templates (shared)
+entities/_templates/     skeletons for entities (organisation, individual), Trello board spec, Butler rules, email templates (shared)
 tools/outlook-draft.ps1 creates email DRAFTS in Outlook (never sends)
 ```
 Your own data (created by the commands, **never committed**):
@@ -45,8 +46,8 @@ ecosystem/
     projects/<project>/PROJECT.md   practice (academic) projects that prove a milestone
   news/PREFERENCES.md               what news and trends you want, and how
   news/2026/01/15/                  TODO.md · NEWS.md · TRENDS.md for that day
-clients/<client>/                   one folder per client (company or individual)
-clients/registry.md                 Trello boards → client
+entities/<entity>/                   one folder per entity: company, association, club or individual
+entities/registry.md                 Trello boards → entity
 ```
 
 ## Main commands
@@ -55,7 +56,7 @@ clients/registry.md                 Trello boards → client
 | Start | `/wakil.setup` · `/wakil.profile` · `/wakil.resume` · `/wakil.list-commands` |
 | Learning | `/wakil.skills` · `/wakil.learn <skill>` · `/wakil.add-resource` · `/wakil.skill-project` |
 | News | `/wakil.news-preferences` · `/wakil.news` · `/wakil.todo` |
-| Clients | `/wakil.onboard` · `/wakil.focus` · `/wakil.new-task` · `/wakil.plan-project` · `/wakil.process` · `/wakil.overview` · `/wakil.reply` |
+| Entities | `/wakil.add-entity` · `/wakil.focus` · `/wakil.new-task` · `/wakil.plan-project` · `/wakil.process` · `/wakil.overview` · `/wakil.reply` |
 | Maintenance | `/wakil.setup-trello` · `/wakil.schedule-local` · `/wakil.check-privacy` · `/wakil.new-command` |
 
 Full list with arguments: [COMMANDS.md](COMMANDS.md).
@@ -66,7 +67,8 @@ Full list with arguments: [COMMANDS.md](COMMANDS.md).
 /wakil.add-resource ux-research book "<title>"  → added to that skill's books/INDEX.md
 /wakil.news                                      → news/<today>/NEWS.md, TRENDS.md, TODO.md
 /wakil.schedule-local "/wakil.news" 1d mon-fri 08:00   → your news every workday morning
-/wakil.onboard company "Acme"                    → client folder + Trello boards
+/wakil.add-entity company "Acme"                    → entity folder + Trello boards
+/wakil.add-entity association "Green Hands"         → same for an association (or club, individual)
 ```
 
 ## How the agents work
@@ -76,7 +78,7 @@ Full list with arguments: [COMMANDS.md](COMMANDS.md).
 - No invented facts: resources, news and trends always come with real sources.
 
 ## Privacy
-This repo shares only the **structure**. `.gitignore` keeps everything under `clients/` and `ecosystem/` (except
+This repo shares only the **structure**. `.gitignore` keeps everything under `entities/` and `ecosystem/` (except
 their `_templates/`) on your computer. Run `/wakil.check-privacy` before every commit or push.
 Client data and personal data never mix.
 

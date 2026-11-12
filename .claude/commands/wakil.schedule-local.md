@@ -30,7 +30,7 @@ because client folders are private (local only) and email drafts use the local O
 2. Prefer the desktop app's local scheduled tasks if available; otherwise Windows Task Scheduler running:
    `claude -p "<command>" --agent manager` in the repo folder.
 3. Unattended runs cannot ask for permission: tell the owner which tools must be allowed for the run
-   (Trello MCP, PowerShell for `tools/outlook-draft.ps1`, file edits under `clients/`) and offer to set them up
+   (Trello MCP, PowerShell for `tools/outlook-draft.ps1`, file edits under `entities/`) and offer to set them up
    (`/permissions` in an interactive terminal, or `.claude/settings.local.json`).
 4. Record the schedule in `COMMANDS.md` › Schedules (command, timetable, created date) – no client data in that line
    other than the slug.

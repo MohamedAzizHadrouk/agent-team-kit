@@ -20,15 +20,15 @@ every commit or push.
 - Run inside the repo.
 
 ## Steps
-1. `git check-ignore` → `clients/registry.md` and every `clients/<slug>/` (except `_templates`) must be ignored;
+1. `git check-ignore` → `entities/registry.md` and every `entities/<slug>/` (except `_templates`) must be ignored;
    so must every path under `ecosystem/` except `ecosystem/_templates/`.
 2. List the files that would be committed (`git diff --cached --name-only` + `git ls-files --others --exclude-standard`).
-   Any path under `clients/` other than `clients/_templates/`, or under `ecosystem/` other than
+   Any path under `entities/` other than `entities/_templates/`, or under `ecosystem/` other than
    `ecosystem/_templates/` → ❌.
 3. Scan those files for: names of registered client slugs and their people (from each PEOPLE.md), email addresses,
    Trello board/card links (`trello.com/b/…`, `trello.com/c/…`), phone numbers, tokens/keys patterns.
    Generic examples (`acme`, `example.com`, `Jane Doe`) are fine.
-4. Also check git history: `git log --all --name-only -- clients/ ecosystem/` (outside `_templates`).
+4. Also check git history: `git log --all --name-only -- entities/ ecosystem/` (outside `_templates`).
 
 ## Rules
 - READ-ONLY. Never unstage, delete or rewrite history by itself – report and propose the fix.

@@ -30,7 +30,7 @@ length, trends areas, things to never show. Stored in `ecosystem/news/PREFERENCE
 3. Offer a test run: `/wakil.news`.
 
 ## Rules
-- Linking trends to clients: only client **sectors** from their CLIENT.md, never confidential data, never one
+- Linking trends to clients: only client **sectors** from their ENTITY.md, never confidential data, never one
   client's info in another's context.
 
 ## Output

@@ -1,8 +1,8 @@
 # ── Privacy: this repo shares only the STRUCTURE (agents, rules, templates, tools). ──
 # All client data stays on this computer: client folders, people, documents, the registry.
-clients/*
-!clients/_templates/
-!clients/_templates/**
+entities/*
+!entities/_templates/
+!entities/_templates/**
 
 # Local Claude Code settings and scratch files
 .claude/settings.local.json

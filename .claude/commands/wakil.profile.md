@@ -24,7 +24,7 @@ Keep `ecosystem/PROFILE.md` true over time: who you are, your work, goals, life 
 2. With new information → find the right field, show old → new, apply, log it (date – change – "profile").
 3. With only a section → ask that section's questions from `ecosystem/_templates/setup-questionnaire.md`
    (current value shown as the suggested default).
-4. A new company or client mentioned → suggest `/wakil.onboard`. A new skill to learn → suggest `/wakil.learn`.
+4. A new company, association, club or client mentioned → suggest `/wakil.add-entity`. A new skill to learn → suggest `/wakil.learn`.
 
 ## Rules
 - Never invent; never store ID numbers, passwords, bank or health details. Private file – never commit it.

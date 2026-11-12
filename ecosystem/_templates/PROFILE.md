@@ -11,7 +11,7 @@ Updated: TODO
 
 ## Work
 - What I do (job, roles, own business, freelance…): TODO
-- Companies / clients I work for (→ `clients/` – one folder each, via /wakil.onboard): TODO
+- Companies / clients I work for (→ `entities/` – one folder each, via /wakil.add-entity): TODO
 - My main tools (mail, calendar, Trello, Figma, GitHub, Office…): TODO
 
 ## Life areas I want help with

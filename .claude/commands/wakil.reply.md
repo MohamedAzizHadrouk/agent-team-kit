@@ -1,6 +1,6 @@
 ---
 description: Record an email reply (a person's result or a reviewer's answer) on the right card
-argument-hint: <client-slug> <card title or link> <pasted reply text>
+argument-hint: <entity-slug> <card title or link> <pasted reply text>
 ---
 # /wakil.reply – Record a reply you received by email
 
@@ -13,7 +13,7 @@ continues (review, final approval, or changes).
 ## Arguments
 | Argument | Required | Values | Default |
 |---|---|---|---|
-| `<client-slug>` | yes | slug from the registry | – |
+| `<entity-slug>` | yes | slug from the registry | – |
 | `<card>` | yes | card title (or part of it) or Trello card link | – |
 | `<reply>` | yes | the pasted email text (you may remove signatures) | – |
 

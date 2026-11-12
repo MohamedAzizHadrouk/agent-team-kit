@@ -5,17 +5,17 @@
 > This file is the detailed manual version.
 
 ## What this kit contains
-- CLAUDE.md (shared rules), the 7 agents, the personal ecosystem skeleton (`ecosystem/_templates/`), the client system: `clients/_templates/` with a **company** and an
-  **individual** skeleton folder (CLIENT, POSITION, RULES, BRAND, ORG, PEOPLE, departments, teams, projects,
+- CLAUDE.md (shared rules), the 7 agents, the personal ecosystem skeleton (`ecosystem/_templates/`), the entity system: `entities/_templates/` with an **organization** (company, association, club) and an
+  **individual** skeleton folder (ENTITY, POSITION, RULES, BRAND, ORG, PEOPLE, departments, teams, projects,
   documents), board spec, Butler rules, email templates, onboarding questionnaires, registry example.
 - `tools/outlook-draft.ps1` – creates email drafts in your Outlook (Windows, Outlook desktop). Never sends.
-- **No client data.** Everything you add under `clients/` (except `_templates/`) is git-ignored and stays on your
+- **No client data.** Everything you add under `entities/` (except `_templates/`) is git-ignored and stays on your
   computer. Share the repo freely – your clients, people and documents are never committed.
 
 ## Trello templates (one time)
 Ask the Manager: **"Create the Trello templates from board-spec.md"**. It creates:
-- "🧩 TEMPLATE – Company Command Center" – private board of a company: ALL tasks (agent + human), you approve here
-- "🧩 TEMPLATE – Human Team Board" – one per human team of a company: human tasks only
+- "🧩 TEMPLATE – Company Command Center" – private board of an organisation (company, association, club): ALL tasks (agent + human), you approve here
+- "🧩 TEMPLATE – Human Team Board" – one per human team of an organisation: human tasks only
 - "🧩 TEMPLATE – Client Project Board (Agent Team)" – single board for an individual client
 each with its lists, a "📘 How this board works" card and a "📝 Card template" card. Then you add the labels (step 5).
 
@@ -51,11 +51,11 @@ Do it on the TEMPLATE boards before copying them, so every new board inherits th
 - Individual (Client Project Board) template: blue = Dev · purple = UI/UX · green = Marketing · orange = Media · red = Urgent · yellow = Needs Info.
 
 ### 5b. Butler rules on team boards
-Butler rules are per board: after creating each team board, paste the rules from `clients/_templates/butler-rules.md`.
+Butler rules are per board: after creating each team board, paste the rules from `entities/_templates/butler-rules.md`.
 (Copying a board in Trello may or may not copy its rules – check the Automation panel.)
 
 ### 5c. Your private registry and email drafts
-- Copy `clients/_templates/registry.example.md` to `clients/registry.md` (git-ignored) – or let the Manager do it.
+- Copy `entities/_templates/registry.example.md` to `entities/registry.md` (git-ignored) – or let the Manager do it.
 - Email notifications: Outlook desktop must be installed and signed in on this Windows computer (any account type,
   including on-premises Exchange). Test without creating anything:
   `powershell -NoProfile -File tools/outlook-draft.ps1 -To you@company.com -Subject test -BodyFile <any .txt> -DryRun`
@@ -69,22 +69,22 @@ claude --agent manager
 The Manager must be the main agent because sub-agents cannot launch other sub-agents.
 
 ## First run (test with something harmless)
-1. Tell it: **"Onboard a new client"**. It asks "company or individual?" and runs the matching questionnaire,
-   creates `clients/<slug>/…` (teams + projects for companies), creates or registers the boards in `clients/registry.md`.
-2. Company: on the Command Center, create a small card in ✅ Approved – Ready, e.g. "[UI/UX] Homepage wireframe",
+1. Run **`/wakil.add-entity <company|association|club|individual> [name]`** (or say "Add a new client / association / club"). It runs the matching questionnaire,
+   creates `entities/<slug>/…` (teams + projects for organisations), creates or registers the boards in `entities/registry.md`.
+2. Organisation: on the Command Center, create a small card in ✅ Approved – Ready, e.g. "[UI/UX] Homepage wireframe",
    labels 🤖 Agent + purple, with Goal + 3 acceptance criteria. Individual: same card in ✅ Ready.
 3. Say: **"Process <client>"** (or "Process the board <name>").
-4. Expected (company): card → In Progress → In Review → 🛑 Awaiting Final Approval → you move it to Done.
+4. Expected (organisation): card → In Progress → In Review → 🛑 Awaiting Final Approval → you move it to Done.
 5. Test a human task: card `[Human] <Team> – …` with labels 👤 Human + `team : <name>`, `Executor: Human`, `Assignee: <name from PEOPLE.md>`.
    If the person is NOT on Trello: an email draft appears in your Outlook – send it; forward me their reply.
    If they are invited to their team board: the card appears there; assign them. Finished work → 👀 Peer Review (if reviewers) → 🛑 Awaiting Final Approval.
 6. Deliberately test the "ask me" behaviour: create a card with an empty goal. It must go to Blocked with questions.
 
-## Adding clients and projects later (dynamic)
-- New client: say "Onboard a new client" (company or individual).
+## Adding entities and projects later (dynamic)
+- New entity: `/wakil.add-entity <company|association|club|individual> [name]`.
 - New project / initiative for an existing client: say "New project for <client>: <description>".
-- New team for a company: say "New team for <client>: <name> – <responsibility>" (creates TEAM.md + team board).
-- New info about a client: just tell it; it updates CLIENT.md / BRAND.md / TEAM.md / PROJECT.md and logs the change.
+- New team for an organisation: say "New team for <client>: <name> – <responsibility>" (creates TEAM.md + team board).
+- New info about a client: just tell it; it updates ENTITY.md / BRAND.md / TEAM.md / PROJECT.md and logs the change.
 - Archiving: say "Archive client <name>" → it sets Status: archived in the registry.
 
 ## Daily commands (full list: COMMANDS.md, or type `/wakil.list-commands`)
@@ -94,7 +94,7 @@ The Manager must be the main agent because sub-agents cannot launch other sub-ag
 - `/wakil.add-people`, `/wakil.add-document`, `/wakil.update-context` – keep the client context up to date
 - `/wakil.check-privacy` before every commit/push
 
-## Daily use (companies)
+## Daily use (organisations: companies, associations, clubs)
 - Write every task (agent or human) on the Command Center in 📥 Proposed (or `/wakil.new-task`) → move to ✅ Approved – Ready when complete.
 - Run: `/wakil.process <client>` (or `/wakil.process all`).
 - Assign people on new team-board cards (the connector cannot assign members).
@@ -113,7 +113,7 @@ The Manager must be the main agent because sub-agents cannot launch other sub-ag
 - Agent SDK / webhooks for real-time triggers: only if you need it.
 
 ## Good habits
-- Fill CLIENT.md / BRAND.md properly: the agents are only as good as the context.
+- Fill ENTITY.md / BRAND.md properly: the agents are only as good as the context.
 - Keep each card small and verifiable.
 - Never put passwords or ID numbers in cards or files.
 - Review every PR and every post before it goes live.

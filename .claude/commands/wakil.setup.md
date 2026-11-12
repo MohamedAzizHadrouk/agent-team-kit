@@ -22,7 +22,7 @@ together), then offer the optional modules: skills & learning, news & trends, cl
 
 ## Steps
 1. **Tool check** (read-only) and report ✅/⚠️ for each, with the fix:
-   - git repo (`git status`) · `.gitignore` contains the `clients/*` and `ecosystem/*` rules
+   - git repo (`git status`) · `.gitignore` contains the `entities/*` and `ecosystem/*` rules
    - agents loaded: manager, ui-ux, fullstack-devops, marketing, media, learning-coach, news-curator
    - connectors (optional): Trello, Figma, GitHub – try a harmless read; missing → point to SETUP.md steps 2–3
    - Outlook drafts (optional, Windows): `tools/outlook-draft.ps1 -DryRun` with a scratchpad body file
@@ -34,14 +34,14 @@ together), then offer the optional modules: skills & learning, news & trends, cl
    with a suggested default. Fill `ecosystem/PROFILE.md`, log every answer (dated) in its change log.
    After each section, update SETUP-STATUS.md so the owner can stop and `/wakil.setup --resume` later.
 4. **Modules** (section E): ask which ones to run now. For each "yes", run that command's steps in this session:
-   `/wakil.skills` · `/wakil.news-preferences` · `/wakil.onboard` (one per client named in B4) · `/wakil.setup-trello --templates`.
+   `/wakil.skills` · `/wakil.news-preferences` · `/wakil.add-entity` (one per client named in B4) · `/wakil.setup-trello --templates`.
    "Later" → note it as pending in SETUP-STATUS.md.
 5. **Optional automation**: offer `/wakil.schedule-local "/wakil.news" 1d mon-fri 08:00` (only after one manual `/wakil.news` run).
 6. Run `/wakil.check-privacy` to confirm nothing personal is tracked by git.
 
 ## Rules
 - Never invent answers; `TODO` for unknowns. Never ask for or store ID numbers, passwords, bank or health details.
-- Everything written goes in `ecosystem/` or `clients/<slug>/` – both git-ignored. Never commit or push them.
+- Everything written goes in `ecosystem/` or `entities/<slug>/` – both git-ignored. Never commit or push them.
 - Never overwrite an existing PROFILE.md, SKILLS.md or PREFERENCES.md: update them field by field and log the change.
 - If the owner shares the repo: the other person runs `/wakil.setup` in their own copy – their data never mixes with yours.
 

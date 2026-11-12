@@ -1,6 +1,6 @@
 ---
 description: Process a client's boards – audit, sync, reviews, approved cards, report
-argument-hint: <client-slug|all> [--dry-run]
+argument-hint: <entity-slug|all> [--dry-run]
 ---
 # /wakil.process – Process a client's boards
 
@@ -13,12 +13,12 @@ client's context files in sync, and tell the owner what needs them. This is the 
 ## Arguments
 | Argument | Required | Values | Default |
 |---|---|---|---|
-| `<client-slug>` | yes | a slug from `clients/registry.md` (e.g. `acme`) or `all` | – |
+| `<entity-slug>` | yes | a slug from `entities/registry.md` (e.g. `acme`) or `all` | – |
 | `--dry-run` | no | flag | off – with it: read everything, write NOTHING (no Trello change, no file change, no draft); report what would happen |
 
 ## Preconditions
-- `clients/registry.md` exists and lists the client's boards (else stop and ask).
-- The client folder `clients/<slug>/` exists (CLIENT.md, POSITION.md, RULES.md…).
+- `entities/registry.md` exists and lists the client's boards (else stop and ask).
+- The client folder `entities/<slug>/` exists (ENTITY.md, POSITION.md, RULES.md…).
 
 ## Steps
 Follow manager.md › **Operating loop**, in this order, for each client:

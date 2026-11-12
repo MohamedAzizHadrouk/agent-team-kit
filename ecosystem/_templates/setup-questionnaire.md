@@ -8,9 +8,10 @@ Never ask for or store: ID numbers, passwords, bank details, health details, oth
 1. What should I call you? Which language(s) should I answer in?
 2. Where are you (country / city) and what is your time zone? Usual work hours?
 
-## B. Your work (→ PROFILE.md › Work, then `clients/` via /wakil.onboard)
+## B. Your work (→ PROFILE.md › Work, then `entities/` via /wakil.add-entity)
 3. What do you do? (employee, own company, freelance, agency, student…) – one line per role.
-4. Which companies or clients do you work for? For each: company or individual? (each one becomes a client folder later)
+4. Which companies, associations, clubs or clients do you work for or belong to? For each: company, association,
+   club or individual? (each one becomes an entity folder later, with `/wakil.add-entity`)
 5. Which tools do you use daily? (mail/Outlook, Trello, Figma, GitHub, calendar…)
 
 ## C. Your life areas and goals (→ PROFILE.md › Life areas, Goals, Values)
@@ -26,5 +27,5 @@ Never ask for or store: ID numbers, passwords, bank details, health details, oth
 ## E. Next modules (each one is optional – run it now or later)
 - Skills and learning → `/wakil.skills`, then `/wakil.learn <skill>` for each skill to learn
 - News and trends → `/wakil.news-preferences`, then `/wakil.news`
-- First client → `/wakil.onboard <company|individual> [name]`
+- First entity (client, company, association, club) → `/wakil.add-entity <company|association|club|individual> [name]`
 - Trello → `/wakil.setup-trello --templates`

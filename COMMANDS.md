@@ -5,8 +5,8 @@ sections: **Purpose · Arguments · Preconditions · Steps · Rules · Output ·
 Change a command by editing its file; add one with `/wakil.new-command`. Detailed rules live in
 `.claude/agents/manager.md` – command files point to its sections, so a rule changed there applies everywhere.
 
-Notation: `<required>` · `[optional]` · `a|b` = one of. `<client-slug>` = a client from `clients/registry.md`.
-After `/wakil.focus`, a missing `<client-slug>` (and project / team) is taken from the focus; an explicit one always wins.
+Notation: `<required>` · `[optional]` · `a|b` = one of. `<entity-slug>` = a client from `entities/registry.md`.
+After `/wakil.focus`, a missing `<entity-slug>` (and project / team) is taken from the focus; an explicit one always wins.
 
 ## Personal ecosystem (`ecosystem/` – private)
 | Command | Arguments | What it does | Schedulable |
@@ -24,43 +24,43 @@ After `/wakil.focus`, a missing `<client-slug>` (and project / team) is taken fr
 ## Daily work
 | Command | Arguments | What it does | Schedulable |
 |---|---|---|---|
-| `/wakil.focus` | `[client-slug] [department] [team] [project]` · `--show` · `--clear` | Select the working context; load only it and use it as the default client/project/team for the next commands | ❌ |
-| `/wakil.resume` | `[client-slug [project\|team\|department]] \| skill <skill> \| personal\|news\|todo\|setup\|profile` · `--save ["note"]` · `--list` · `[--no-focus]` | Where did I stop? Last checkpoint (in general, or for a client, project, team or skill), what changed since, what waits for you, the next step; `--save` bookmarks now | ❌ |
-| `/wakil.process` | `<client-slug\|all> [--dry-run]` | Full loop: audit team boards, sync comments into context, Peer Review, approved cards (agents + human dispatch), Needs Changes, Done, Blocked → report | ✅ |
-| `/wakil.overview` | `<client-slug> [project\|team]` | Read-only picture: what waits for you, what's blocked, what's in progress | ✅ |
-| `/wakil.sync` | `<client-slug>` | Only bring team-board work (comments, files, Ready for Review) back to the Command Center and the context | ✅ |
-| `/wakil.reply` | `<client-slug> <card> <pasted reply>` | Record an email reply (a person's result or a reviewer's ✅/🔁) on the right card | ❌ |
+| `/wakil.focus` | `[entity-slug] [department] [team] [project]` · `--show` · `--clear` | Select the working context; load only it and use it as the default client/project/team for the next commands | ❌ |
+| `/wakil.resume` | `[entity-slug [project\|team\|department]] \| skill <skill> \| personal\|news\|todo\|setup\|profile` · `--save ["note"]` · `--list` · `[--no-focus]` | Where did I stop? Last checkpoint (in general, or for a client, project, team or skill), what changed since, what waits for you, the next step; `--save` bookmarks now | ❌ |
+| `/wakil.process` | `<entity-slug\|all> [--dry-run]` | Full loop: audit team boards, sync comments into context, Peer Review, approved cards (agents + human dispatch), Needs Changes, Done, Blocked → report | ✅ |
+| `/wakil.overview` | `<entity-slug> [project\|team]` | Read-only picture: what waits for you, what's blocked, what's in progress | ✅ |
+| `/wakil.sync` | `<entity-slug>` | Only bring team-board work (comments, files, Ready for Review) back to the Command Center and the context | ✅ |
+| `/wakil.reply` | `<entity-slug> <card> <pasted reply>` | Record an email reply (a person's result or a reviewer's ✅/🔁) on the right card | ❌ |
 
 ## Tasks & projects
 | Command | Arguments | What it does | Schedulable |
 |---|---|---|---|
-| `/wakil.new-task` | `<client-slug> <project\|none> <description>` | Draft a complete card in 📥 Proposed (team, executor, assignee, reviewers, criteria, labels) | ❌ |
-| `/wakil.plan-project` | `<client-slug> <project> [--next N]` | Propose a task breakdown; after your OK create the first N cards in Proposed | ❌ |
-| `/wakil.new-project` | `<client-slug> <name> [goal]` | Create PROJECT.md and say which `project : …` label to create | ❌ |
+| `/wakil.new-task` | `<entity-slug> <project\|none> <description>` | Draft a complete card in 📥 Proposed (team, executor, assignee, reviewers, criteria, labels) | ❌ |
+| `/wakil.plan-project` | `<entity-slug> <project> [--next N]` | Propose a task breakdown; after your OK create the first N cards in Proposed | ❌ |
+| `/wakil.new-project` | `<entity-slug> <name> [goal]` | Create PROJECT.md and say which `project : …` label to create | ❌ |
 
-## Clients & organisation
+## Entities (organisations & individuals)
 | Command | Arguments | What it does | Schedulable |
 |---|---|---|---|
-| `/wakil.onboard` | `<company\|individual> [name]` | Questionnaire → client folder from template → boards → registry | ❌ |
-| `/wakil.add-people` | `<client-slug>` + pasted list | Add / update PEOPLE.md (work contacts only) | ❌ |
-| `/wakil.add-department` | `<client-slug> <name> [managed\|not-managed]` | DEPARTMENT.md + ORG.md | ❌ |
-| `/wakil.add-team` | `<client-slug> <department> <team>` | TEAM.md + team board + registry row + label to create | ❌ |
-| `/wakil.add-document` | `<client-slug> <file\|link\|text> [about] [--confidential]` | File + index a document and extract facts into the context | ❌ |
-| `/wakil.update-context` | `<client-slug> <information>` | Save new info in the right file with a dated log entry | ❌ |
+| `/wakil.add-entity` | `<company\|association\|club\|individual> [name]` | Add an organisation (company, association, club) or an individual: questionnaire → `entities/<slug>/` from template → boards → registry | ❌ |
+| `/wakil.add-people` | `<entity-slug>` + pasted list | Add / update PEOPLE.md (work contacts only) | ❌ |
+| `/wakil.add-department` | `<entity-slug> <name> [managed\|not-managed]` | DEPARTMENT.md + ORG.md | ❌ |
+| `/wakil.add-team` | `<entity-slug> <department> <team>` | TEAM.md + team board + registry row + label to create | ❌ |
+| `/wakil.add-document` | `<entity-slug> <file\|link\|text> [about] [--confidential]` | File + index a document and extract facts into the context | ❌ |
+| `/wakil.update-context` | `<entity-slug> <information>` | Save new info in the right file with a dated log entry | ❌ |
 
 ## Setup & maintenance
 | Command | Arguments | What it does | Schedulable |
 |---|---|---|---|
 | `/wakil.setup` | see Personal ecosystem | Start here after cloning the repo | ❌ |
-| `/wakil.setup-trello` | `[client-slug] [--templates]` | Create the Trello templates or a client's boards from board-spec.md | ❌ |
-| `/wakil.butler-rules` | `<client-slug> <team\|all>` | Print the Butler rules ready to paste | ❌ |
+| `/wakil.setup-trello` | `[entity-slug] [--templates]` | Create the Trello templates or a client's boards from board-spec.md | ❌ |
+| `/wakil.butler-rules` | `<entity-slug> <team\|all>` | Print the Butler rules ready to paste | ❌ |
 | `/wakil.schedule-local` | `"<command>" <interval> [days] [hours]` · `--list` · `--remove <name>` | Run a schedulable command automatically on this computer | ❌ |
 | `/wakil.check-privacy` | `[--staged-only]` | Check nothing private would be committed / pushed | ✅ |
 | `/wakil.new-command` | `<name> <purpose>` | Create a new command file from the standard layout | ❌ |
 | `/wakil.list-commands` | `[command-name]` | Show this catalog, or one command's details | ❌ |
 
 **Schedulable ✅** = never needs you mid-run and never sends, publishes, deploys or deletes (email = drafts only).
-Run one unattended with: `claude -p "/wakil.process <client-slug>" --agent manager` (or `"/wakil.news"`) – or set it up with `/wakil.schedule-local`.
+Run one unattended with: `claude -p "/wakil.process <entity-slug>" --agent manager` (or `"/wakil.news"`) – or set it up with `/wakil.schedule-local`.
 
 ## Built-in names to avoid
 `/status`, `/schedule`, `/review`, `/help`, `/init`, `/config`, `/mcp`, `/agents`, `/permissions`, `/clear`,

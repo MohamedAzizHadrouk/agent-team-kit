@@ -1,6 +1,6 @@
 ---
 description: Propose a task breakdown for a project, then create the cards in Proposed after your OK
-argument-hint: <client-slug> <project-slug> [--next N]
+argument-hint: <entity-slug> <project-slug> [--next N]
 ---
 # /wakil.plan-project – Break a project into tasks
 
@@ -13,7 +13,7 @@ the right executor for each – then create them on the board once the owner agr
 ## Arguments
 | Argument | Required | Values | Default |
 |---|---|---|---|
-| `<client-slug>` | yes | slug from the registry | – |
+| `<entity-slug>` | yes | slug from the registry | – |
 | `<project-slug>` | yes | a folder under `projects/` | – |
 | `--next N` | no | number of cards to create now | 3 (only the first steps; the rest stay in the plan) |
 

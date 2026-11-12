@@ -1,6 +1,6 @@
 ---
 description: File a client document, index it, and extract useful facts into the context files
-argument-hint: <client-slug> <file path|link|pasted text> [about: department|project|company] [--confidential]
+argument-hint: <entity-slug> <file path|link|pasted text> [about: department|project|organisation] [--confidential]
 ---
 # /wakil.add-document – Add a document to a client's context
 
@@ -13,16 +13,16 @@ store it properly and turn its content into usable context.
 ## Arguments
 | Argument | Required | Values | Default |
 |---|---|---|---|
-| `<client-slug>` | yes | slug from the registry | – |
+| `<entity-slug>` | yes | slug from the registry | – |
 | `<source>` | yes | a local file path, a link, or pasted text | – |
-| `[about]` | no | `department:<slug>`, `project:<slug>` or `company` | guessed from content, confirmed with the owner |
+| `[about]` | no | `department:<slug>`, `project:<slug>` or `organisation` | guessed from content, confirmed with the owner |
 | `--confidential` | no | flag | off – with it: do NOT copy the file; record only where it lives |
 
 ## Preconditions
-- `clients/<client>/documents/INDEX.md` exists (else create it from the template).
+- `entities/<client>/documents/INDEX.md` exists (else create it from the template).
 
 ## Steps
-1. Non-confidential file → copy it into `clients/<client>/documents/` (sub-folder by topic if useful). Pasted text →
+1. Non-confidential file → copy it into `entities/<client>/documents/` (sub-folder by topic if useful). Pasted text →
    save it as a `.md` file there. Link → keep the link. Confidential → no copy.
 2. Add a row to `documents/INDEX.md`: title, type, date, about, confidentiality, where.
 3. Read it and extract facts into the right files (dated, "source: <document title>"):

@@ -1,6 +1,6 @@
 ---
 description: Save new information about a client into the right context file, with a dated log entry
-argument-hint: <client-slug> <information>
+argument-hint: <entity-slug> <information>
 ---
 # /wakil.update-context – Tell the agents something new
 
@@ -13,7 +13,7 @@ once in the right place so no agent asks again.
 ## Arguments
 | Argument | Required | Values | Default |
 |---|---|---|---|
-| `<client-slug>` | yes | slug from the registry | – |
+| `<entity-slug>` | yes | slug from the registry | – |
 | `<information>` | yes | free text | – |
 
 ## Preconditions

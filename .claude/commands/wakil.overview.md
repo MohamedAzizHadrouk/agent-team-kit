@@ -1,6 +1,6 @@
 ---
 description: Read-only overview of a client – what waits for you, what is blocked, what is in progress
-argument-hint: <client-slug> [project-slug|team-slug]
+argument-hint: <entity-slug> [project-slug|team-slug]
 ---
 # /wakil.overview – Where do things stand?
 
@@ -12,14 +12,14 @@ Give the owner a clear picture of a client, a project or a team **without changi
 ## Arguments
 | Argument | Required | Values | Default |
 |---|---|---|---|
-| `<client-slug>` | yes | slug from the registry | – |
+| `<entity-slug>` | yes | slug from the registry | – |
 | `[project-slug or team-slug]` | no | a folder name under `projects/` or `departments/*/teams/` | whole client |
 
 ## Preconditions
-- The client is in `clients/registry.md`.
+- The client is in `entities/registry.md`.
 
 ## Steps
-1. Read the registry, CLIENT.md, ORG.md and the Command Center + team boards (read-only).
+1. Read the registry, ENTITY.md, ORG.md and the Command Center + team boards (read-only).
 2. If a project is given: filter cards by the `project : …` label / `Project:` line. If a team: by `team : …` / `Team:`.
 3. Group cards by list; for each card: title, executor (agent or person name), reviewers, start/due date, time in the list.
 4. Flag: cards waiting for the owner (Proposed, Awaiting Final Approval, Blocked), cards stuck > 7 days, missing labels.

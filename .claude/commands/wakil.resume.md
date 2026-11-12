@@ -1,6 +1,6 @@
 ---
 description: Resume where you stopped last time – in general, or for a client, project, team or one of your skills
-argument-hint: [client-slug [project|team|department] | skill <skill> | personal|news|todo|setup|profile] [--save "note"] [--list] [--no-focus]
+argument-hint: [entity-slug [project|team|department] | skill <skill> | personal|news|todo|setup|profile] [--save "note"] [--list] [--no-focus]
 ---
 # /wakil.resume – Pick up where I stopped
 
@@ -14,22 +14,22 @@ skill or other personal area. With `--save`, record where they stop now so the n
 ## Arguments
 | Argument | Required | Values | Default |
 |---|---|---|---|
-| `[scope]` | no | nothing · `<client-slug> [project\|team\|department]` · `skill <skill>` (or just `<skill>`) · `personal` · `news` · `todo` · `setup` · `profile` | nothing → the most recent checkpoint, client or personal |
+| `[scope]` | no | nothing · `<entity-slug> [project\|team\|department]` · `skill <skill>` (or just `<skill>`) · `personal` · `news` · `todo` · `setup` · `profile` | nothing → the most recent checkpoint, client or personal |
 | `--save ["note"]` | no | optional free-text note ("stopped at chapter 4, waiting for logo") | – |
 | `--list` | no | show the latest checkpoints (scope + date + one-line next step), pick one | – |
 | `--no-focus` | no | do not set the focus when resuming a client | the focus is set |
 
 Name matching for `[scope]`: keywords (`skill`, `personal`, `news`, `todo`, `setup`, `profile`) first, then client
-slugs (`clients/registry.md`), then skill slugs (`ecosystem/knowledge/skills/`), then projects / teams /
+slugs (`entities/registry.md`), then skill slugs (`ecosystem/knowledge/skills/`), then projects / teams /
 departments of the focused client. A name that matches more than one → ask which one; never guess.
 
 ## Preconditions
-- For a client: the client is in `clients/registry.md`. For a skill: `ecosystem/knowledge/skills/<skill>/` exists.
+- For a client: the client is in `entities/registry.md`. For a skill: `ecosystem/knowledge/skills/<skill>/` exists.
 
 ## Where checkpoints live (see manager.md › Checkpoints)
-- Client work → `clients/<client-slug>/.resume.md` (one section per scope: `client`, `project:<p>`, `team:<t>`, `department:<d>`).
+- Client work → `entities/<entity-slug>/.resume.md` (one section per scope: `client`, `project:<p>`, `team:<t>`, `department:<d>`).
 - Personal work → `ecosystem/.resume.md` (one section per scope: `skill:<s>`, `news`, `todo`, `setup`, `profile`).
-- Pointers for the general resume, slugs and dates only → `clients/.last.md` and `ecosystem/.last.md`.
+- Pointers for the general resume, slugs and dates only → `entities/.last.md` and `ecosystem/.last.md`.
 
 ## Steps
 1. **`--save`** → work out the scope (argument, else the focus, else the last command's context; unclear → ask),
@@ -38,10 +38,10 @@ departments of the focused client. A name that matches more than one → ask whi
 2. **`--list`** → read only the two `.last.md` pointers and the `.resume.md` section headers + "Next" lines
    (no other client files); show a numbered list, newest first, max 10, client and personal clearly separated;
    let the owner pick one, then continue with step 4 for it.
-3. **No scope** → read `clients/.last.md` and `ecosystem/.last.md`, take the one with the newest date and use its
+3. **No scope** → read `entities/.last.md` and `ecosystem/.last.md`, take the one with the newest date and use its
    scope. Neither exists → say so and fall back to `--list`-style options (focus, today's TODO, active skills).
 4. **Load ONLY that scope** (golden rule 1 – one client at a time; personal and client data never mixed):
-   - client scope: its `.resume.md` section, then CLIENT.md, POSITION.md, RULES.md and the PROJECT.md / TEAM.md /
+   - client scope: its `.resume.md` section, then ENTITY.md, POSITION.md, RULES.md and the PROJECT.md / TEAM.md /
      DEPARTMENT.md of the scope, plus the Command Center (and that team's board) read-only on Trello, filtered
      like `/wakil.overview`;
    - skill scope: its `.resume.md` section, SKILL.md (Roadmap + Progress log), the open `projects/*/PROJECT.md`;
@@ -51,16 +51,16 @@ departments of the focused client. A name that matches more than one → ask whi
    the Decisions log / Progress log / Log, the newest Trello card activity, and open TODO items. Never invent.
 6. **Check what changed since the checkpoint**: new Trello comments / card moves, replies, new files – and whether
    the checkpoint's "Next" step is still valid (card moved, done, blocked). Flag anything stale.
-7. Client scope and no `--no-focus` → set the focus (`clients/.focus.md`, as `/wakil.focus` does) to that scope.
+7. Client scope and no `--no-focus` → set the focus (`entities/.focus.md`, as `/wakil.focus` does) to that scope.
 8. Print the Output. Do not start the next step yourself – suggest the command for it.
 
 ## Rules
-- READ-ONLY except: `--save` writes the checkpoint + pointer; step 7 writes `clients/.focus.md`. No Trello writes,
+- READ-ONLY except: `--save` writes the checkpoint + pointer; step 7 writes `entities/.focus.md`. No Trello writes,
   no drafts, no other file changes.
 - Client isolation: the general resume and `--list` may read the pointers and checkpoint headers of several
   clients (slugs, dates, next steps only); the detailed context is loaded for **one** scope only.
 - Checkpoints and pointers hold no emails, contact details, secrets or ID numbers – names and slugs only.
-  They are git-ignored (`clients/*`, `ecosystem/*`).
+  They are git-ignored (`entities/*`, `ecosystem/*`).
 - Not the same as Claude Code's built-in `/resume` (which reopens an old chat); this one resumes the *work*.
 
 ## Output

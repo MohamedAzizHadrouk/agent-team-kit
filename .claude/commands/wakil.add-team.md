@@ -1,6 +1,6 @@
 ---
 description: Add a team to a managed department – TEAM.md, team board, registry row, label to create
-argument-hint: <client-slug> <department-slug> <team name>
+argument-hint: <entity-slug> <department-slug> <team name>
 ---
 # /wakil.add-team – Add a team
 
@@ -12,7 +12,7 @@ Create a human team inside a managed department, with its Trello team board (hum
 ## Arguments
 | Argument | Required | Values | Default |
 |---|---|---|---|
-| `<client-slug>` | yes | a company slug | – |
+| `<entity-slug>` | yes | an organisation slug (company, association, club) | – |
 | `<department-slug>` | yes | a **managed** department under `departments/` | – |
 | `<team name>` | yes | free text | – |
 
@@ -20,9 +20,9 @@ Create a human team inside a managed department, with its Trello team board (hum
 - The department exists and is managed (else propose `/wakil.add-department … managed`).
 
 ## Steps
-1. Copy `clients/_templates/company/departments/example-department/teams/example-team/TEAM.md` to
+1. Copy `entities/_templates/organization/departments/example-department/teams/example-team/TEAM.md` to
    `departments/<dept>/teams/<slug>/TEAM.md`; fill responsibility, lead, members (names only) if given.
-2. Create the board `<Company> – <Team name>` with the 5 team lists from `clients/_templates/board-spec.md` and the
+2. Create the board `<Organisation> – <Team name>` with the 5 team lists from `entities/_templates/board-spec.md` and the
    "📘 How this board works – please read" card (or register the owner's copy of the Human Team Board template).
 3. Add the registry row (board type `team`, slug `<dept>/<team>`), the team to ORG.md and DEPARTMENT.md.
 4. Tell the owner: create the label `team : <Team name>` on the Command Center; invite people only if chosen;

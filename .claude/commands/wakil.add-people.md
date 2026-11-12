@@ -1,6 +1,6 @@
 ---
 description: Add or update people in a client's PEOPLE.md (work contacts only)
-argument-hint: <client-slug> + pasted list (name, role, department, team, work email)
+argument-hint: <entity-slug> + pasted list (name, role, department, team, work email)
 ---
 # /wakil.add-people – Add or update people
 
@@ -13,11 +13,11 @@ right person.
 ## Arguments
 | Argument | Required | Values | Default |
 |---|---|---|---|
-| `<client-slug>` | yes | slug from the registry | – |
+| `<entity-slug>` | yes | slug from the registry | – |
 | `<list>` | yes | pasted lines in any format: name, role, department, team, work email | – |
 
 ## Preconditions
-- `clients/<client>/PEOPLE.md` exists (else create it from the template).
+- `entities/<client>/PEOPLE.md` exists (else create it from the template).
 
 ## Steps
 1. Parse each line. Match existing people by name (update) or add a new row.

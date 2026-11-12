@@ -1,6 +1,6 @@
 ---
 description: Only read team boards (comments, files, Ready for Review) into the Command Center and context files
-argument-hint: <client-slug>
+argument-hint: <entity-slug>
 ---
 # /wakil.sync – Bring team-board work back into the Command Center
 
@@ -13,7 +13,7 @@ work, delegating to agents or dispatching new cards.
 ## Arguments
 | Argument | Required | Values | Default |
 |---|---|---|---|
-| `<client-slug>` | yes | slug from the registry | – |
+| `<entity-slug>` | yes | slug from the registry | – |
 
 ## Preconditions
 - The client has team boards in the registry.
