@@ -6,7 +6,8 @@ A ready-to-use setup for [Claude Code](https://claude.com/claude-code) that orga
   (manager + UI/UX, dev, marketing, media) runs their tasks from Trello, prepares email drafts in Outlook, and asks
   you before anything important.
 - **Personal ecosystem** – Claude learns who you are (profile), tracks your **skills and learning**
-  (roadmaps, books, courses, resources, practice projects) and keeps you **up to date with the world**
+  (roadmaps, books, courses, resources, practice projects), builds your **personal brand** (positioning, bios,
+  channels, content ideas, plans, post drafts) and keeps you **up to date with the world**
   (daily news, trends and to-do, following your own preferences).
 
 Clone it, run `/wakil.setup`, answer a few questions – you have your own ecosystem. Nothing personal is ever shared.
@@ -46,6 +47,8 @@ ecosystem/
     projects/<project>/PROJECT.md   practice (academic) projects that prove a milestone
   news/PREFERENCES.md               what news and trends you want, and how
   news/2026/01/15/                  TODO.md · NEWS.md · TRENDS.md for that day
+  brand/                            your personal brand: BRAND.md · strategy/STRATEGY.md · assets/
+    channels/<channel>/             one folder per channel (instagram, tiktok, linkedin…): CHANNEL.md · CONTENT.md · content/
 entities/<entity>/                   one folder per entity: company, association, club or individual
 entities/registry.md                 Trello boards → entity
 ```
@@ -56,6 +59,7 @@ entities/registry.md                 Trello boards → entity
 | Start | `/wakil.setup` · `/wakil.profile` · `/wakil.resume` · `/wakil.list-commands` |
 | Learning | `/wakil.skills` · `/wakil.learn <skill>` · `/wakil.add-resource` · `/wakil.skill-project` |
 | News | `/wakil.news-preferences` · `/wakil.news` · `/wakil.todo` |
+| Personal brand | `/wakil.brand --setup` · `/wakil.brand --add-channel <name>` · `/wakil.brand --ideas` · `/wakil.brand --plan` · `/wakil.brand --draft <channel> <topic>` |
 | Entities | `/wakil.add-entity` · `/wakil.focus` · `/wakil.new-task` · `/wakil.plan-project` · `/wakil.process` · `/wakil.overview` · `/wakil.reply` |
 | Maintenance | `/wakil.setup-trello` · `/wakil.schedule-local` · `/wakil.check-privacy` · `/wakil.new-command` |
 

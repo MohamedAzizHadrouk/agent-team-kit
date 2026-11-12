@@ -8,7 +8,7 @@ This folder is the owner's ecosystem in Claude, with two sides:
   **Wording:** in agents, commands and templates, "client" means any entity, and every rule written for a
   "company" applies to all organisation types (company, association, club) unless it says otherwise.
 - **Personal ecosystem** (`ecosystem/`): who the owner is (PROFILE.md), their skills and learning (knowledge/),
-  and their daily news, trends and to-do (news/). Set up with `/wakil.setup`.
+  their personal brand (brand/ – `/wakil.brand`) and their daily news, trends and to-do (news/). Set up with `/wakil.setup`.
 Anyone can clone this repo and run `/wakil.setup` to build their own ecosystem – nothing personal is shared.
 
 ## The team
@@ -34,6 +34,8 @@ ecosystem/                       <- PRIVATE, git-ignored except _templates/
   knowledge/skills/<skill>/      <- SKILL.md + resources/ + books/ + courses/ + projects/<project>/
   news/PREFERENCES.md            <- news + trends preferences
   news/<YYYY>/<MM>/<DD>/         <- TODO.md, NEWS.md, TRENDS.md of that day
+  brand/                         <- personal brand (/wakil.brand): BRAND.md, strategy/STRATEGY.md, assets/,
+    channels/<channel>/          <- one folder per channel (instagram, tiktok, linkedin…): CHANNEL.md, CONTENT.md, content/
 entities/
   registry.md                    <- maps every Trello board -> entity + board type (PRIVATE, git-ignored)
   _templates/                    <- shared: board-spec, Butler rules, email templates, onboarding, registry example

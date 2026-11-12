@@ -17,7 +17,8 @@ Updated: TODO
 ## Life areas I want help with
 <!-- tick what you want Claude to help with -->
 - [ ] Work & clients        - [ ] Learning & skills (→ knowledge/)   - [ ] News & trends (→ news/)
-- [ ] Planning & to-dos     - [ ] Personal projects                  - [ ] Other: TODO
+- [ ] Planning & to-dos     - [ ] Personal projects                  - [ ] Personal brand (→ brand/)
+- [ ] Other: TODO
 
 ## Goals
 - This year: TODO

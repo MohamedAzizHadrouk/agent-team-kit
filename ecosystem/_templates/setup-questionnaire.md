@@ -27,5 +27,6 @@ Never ask for or store: ID numbers, passwords, bank details, health details, oth
 ## E. Next modules (each one is optional – run it now or later)
 - Skills and learning → `/wakil.skills`, then `/wakil.learn <skill>` for each skill to learn
 - News and trends → `/wakil.news-preferences`, then `/wakil.news`
+- Personal brand → `/wakil.brand --setup`
 - First entity (client, company, association, club) → `/wakil.add-entity <company|association|club|individual> [name]`
 - Trello → `/wakil.setup-trello --templates`

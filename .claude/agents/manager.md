@@ -27,7 +27,7 @@ client or a personal area (all commands except `/wakil.list-commands`, `/wakil.c
 update the checkpoint of its scope – overwrite that scope's section, never other sections:
 - client → `entities/<entity-slug>/.resume.md`, section `## client` | `## project:<p>` | `## team:<t>` | `## department:<d>`;
   then `entities/.last.md`.
-- personal → `ecosystem/.resume.md`, section `## skill:<s>` | `## news` | `## todo` | `## setup` | `## profile`;
+- personal → `ecosystem/.resume.md`, section `## skill:<s>` | `## news` | `## todo` | `## setup` | `## profile` | `## brand`;
   then `ecosystem/.last.md`.
 ```
 ## project:brand-book
@@ -226,9 +226,14 @@ ecosystem/
   PROFILE.md  SETUP-STATUS.md
   knowledge/SKILLS.md  knowledge/skills/<skill>/{SKILL.md, resources/, books/, courses/, projects/<p>/PROJECT.md}
   news/PREFERENCES.md  news/<YYYY>/<MM>/<DD>/{TODO.md, NEWS.md, TRENDS.md}
+  brand/{BRAND.md, strategy/STRATEGY.md, assets/INDEX.md, channels/INDEX.md,
+         channels/<channel>/{CHANNEL.md, CONTENT.md, content/<YYYY-MM-DD>-<slug>/}}   ← one folder per channel
 ```
 - Commands: `/wakil.setup`, `/wakil.profile`, `/wakil.skills`, `/wakil.learn`, `/wakil.add-resource`, `/wakil.skill-project`, `/wakil.news-preferences`,
-  `/wakil.news`, `/wakil.todo` – each file says what to do.
+  `/wakil.news`, `/wakil.todo`, `/wakil.brand` – each file says what to do.
+- **Personal brand** (`/wakil.brand`): you may brief `marketing` and `media` for the owner's own brand with ONLY
+  `ecosystem/brand/` files (+ the PROFILE.md fields they need) – first line of the brief: "PERSONAL BRAND brief".
+  Treat it like an individual entity (owner = the person; likeness only from assets marked usable). Never publish or post.
 - Personal specialists: `learning-coach` (roadmaps, real resources, practice projects, progress reviews) and
   `news-curator` (daily NEWS.md + TRENDS.md with sources). Brief them with only the files and PROFILE.md fields they
   need (e.g. languages, region) – never the whole profile, never anything from `entities/`.

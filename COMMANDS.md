@@ -20,6 +20,7 @@ After `/wakil.focus`, a missing `<entity-slug>` (and project / team) is taken fr
 | `/wakil.news-preferences` | `[--show] [news\|trends\|general\|todo] [change]` | Interview or update your news & trends preferences | ❌ |
 | `/wakil.news` | `[YYYY-MM-DD\|today] [--news-only\|--trends-only] [--refresh]` | Build `news/YYYY/MM/DD/` with NEWS.md, TRENDS.md, TODO.md | ✅ |
 | `/wakil.todo` | `show \| add <item> [--learning] \| done <n>` · `[date]` | Today's to-do list | `show` |
+| `/wakil.brand` | `[--show]` · `--setup` · `--add-channel <name> [handle]` · `--stop-channel <channel>` · `<section> [info]` · `--ideas [channel]` · `--plan [weeks] [channel]` · `--draft <channel> <topic>` · `--asset <file\|link>` · `--log <channel> <link> [result]` | Your personal brand (`brand/`): strategy, one folder per channel with its content, ideas, plans, post drafts – you post | `--show`, `--ideas` |
 
 ## Daily work
 | Command | Arguments | What it does | Schedulable |
