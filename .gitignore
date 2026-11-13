@@ -6,6 +6,8 @@ entities/*
 
 # Local Claude Code settings and scratch files
 .claude/settings.local.json
+# Dev-server launch configs point at client project folders
+.claude/launch.json
 *.tmp
 
 # ── Privacy: personal ecosystem (profile, skills, news) stays on this computer. ──
