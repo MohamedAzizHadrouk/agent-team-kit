@@ -12,6 +12,9 @@
 .PARAMETER Subject   Email subject.
 .PARAMETER BodyFile  Path to an HTML (.html) or plain-text (.txt / .md) file with the body.
 .PARAMETER Attachment  Optional: one or more local file paths to attach to the draft.
+.PARAMETER From      Optional: SMTP address of the Outlook account to send from (e.g. the entity's own mailbox,
+                     read from the entity's POSITION.md / RULES.md). The draft is saved in THAT account's Drafts
+                     folder. Default: the default Outlook account.
 .PARAMETER Display   Also open the draft window on screen.
 .PARAMETER DryRun    Check Outlook is reachable and print what would be created – saves NOTHING.
 
@@ -24,6 +27,7 @@ param(
   [Parameter(Mandatory = $true)] [string] $Subject,
   [Parameter(Mandatory = $true)] [string] $BodyFile,
   [string[]] $Attachment = @(),
+  [string] $From = '',
   [switch] $Display,
   [switch] $DryRun
 )
@@ -53,8 +57,27 @@ try {
   throw "Outlook desktop is not available on this computer (COM object Outlook.Application). $_"
 }
 
+$account = $null
+$draftsFolder = $null
+if ($From) {
+  foreach ($a in $outlook.Session.Accounts) { if ($a.SmtpAddress -ieq $From) { $account = $a } }
+  if (-not $account) { throw "No Outlook account with address '$From'. Configured: $(($outlook.Session.Accounts | ForEach-Object { $_.SmtpAddress }) -join ', ')" }
+  try { $draftsFolder = $account.DeliveryStore.GetDefaultFolder(16) } catch { $draftsFolder = $null }   # 16 = olFolderDrafts
+  if (-not $draftsFolder) {
+    # IMAP stores (Gmail…) : look for the drafts folder by name
+    $queue = New-Object System.Collections.Queue
+    $queue.Enqueue($account.DeliveryStore.GetRootFolder())
+    while ($queue.Count -gt 0 -and -not $draftsFolder) {
+      $f = $queue.Dequeue()
+      if ($f.Name -match '^(Drafts|Brouillons)$') { $draftsFolder = $f } else { foreach ($s in $f.Folders) { $queue.Enqueue($s) } }
+    }
+  }
+  if (-not $draftsFolder) { throw "Drafts folder not found for account '$From'." }
+}
+
 if ($DryRun) {
   Write-Output "DRY RUN – Outlook reachable. Would create draft:"
+  if ($account) { Write-Output "  From:    $($account.SmtpAddress) (drafts: $($draftsFolder.FolderPath))" }
   Write-Output "  To:      $toList"
   if ($ccList) { Write-Output "  Cc:      $ccList" }
   Write-Output "  Subject: $Subject"
@@ -64,7 +87,12 @@ if ($DryRun) {
   exit 0
 }
 
-$mail = $outlook.CreateItem(0)   # 0 = olMailItem
+if ($draftsFolder) {
+  $mail = $draftsFolder.Items.Add(0)   # created directly in the chosen account's Drafts
+  $mail.SendUsingAccount = $account
+} else {
+  $mail = $outlook.CreateItem(0)       # 0 = olMailItem, default account
+}
 $mail.To = $toList
 if ($ccList) { $mail.CC = $ccList }
 $mail.Subject = $Subject
@@ -74,6 +102,7 @@ $mail.Save()                      # saved to Drafts – NOT sent
 if ($Display) { $mail.Display() }
 
 Write-Output "DRAFT CREATED in Outlook Drafts (not sent)."
+if ($account) { Write-Output "  From:    $($account.SmtpAddress) – saved in $($draftsFolder.FolderPath)" }
 Write-Output "  To:      $toList"
 if ($ccList) { Write-Output "  Cc:      $ccList" }
 Write-Output "  Subject: $Subject"
