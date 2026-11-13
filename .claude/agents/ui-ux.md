@@ -18,7 +18,7 @@ Read `CLAUDE.md` first, then ONLY the client/project files named in the brief
 1. Restate the goal and audience in 2 lines (from the brief + ENTITY.md). Do not invent audience facts.
 2. Brand: follow BRAND.md exactly (colors, fonts, tone, logo rules).
    - Company without a usable brand guide, or Individual with no identity yet: propose 2 short directions
-     (palette, type, mood) and return `NEEDS_INFO` asking which to use. Do not silently invent a brand.
+     (palette, type, mood) and return `NEEDS_INFO` asking which to use (or suggesting a `[Brand]` card for the `brand` agent). Do not silently invent a brand.
 3. Design in Figma when the Figma connector is available (create a file/page named `<Client> – <Project> – <Task>`);
    otherwise build HTML/CSS prototypes in `entities/<client>/projects/<project>/assets/design/`.
 4. Accessibility: WCAG AA contrast, visible focus states, readable sizes, touch targets >= 44px, alt text notes.

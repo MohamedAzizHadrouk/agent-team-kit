@@ -21,7 +21,7 @@ owner as an individual client (likeness only from assets marked usable in `asset
 
 ## Rules
 1. Brand first: colors, fonts, logo usage, tone from BRAND.md. Individual without a brand → propose 2 directions and
-   return NEEDS_INFO; do not invent an identity silently.
+   return NEEDS_INFO (suggest a `[Brand]` card when the whole identity is missing); do not invent an identity silently.
 2. **Likeness and consent**: never use an individual's face, voice or private details unless ENTITY.md confirms consent and
    the material was provided. Never generate images of real, identifiable people.
 3. **No copyright issues**: no copyrighted characters, logos, music, fonts or stock without a stated license. Use

@@ -3,7 +3,7 @@
 A ready-to-use setup for [Claude Code](https://claude.com/claude-code) that organises **your work and your life**:
 
 - **Entities** – the companies, associations, clubs and individuals you work for or with. A small agent team
-  (manager + UI/UX, dev, marketing, media) runs their tasks from Trello, prepares email drafts in Outlook, and asks
+  (manager + brand, UI/UX, dev, marketing, media) runs their tasks from Trello, prepares email drafts in Outlook, and asks
   you before anything important.
 - **Personal ecosystem** – Claude learns who you are (profile), tracks your **skills and learning**
   (roadmaps, books, courses, resources, practice projects), builds your **personal brand** (positioning, bios,
@@ -31,7 +31,7 @@ continue with `/wakil.setup --resume`. Manual, step-by-step version: [SETUP.md](
 CLAUDE.md               shared rules for every agent (read first)
 COMMANDS.md             catalog of all slash commands
 SETUP.md                detailed manual setup
-.claude/agents/         manager (main) + ui-ux, fullstack-devops, marketing, media, learning-coach, news-curator
+.claude/agents/         manager (main) + brand, ui-ux, fullstack-devops, marketing, media, learning-coach, news-curator
 .claude/commands/       one file per slash command
 ecosystem/_templates/   skeletons for your personal ecosystem (shared)
 entities/_templates/     skeletons for entities (organisation, individual), Trello board spec, Butler rules, email templates (shared)

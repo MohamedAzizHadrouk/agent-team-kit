@@ -30,7 +30,7 @@ Turn a short description into a complete, verifiable card in **📥 Proposed** o
    Executor, Assignee, Reviewers, Goal, Context, Deliverable, Constraints, Language(s), Priority).
 4. Add the checklist **Acceptance criteria** (3–8 verifiable items).
 5. Attach the existing labels: executor, specialist, `team : …`, `project : …`. Missing label → tell the owner which to create.
-6. Title: `[Dev|UI/UX|Marketing|Media] …` or `[Human] <Team> – …`.
+6. Title: `[Dev|UI/UX|Marketing|Media|Brand] …` or `[Human] <Team> – …`.
 
 ## Rules
 - Create in 📥 Proposed only – never in Approved.

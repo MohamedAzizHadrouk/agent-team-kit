@@ -19,6 +19,7 @@ Anyone can clone this repo and run `/wakil.setup` to build their own ecosystem â
 | fullstack-devops | .claude/agents/fullstack-devops.md | Frontend, backend, database, tests, CI/CD, deployment |
 | marketing | .claude/agents/marketing.md | Social strategy + copy (Meta, Instagram, LinkedIn, TikTok...), SEO, GEO |
 | media | .claude/agents/media.md | Post/carousel templates, video scripts, storyboards, simple videos |
+| brand | .claude/agents/brand.md | Brand strategy, positioning, architecture, naming, voice, visual identity direction, guidelines, brand reviews |
 | learning-coach | .claude/agents/learning-coach.md | Personal: learning roadmaps, real resources, practice projects, progress reviews |
 | news-curator | .claude/agents/news-curator.md | Personal: daily news + trends from the owner's preferences, always with sources |
 
@@ -26,7 +27,7 @@ Anyone can clone this repo and run `/wakil.setup` to build their own ecosystem â
 ```
 CLAUDE.md                        <- this file
 README.md  SETUP.md              <- overview / detailed manual setup
-.claude/agents/                  <- the 7 agents
+.claude/agents/                  <- the 8 agents
 ecosystem/                       <- PRIVATE, git-ignored except _templates/
   _templates/                    <- shared skeletons: PROFILE, SKILLS, skill folder, news preferences, day files
   PROFILE.md                     <- who the owner is, goals, how to work with them

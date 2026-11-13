@@ -39,7 +39,7 @@ It holds **every** task of the organisation – agent tasks AND human tasks – 
 
 ### Labels (owner creates them in Trello)
 - Executor: `🤖 Agent` (any colour) · `👤 Human` (sky)
-- Specialist (agent cards): blue = Dev · purple = UI/UX · green = Marketing · orange = Media
+- Specialist (agent cards): blue = Dev · purple = UI/UX · green = Marketing · orange = Media · pink = Brand
 - Status: red = Urgent · yellow = Needs Info
 - One label per team, named `team : <Team name>` (any free colour).
 - One label per project, named `project : <Project name>` (any free colour) – filter by it to see a project across all teams.
@@ -52,7 +52,7 @@ It holds **every** task of the organisation – agent tasks AND human tasks – 
 - Emails are never written on Trello cards – names only.
 
 ### Card title
-- Agent: `[Dev]`, `[UI/UX]`, `[Marketing]`, `[Media]` + short task name
+- Agent: `[Dev]`, `[UI/UX]`, `[Marketing]`, `[Media]`, `[Brand]` + short task name
 - Human: `[Human] <Team> – short task name`
 
 ### Card description (copy from the "📝 Card template" card)
@@ -60,7 +60,7 @@ It holds **every** task of the organisation – agent tasks AND human tasks – 
 Client: <entity-slug>
 Team: <team-slug>                         (who does it)
 Project: <project-slug> | none            (optional)
-Executor: Agent:<ui-ux|fullstack-devops|marketing|media> | Human
+Executor: Agent:<brand|ui-ux|fullstack-devops|marketing|media> | Human
 Assignee: <Name from PEOPLE.md>           (human tasks)
 Reviewers: <Name>, <Name> | none | project default   (optional, one or more)
 Goal:
@@ -122,7 +122,7 @@ Do not move it anywhere else – the owner decides Done / Needs Changes.
 Unchanged single-board model (lists in this order):
 📥 Backlog → ✅ Ready → 🔄 In Progress → 🔍 In Review → 🔁 Needs Changes → 🛑 Awaiting Human Approval →
 ❓ Blocked – Needs Info → 🏁 Done.
-Labels: blue = Dev · purple = UI/UX · green = Marketing · orange = Media · red = Urgent · yellow = Needs Info.
+Labels: blue = Dev · purple = UI/UX · green = Marketing · orange = Media · pink = Brand · red = Urgent · yellow = Needs Info.
 
 ---
 

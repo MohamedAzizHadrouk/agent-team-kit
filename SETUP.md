@@ -5,7 +5,7 @@
 > This file is the detailed manual version.
 
 ## What this kit contains
-- CLAUDE.md (shared rules), the 7 agents, the personal ecosystem skeleton (`ecosystem/_templates/`), the entity system: `entities/_templates/` with an **organization** (company, association, club) and an
+- CLAUDE.md (shared rules), the 8 agents, the personal ecosystem skeleton (`ecosystem/_templates/`), the entity system: `entities/_templates/` with an **organization** (company, association, club) and an
   **individual** skeleton folder (ENTITY, POSITION, RULES, BRAND, ORG, PEOPLE, departments, teams, projects,
   documents), board spec, Butler rules, email templates, onboarding questionnaires, registry example.
 - `tools/outlook-draft.ps1` – creates email drafts in your Outlook (Windows, Outlook desktop). Never sends.
@@ -41,14 +41,14 @@ Use `/mcp` inside Claude Code (or the plugin marketplace) to add the Figma and G
 The agents work without them but will be limited (no Figma files, no pull requests).
 
 ### 4. Check that the agents are loaded
-Inside Claude Code type `/agents`. You should see: manager, ui-ux, fullstack-devops, marketing, media, learning-coach, news-curator.
+Inside Claude Code type `/agents`. You should see: manager, brand, ui-ux, fullstack-devops, marketing, media, learning-coach, news-curator.
 
 ### 5. Create the Trello labels (a few minutes – the connector cannot do this)
 Do it on the TEMPLATE boards before copying them, so every new board inherits the labels.
-- Company Command Center template: blue = Dev · purple = UI/UX · green = Marketing · orange = Media · red = Urgent ·
+- Company Command Center template: blue = Dev · purple = UI/UX · green = Marketing · orange = Media · pink = Brand · red = Urgent ·
   yellow = Needs Info · 🤖 Agent (any colour, e.g. lime) · 👤 Human (sky). Team labels `team : <name>` are added on each company's own Command Center, NOT on the template.
 - Human Team Board template: red = Urgent (optional, nothing else).
-- Individual (Client Project Board) template: blue = Dev · purple = UI/UX · green = Marketing · orange = Media · red = Urgent · yellow = Needs Info.
+- Individual (Client Project Board) template: blue = Dev · purple = UI/UX · green = Marketing · orange = Media · pink = Brand · red = Urgent · yellow = Needs Info.
 
 ### 5b. Butler rules on team boards
 Butler rules are per board: after creating each team board, paste the rules from `entities/_templates/butler-rules.md`.

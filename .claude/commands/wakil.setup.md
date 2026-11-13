@@ -23,7 +23,7 @@ together), then offer the optional modules: skills & learning, news & trends, cl
 ## Steps
 1. **Tool check** (read-only) and report ✅/⚠️ for each, with the fix:
    - git repo (`git status`) · `.gitignore` contains the `entities/*` and `ecosystem/*` rules
-   - agents loaded: manager, ui-ux, fullstack-devops, marketing, media, learning-coach, news-curator
+   - agents loaded: manager, brand, ui-ux, fullstack-devops, marketing, media, learning-coach, news-curator
    - connectors (optional): Trello, Figma, GitHub – try a harmless read; missing → point to SETUP.md steps 2–3
    - Outlook drafts (optional, Windows): `tools/outlook-draft.ps1 -DryRun` with a scratchpad body file
    - web search available (needed by /wakil.news and /wakil.learn)

@@ -29,7 +29,7 @@ Learn by doing: each practice project proves one roadmap milestone. Creates
    set Status: done; mark the milestone done in SKILL.md; ask the owner whether their level changed and update
    SKILLS.md only with their OK. Suggest the next milestone's project.
 4. Help on the project itself (code, design, writing) → the manager may delegate it to the matching specialist
-   (fullstack-devops, ui-ux, marketing, media) as a **teaching** task: explain, review, hint – do not just do it for the owner,
+   (fullstack-devops, ui-ux, marketing, media, brand) as a **teaching** task: explain, review, hint – do not just do it for the owner,
    unless the owner asks.
 
 ## Rules
