@@ -4,7 +4,7 @@ argument-hint: [--resume] [--check-only]
 ---
 # /wakil.setup – Set up your ecosystem
 
-Act as the **manager** (`.claude/agents/manager.md`). Arguments: `$ARGUMENTS`
+Act as the **manager** (`.claude/agents/manager/manager.md`). Arguments: `$ARGUMENTS`
 
 ## Purpose
 Make this kit work for **whoever cloned it**: check what is installed, create the private `ecosystem/` folder from

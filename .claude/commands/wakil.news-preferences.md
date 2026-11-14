@@ -4,7 +4,7 @@ argument-hint: [--show] [news|trends|general|todo] [change]
 ---
 # /wakil.news-preferences – Your news & trends preferences
 
-Act as the **manager** (`.claude/agents/manager.md`). Arguments: `$ARGUMENTS`
+Act as the **manager** (`.claude/agents/manager/manager.md`). Arguments: `$ARGUMENTS`
 
 ## Purpose
 Decide what the daily news engine looks for and how it reports: topics, regions, sources, languages, format,

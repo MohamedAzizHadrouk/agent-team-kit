@@ -4,7 +4,7 @@ argument-hint: <entity-slug> <project-slug> [--next N]
 ---
 # /wakil.plan-project – Break a project into tasks
 
-Act as the **manager** (`.claude/agents/manager.md`). Arguments: `$ARGUMENTS`
+Act as the **manager** (`.claude/agents/manager/manager.md`). Arguments: `$ARGUMENTS`
 
 ## Purpose
 Turn a project's goal and scope into small, reviewable cards (one card = one deliverable), in the right order, with

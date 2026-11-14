@@ -4,7 +4,7 @@ argument-hint: <command-name> <what it should do>
 ---
 # /wakil.new-command – Create a new command
 
-Act as the **manager** (`.claude/agents/manager.md`). Arguments: `$ARGUMENTS`
+Act as the **manager** (`.claude/agents/manager/manager.md`). Arguments: `$ARGUMENTS`
 
 ## Purpose
 Grow the command set in a consistent way: every command has the same sections, so it is easy to read, change,

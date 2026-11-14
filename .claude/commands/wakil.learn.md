@@ -4,7 +4,7 @@ argument-hint: <skill> [goal]
 ---
 # /wakil.learn – Start learning a skill
 
-Act as the **manager** (`.claude/agents/manager.md`). Arguments: `$ARGUMENTS`
+Act as the **manager** (`.claude/agents/manager/manager.md`). Arguments: `$ARGUMENTS`
 
 ## Purpose
 Tell Claude you want to learn something. It creates `ecosystem/knowledge/skills/<slug>/` from the template

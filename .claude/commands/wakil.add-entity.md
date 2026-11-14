@@ -4,7 +4,7 @@ argument-hint: <company|association|club|individual> [name]
 ---
 # /wakil.add-entity – Add a new organisation or individual
 
-Act as the **manager** (`.claude/agents/manager.md`). Arguments: `$ARGUMENTS`
+Act as the **manager** (`.claude/agents/manager/manager.md`). Arguments: `$ARGUMENTS`
 
 ## Purpose
 Add anyone the owner works for or with – a **company**, an **association**, a **club** (organisations, moral

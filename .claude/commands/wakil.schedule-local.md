@@ -4,7 +4,7 @@ argument-hint: "<command with arguments>" <interval> [days] [hours] | --list | -
 ---
 # /wakil.schedule-local – Run a command automatically on this computer
 
-Act as the **manager** (`.claude/agents/manager.md`). Arguments: `$ARGUMENTS`
+Act as the **manager** (`.claude/agents/manager/manager.md`). Arguments: `$ARGUMENTS`
 
 ## Purpose
 Run a schedulable command (marked "Schedulable: yes" in its file) on a timetable, **on this computer** – needed

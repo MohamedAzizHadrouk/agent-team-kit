@@ -4,7 +4,7 @@ argument-hint: <entity-slug> <file path|link|pasted text> [about: department|pro
 ---
 # /wakil.add-document – Add a document to a client's context
 
-Act as the **manager** (`.claude/agents/manager.md`). Arguments: `$ARGUMENTS`
+Act as the **manager** (`.claude/agents/manager/manager.md`). Arguments: `$ARGUMENTS`
 
 ## Purpose
 When the owner sends a document (department description, org chart, presentation, brand guide, employee list…),

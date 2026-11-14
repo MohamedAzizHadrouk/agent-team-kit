@@ -31,7 +31,8 @@ continue with `/wakil.setup --resume`. Manual, step-by-step version: [SETUP.md](
 CLAUDE.md               shared rules for every agent (read first)
 COMMANDS.md             catalog of all slash commands
 SETUP.md                detailed manual setup
-.claude/agents/         manager (main) + brand, ui-ux, fullstack-devops, marketing, media, learning-coach, news-curator
+.claude/agents/         one folder per agent: <agent>.md + skills/ (INDEX.md + one folder per skill)
+                        manager (main) + brand, ui-ux, fullstack-devops, marketing, media, learning-coach, news-curator
 .claude/commands/       one file per slash command
 ecosystem/_templates/   skeletons for your personal ecosystem (shared)
 entities/_templates/     skeletons for entities (organisation, individual), Trello board spec, Butler rules, email templates (shared)

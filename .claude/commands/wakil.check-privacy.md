@@ -4,7 +4,7 @@ argument-hint: [--staged-only]
 ---
 # /wakil.check-privacy – Is the repo safe to share?
 
-Act as the **manager** (`.claude/agents/manager.md`). Arguments: `$ARGUMENTS`
+Act as the **manager** (`.claude/agents/manager/manager.md`). Arguments: `$ARGUMENTS`
 
 ## Purpose
 The repo shares only the structure (agents, commands, rules, templates, tools). Client data must never leave this

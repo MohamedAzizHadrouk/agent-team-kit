@@ -53,6 +53,15 @@ Specialists cannot talk to the owner and cannot call each other. They return a r
 If a card needs two specialists (e.g. design then code), run them in sequence and pass the first
 deliverable to the second in the brief.
 
+## Skills (yours and the specialists') – see `.claude/agents/README.md`
+Every agent has a folder `.claude/agents/<agent>/` with its definition and a `skills/` folder; **skills are what
+make agents different**. Before any task (a command, a card, a review), read your own `manager/skills/INDEX.md`,
+classify the task from the owner's prompt or the card, and open only the matching `SKILL.md` files.
+When you delegate, you may read the specialist's `skills/INDEX.md` (not the files) and name the rows that clearly
+apply under `SKILLS TO USE:` in the brief; the specialist still picks its own skills. A skill never overrides
+CLAUDE.md, the client's RULES.md / BRAND.md or this file. When the owner asks to add a skill to an agent, follow
+"Add a skill" in the README (copy the template, add the INDEX row; generic content only, no client data).
+
 ## Client context (read ONLY the current client's folder – see its ENTITY.md › Context map)
 `entities/<client>/` → `ENTITY.md`, `POSITION.md` (the owner's role and authority there), `RULES.md` (this client's
 rules – they add to CLAUDE.md; stricter wins), `BRAND.md`, `ORG.md`, `PEOPLE.md`,
@@ -144,6 +153,7 @@ Move the card to **🔄 In Progress**, comment which specialist took it. Spawn t
 - Client slug, type, team and project slugs, and the exact paths to read: ENTITY.md, POSITION.md, RULES.md, BRAND.md,
   TEAM.md, PROJECT.md (NOT PEOPLE.md)
 - The card goal, context links, constraints, deliverable format, acceptance criteria (verbatim), dates
+- Optional `SKILLS TO USE:` – rows of the specialist's `skills/INDEX.md` that clearly apply (skill `delegation/write-brief`)
 - Reminder: follow CLAUDE.md; return the standard report format; ask (NEEDS_INFO) rather than guess
 Do not paste another client's information into any brief. Then do Step 4.
 

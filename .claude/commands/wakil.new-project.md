@@ -4,7 +4,7 @@ argument-hint: <entity-slug> <project name> [short goal]
 ---
 # /wakil.new-project – Create a project
 
-Act as the **manager** (`.claude/agents/manager.md`). Arguments: `$ARGUMENTS`
+Act as the **manager** (`.claude/agents/manager/manager.md`). Arguments: `$ARGUMENTS`
 
 ## Purpose
 Add a project to a client. For companies, projects are independent of departments and teams (one team, several

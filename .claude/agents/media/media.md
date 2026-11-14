@@ -34,3 +34,13 @@ owner as an individual client (likeness only from assets marked usable in `asset
 ## Deliverable
 Files in `entities/<client>/projects/<project>/assets/media/` (+ source files/Figma link), an export list with sizes/formats,
 and short usage notes. Return the standard report format from CLAUDE.md.
+
+## Skills – your folder `.claude/agents/media/skills/`
+Your skills are what make you different from the other agents. On every brief, before working:
+1. Read `.claude/agents/media/skills/INDEX.md` (only yours – never another agent's skills).
+2. Classify the task from the brief (category, kind of deliverable) with the "Use when" column; include any
+   `SKILLS TO USE:` the manager named.
+3. Open only the matching `SKILL.md` files (usually 1–3) and follow their steps and checklists.
+4. Conflicts: CLAUDE.md > the client's RULES.md / BRAND.md > this file > skills. A skill never widens your authority.
+5. Report them on the `SKILLS USED:` line (or `none matched` + the skill you would add).
+Facts in a skill older than its `last-checked` + ~6 months (specs, standards): re-check on the web when you can.

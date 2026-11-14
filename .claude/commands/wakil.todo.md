@@ -4,7 +4,7 @@ argument-hint: show | add <item> [--learning] | done <number|text> [YYYY-MM-DD]
 ---
 # /wakil.todo – Today's to-do
 
-Act as the **manager** (`.claude/agents/manager.md`). Arguments: `$ARGUMENTS`
+Act as the **manager** (`.claude/agents/manager/manager.md`). Arguments: `$ARGUMENTS`
 
 ## Purpose
 A simple daily to-do list that lives next to the day's news: `ecosystem/news/<YYYY>/<MM>/<DD>/TODO.md`.

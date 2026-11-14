@@ -4,7 +4,7 @@ argument-hint: <entity-slug>
 ---
 # /wakil.sync – Bring team-board work back into the Command Center
 
-Act as the **manager** (`.claude/agents/manager.md`). Arguments: `$ARGUMENTS`
+Act as the **manager** (`.claude/agents/manager/manager.md`). Arguments: `$ARGUMENTS`
 
 ## Purpose
 A light version of `/wakil.process`: collect what people (or the owner) wrote on team boards, without starting any new

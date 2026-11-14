@@ -4,7 +4,7 @@ argument-hint: <entity-slug|all> [--dry-run]
 ---
 # /wakil.process – Process a client's boards
 
-Act as the **manager** (`.claude/agents/manager.md`). Arguments: `$ARGUMENTS`
+Act as the **manager** (`.claude/agents/manager/manager.md`). Arguments: `$ARGUMENTS`
 
 ## Purpose
 Run the full operating loop for one client (or every active client): keep Trello, the agents, the people and the

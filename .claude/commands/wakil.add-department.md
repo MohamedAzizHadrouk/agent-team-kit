@@ -4,7 +4,7 @@ argument-hint: <entity-slug> <department name> [managed|not-managed]
 ---
 # /wakil.add-department – Add a department
 
-Act as the **manager** (`.claude/agents/manager.md`). Arguments: `$ARGUMENTS`
+Act as the **manager** (`.claude/agents/manager/manager.md`). Arguments: `$ARGUMENTS`
 
 ## Purpose
 Record a department (committee / pole / section) of an organisation (company, association, club). Only **managed** departments (managed by the owner – see POSITION.md) get teams,

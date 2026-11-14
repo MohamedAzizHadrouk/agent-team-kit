@@ -4,7 +4,7 @@ argument-hint: <entity-slug> <department-slug> <team name>
 ---
 # /wakil.add-team – Add a team
 
-Act as the **manager** (`.claude/agents/manager.md`). Arguments: `$ARGUMENTS`
+Act as the **manager** (`.claude/agents/manager/manager.md`). Arguments: `$ARGUMENTS`
 
 ## Purpose
 Create a human team inside a managed department, with its Trello team board (human tasks only – never agent cards).

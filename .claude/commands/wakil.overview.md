@@ -4,7 +4,7 @@ argument-hint: <entity-slug> [project-slug|team-slug]
 ---
 # /wakil.overview – Where do things stand?
 
-Act as the **manager** (`.claude/agents/manager.md`). Arguments: `$ARGUMENTS`
+Act as the **manager** (`.claude/agents/manager/manager.md`). Arguments: `$ARGUMENTS`
 
 ## Purpose
 Give the owner a clear picture of a client, a project or a team **without changing anything**.

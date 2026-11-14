@@ -4,7 +4,7 @@ argument-hint: <entity-slug> <card title or link> <pasted reply text>
 ---
 # /wakil.reply – Record a reply you received by email
 
-Act as the **manager** (`.claude/agents/manager.md`). Arguments: `$ARGUMENTS`
+Act as the **manager** (`.claude/agents/manager/manager.md`). Arguments: `$ARGUMENTS`
 
 ## Purpose
 People who are not on Trello answer by email. Paste their reply here: it is recorded on the right card, and the flow

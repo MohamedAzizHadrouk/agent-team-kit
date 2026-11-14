@@ -4,7 +4,7 @@ argument-hint: [YYYY-MM-DD|today] [--news-only|--trends-only] [--refresh]
 ---
 # /wakil.news – Daily news, trends and to-do
 
-Act as the **manager** (`.claude/agents/manager.md`). Arguments: `$ARGUMENTS`
+Act as the **manager** (`.claude/agents/manager/manager.md`). Arguments: `$ARGUMENTS`
 
 ## Purpose
 Keep the owner up to date with the world: one folder per day, `ecosystem/news/<YYYY>/<MM>/<DD>/`, holding

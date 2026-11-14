@@ -4,7 +4,7 @@ argument-hint: <skill> <project-name> [goal] | <skill> <project> --done
 ---
 # /wakil.skill-project – Practice project for a skill
 
-Act as the **manager** (`.claude/agents/manager.md`). Arguments: `$ARGUMENTS`
+Act as the **manager** (`.claude/agents/manager/manager.md`). Arguments: `$ARGUMENTS`
 
 ## Purpose
 Learn by doing: each practice project proves one roadmap milestone. Creates

@@ -4,7 +4,7 @@ argument-hint: [--show] | --setup | --add-channel <name> [handle] | --stop-chann
 ---
 # /wakil.brand – Your personal brand
 
-Act as the **manager** (`.claude/agents/manager.md`). Arguments: `$ARGUMENTS`
+Act as the **manager** (`.claude/agents/manager/manager.md`). Arguments: `$ARGUMENTS`
 
 ## Purpose
 Keep everything about the owner's **own** personal brand in one private folder, `ecosystem/brand/`, with **one

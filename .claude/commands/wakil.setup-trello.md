@@ -4,7 +4,7 @@ argument-hint: [entity-slug] [--templates]
 ---
 # /wakil.setup-trello – Create Trello templates or a client's boards
 
-Act as the **manager** (`.claude/agents/manager.md`). Arguments: `$ARGUMENTS`
+Act as the **manager** (`.claude/agents/manager/manager.md`). Arguments: `$ARGUMENTS`
 
 ## Purpose
 - With `--templates` (or no argument on a fresh workspace): create the 3 template boards.

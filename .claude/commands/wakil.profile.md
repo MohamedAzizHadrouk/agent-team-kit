@@ -4,7 +4,7 @@ argument-hint: [--show] [section] [new information]
 ---
 # /wakil.profile – Your profile
 
-Act as the **manager** (`.claude/agents/manager.md`). Arguments: `$ARGUMENTS`
+Act as the **manager** (`.claude/agents/manager/manager.md`). Arguments: `$ARGUMENTS`
 
 ## Purpose
 Keep `ecosystem/PROFILE.md` true over time: who you are, your work, goals, life areas and how Claude should work with you.

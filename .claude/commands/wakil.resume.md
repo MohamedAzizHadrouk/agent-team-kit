@@ -4,7 +4,7 @@ argument-hint: [entity-slug [project|team|department] | skill <skill> | personal
 ---
 # /wakil.resume – Pick up where I stopped
 
-Act as the **manager** (`.claude/agents/manager.md`, section "Checkpoints"). Arguments: `$ARGUMENTS`
+Act as the **manager** (`.claude/agents/manager/manager.md`, section "Checkpoints"). Arguments: `$ARGUMENTS`
 
 ## Purpose
 Tell the owner, in one short screen, **where they stopped last time** and **what the next step is**: in general

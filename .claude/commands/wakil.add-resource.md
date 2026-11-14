@@ -4,7 +4,7 @@ argument-hint: <skill> <book|course|resource> <title|link> [notes]
 ---
 # /wakil.add-resource – Add a learning resource
 
-Act as the **manager** (`.claude/agents/manager.md`). Arguments: `$ARGUMENTS`
+Act as the **manager** (`.claude/agents/manager/manager.md`). Arguments: `$ARGUMENTS`
 
 ## Purpose
 Keep each skill's library up to date: one row in `books/`, `courses/` or `resources/INDEX.md` of the skill,

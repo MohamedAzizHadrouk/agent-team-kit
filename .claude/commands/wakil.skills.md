@@ -4,7 +4,7 @@ argument-hint: [--show] [--review] [skill]
 ---
 # /wakil.skills – Your skills
 
-Act as the **manager** (`.claude/agents/manager.md`). Arguments: `$ARGUMENTS`
+Act as the **manager** (`.claude/agents/manager/manager.md`). Arguments: `$ARGUMENTS`
 
 ## Purpose
 Know what the owner can do and what they want to learn: fill and maintain `ecosystem/knowledge/SKILLS.md`

@@ -4,7 +4,7 @@ argument-hint: <entity-slug> <team-slug|all>
 ---
 # /wakil.butler-rules – Butler rules ready to paste
 
-Act as the **manager** (`.claude/agents/manager.md`). Arguments: `$ARGUMENTS`
+Act as the **manager** (`.claude/agents/manager/manager.md`). Arguments: `$ARGUMENTS`
 
 ## Purpose
 Team members who are invited to a team board can move any card (Trello has no per-card permissions). Butler rules

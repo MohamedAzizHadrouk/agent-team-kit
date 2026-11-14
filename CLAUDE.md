@@ -14,20 +14,23 @@ Anyone can clone this repo and run `/wakil.setup` to build their own ecosystem â
 ## The team
 | Agent | File | Role |
 |---|---|---|
-| manager | .claude/agents/manager.md | Orchestrator. Reads Trello, resolves client + project, delegates, reviews. Runs as the MAIN agent. |
-| ui-ux | .claude/agents/ui-ux.md | Wireframes, mockups, design systems, graphics, UI handoff |
-| fullstack-devops | .claude/agents/fullstack-devops.md | Frontend, backend, database, tests, CI/CD, deployment |
-| marketing | .claude/agents/marketing.md | Social strategy + copy (Meta, Instagram, LinkedIn, TikTok...), SEO, GEO |
-| media | .claude/agents/media.md | Post/carousel templates, video scripts, storyboards, simple videos |
-| brand | .claude/agents/brand.md | Brand strategy, positioning, architecture, naming, voice, visual identity direction, guidelines, brand reviews |
-| learning-coach | .claude/agents/learning-coach.md | Personal: learning roadmaps, real resources, practice projects, progress reviews |
-| news-curator | .claude/agents/news-curator.md | Personal: daily news + trends from the owner's preferences, always with sources |
+| manager | .claude/agents/manager/manager.md | Orchestrator. Reads Trello, resolves client + project, delegates, reviews. Runs as the MAIN agent. |
+| ui-ux | .claude/agents/ui-ux/ui-ux.md | Wireframes, mockups, design systems, graphics, UI handoff |
+| fullstack-devops | .claude/agents/fullstack-devops/fullstack-devops.md | Frontend, backend, database, tests, CI/CD, deployment |
+| marketing | .claude/agents/marketing/marketing.md | Social strategy + copy (Meta, Instagram, LinkedIn, TikTok...), SEO, GEO |
+| media | .claude/agents/media/media.md | Post/carousel templates, video scripts, storyboards, simple videos |
+| brand | .claude/agents/brand/brand.md | Brand strategy, positioning, architecture, naming, voice, visual identity direction, guidelines, brand reviews |
+| learning-coach | .claude/agents/learning-coach/learning-coach.md | Personal: learning roadmaps, real resources, practice projects, progress reviews |
+| news-curator | .claude/agents/news-curator/news-curator.md | Personal: daily news + trends from the owner's preferences, always with sources |
 
 ## Folder map
 ```
 CLAUDE.md                        <- this file
 README.md  SETUP.md              <- overview / detailed manual setup
-.claude/agents/                  <- the 8 agents
+.claude/agents/                  <- the 8 agents, one folder each (README.md explains skills)
+  <agent>/<agent>.md             <- the agent definition (role + hard rules)
+  <agent>/skills/INDEX.md        <- its skills catalog: category -> skill -> "use when" -> file
+  <agent>/skills/<category>/<skill>/SKILL.md   <- one skill (add your own from _templates/skill/)
 ecosystem/                       <- PRIVATE, git-ignored except _templates/
   _templates/                    <- shared skeletons: PROFILE, SKILLS, skill folder, news preferences, day files
   PROFILE.md                     <- who the owner is, goals, how to work with them
@@ -123,4 +126,11 @@ HOW TO VERIFY: steps the reviewer can follow
 ASSUMPTIONS: ...
 OPEN QUESTIONS: ... (with suggested defaults)
 RISKS / APPROVAL NEEDED: ...
+SKILLS USED: <category>/<skill>, ... | none matched (+ suggested new skill)
 ```
+
+## Agent skills
+What differs between agents is their **skills** (`.claude/agents/<agent>/skills/`). Every agent reads its own
+`skills/INDEX.md` first, picks the skills that match the task from the prompt / brief, and follows them.
+Priority: these golden rules > the client's RULES.md / BRAND.md > the agent's `.md` > its skills.
+Skills are shared in git: generic methods only, never client data. Details: `.claude/agents/README.md`.

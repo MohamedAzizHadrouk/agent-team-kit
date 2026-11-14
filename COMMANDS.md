@@ -3,7 +3,7 @@
 Type `/` in Claude Code to see them. Every command starts with `wakil.` (e.g. `/wakil.process`) and is one file in `.claude/commands/wakil.<name>.md` with the same
 sections: **Purpose · Arguments · Preconditions · Steps · Rules · Output · Schedulable · Examples**.
 Change a command by editing its file; add one with `/wakil.new-command`. Detailed rules live in
-`.claude/agents/manager.md` – command files point to its sections, so a rule changed there applies everywhere.
+`.claude/agents/manager/manager.md` – command files point to its sections, so a rule changed there applies everywhere.
 
 Notation: `<required>` · `[optional]` · `a|b` = one of. `<entity-slug>` = a client from `entities/registry.md`.
 After `/wakil.focus`, a missing `<entity-slug>` (and project / team) is taken from the focus; an explicit one always wins.

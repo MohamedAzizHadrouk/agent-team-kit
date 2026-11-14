@@ -65,7 +65,7 @@ Butler rules are per board: after creating each team board, paste the rules from
 claude --agent manager
 ```
 (If your version does not have `--agent`, start `claude` normally and say:
-"Act as the manager agent defined in .claude/agents/manager.md and delegate to the other agents".)
+"Act as the manager agent defined in .claude/agents/manager/manager.md and delegate to the other agents".)
 The Manager must be the main agent because sub-agents cannot launch other sub-agents.
 
 ## First run (test with something harmless)
@@ -119,7 +119,8 @@ The Manager must be the main agent because sub-agents cannot launch other sub-ag
 - Review every PR and every post before it goes live.
 
 ## Troubleshooting
-- Agent not listed in /agents → check the folder is `.claude/agents/` at the root where you start `claude`.
+- Agent not listed in /agents → check the folder is `.claude/agents/` at the root where you start `claude`
+  (subfolders are scanned; a skill file must never have `name:` / `description:` in its frontmatter).
 - Trello tools missing → `/mcp` and re-authenticate.
 - Manager can't delegate → make sure you started it as the main agent (step 6).
 - A tool name differs (e.g. Agent vs Task) → run `/agents` and ask Claude to adapt the frontmatter of manager.md.

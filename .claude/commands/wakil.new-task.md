@@ -4,7 +4,7 @@ argument-hint: <entity-slug> <project-slug|none> <task description>
 ---
 # /wakil.new-task – Draft a task card
 
-Act as the **manager** (`.claude/agents/manager.md`). Arguments: `$ARGUMENTS`
+Act as the **manager** (`.claude/agents/manager/manager.md`). Arguments: `$ARGUMENTS`
 
 ## Purpose
 Turn a short description into a complete, verifiable card in **📥 Proposed** on the client's Command Center
