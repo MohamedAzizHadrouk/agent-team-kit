@@ -15,7 +15,7 @@ The three modes: plain request = do it now (no plan) · `/wakil.plan` = local pl
 ## Arguments
 | Argument | Required | Values | Default |
 |---|---|---|---|
-| `<entity-slug>` | yes | slug from `entities/` (or the focus) | focus |
+| `<entity-slug>` | yes | slug from `entities/`, or `personal` for a personal project (`ecosystem/projects/<project>/`, see `/wakil.personal-project`) | focus |
 | `<project>` | yes | a folder under `projects/` or `none` | focus |
 | `<goal>` | yes (create) | free text: what to achieve, constraints, deadline | – |
 | `approve <plan-id \| T-…>` | no | owner approves the plan or some tasks | – |
@@ -34,7 +34,7 @@ The three modes: plain request = do it now (no plan) · `/wakil.plan` = local pl
    executor (🤖 specialist from `.claude/agents/` or 👤 person from PEOPLE.md – names only), estimate S/M/L,
    3–6 verifiable acceptance criteria each. First tasks collect inputs / validate the base.
 3. Write `plans/PLAN-<YYYY-MM-DD>-<slug>.md` from `entities/_templates/plan.md` (`status: proposed`, `sync: local`)
-   in `projects/<project>/` (or `entities/<entity>/plans/` for `none`).
+   in `projects/<project>/` (or `entities/<entity>/plans/` for `none`; for `personal`: `ecosystem/projects/<project>/plans/` – read PROJECT.md there, never entity files).
 4. Write one file per task in `tasks/` from `entities/_templates/task.md`: next free `T-NNN`, `status: proposed`,
    `sync: local`, `trello: -`, `plan: <plan-id>`, `phase`, `order`, `depends`, `agent` / `assignee`, `priority`,
    `estimate`, goal, deliverable, acceptance criteria, Status log `- <date> – proposed – manager`.

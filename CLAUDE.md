@@ -36,6 +36,8 @@ ecosystem/                       <- PRIVATE, git-ignored except _templates/
   PROFILE.md                     <- who the owner is, goals, how to work with them
   knowledge/SKILLS.md            <- skills I have / learning now / backlog
   knowledge/skills/<skill>/      <- SKILL.md + resources/ + books/ + courses/ + projects/<project>/
+  projects/<project>/            <- the owner's PERSONAL projects (/wakil.personal-project): PROJECT.md + plans/ + tasks/ + assets/
+                                    planned with /wakil.plan personal <project> …; briefs: TASK: personal/<project>/<T-NNN>
   news/PREFERENCES.md            <- news + trends preferences
   news/<YYYY>/<MM>/<DD>/         <- TODO.md, NEWS.md, TRENDS.md of that day
   brand/                         <- personal brand (/wakil.brand): BRAND.md, strategy/STRATEGY.md, assets/,

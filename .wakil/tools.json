@@ -1,7 +1,7 @@
 {
   "generator": "tools/sync-ai-tools.cjs",
-  "generatedAt": "2026-11-15T12:43:14.375Z",
-  "sourceMtime": "2026-11-15T12:43:13.798Z",
+  "generatedAt": "2026-11-15T18:09:51.780Z",
+  "sourceMtime": "2026-11-15T18:09:51.227Z",
   "tools": {
     "claude": {
       "reads": [
@@ -26,7 +26,7 @@
     }
   },
   "counts": {
-    "commands": 38,
+    "commands": 39,
     "agents": 8,
     "subagents": 7,
     "skills": 18
@@ -86,6 +86,8 @@
     ".agents/skills/wakil-news/agents/openai.yaml",
     ".agents/skills/wakil-overview/SKILL.md",
     ".agents/skills/wakil-overview/agents/openai.yaml",
+    ".agents/skills/wakil-personal-project/SKILL.md",
+    ".agents/skills/wakil-personal-project/agents/openai.yaml",
     ".agents/skills/wakil-plan-project/SKILL.md",
     ".agents/skills/wakil-plan-project/agents/openai.yaml",
     ".agents/skills/wakil-plan-trello/SKILL.md",

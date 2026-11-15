@@ -32,6 +32,7 @@ The user may type a command in any of these forms – they all mean the same thi
 | `/wakil.news-preferences` | `/wakil-news-preferences` | `$wakil-news-preferences` | Interview or update your news and trend preferences (news/PREFERENCES.md) used by /wakil.news |
 | `/wakil.news` | `/wakil-news` | `$wakil-news` | Build the day's folder news/YYYY/MM/DD with NEWS.md, TRENDS.md and TODO.md, following your preferences |
 | `/wakil.overview` | `/wakil-overview` | `$wakil-overview` | Read-only overview of a client – what waits for you, what is blocked, what is in progress |
+| `/wakil.personal-project` | `/wakil-personal-project` | `$wakil-personal-project` | Create and manage the owner's personal projects (not for a client) in ecosystem/projects/ – planned with /wakil.plan and shown in Wakil Desktop |
 | `/wakil.plan-project` | `/wakil-plan-project` | `$wakil-plan-project` | Propose a task breakdown for a project, then create the cards in Proposed after your OK |
 | `/wakil.plan` | `/wakil-plan` | `$wakil-plan` | Plan work as structured markdown (plan file + task files) visible in the Wakil Desktop Kanban – never on Trello; then run it task by task |
 | `/wakil.plan.trello` | `/wakil-plan-trello` | `$wakil-plan-trello` | Plan work as structured markdown (visible in the Wakil Desktop Kanban) AND create one Trello card per task in Proposed |
@@ -147,6 +148,8 @@ ecosystem/                       <- PRIVATE, git-ignored except _templates/
   PROFILE.md                     <- who the owner is, goals, how to work with them
   knowledge/SKILLS.md            <- skills I have / learning now / backlog
   knowledge/skills/<skill>/      <- SKILL.md + resources/ + books/ + courses/ + projects/<project>/
+  projects/<project>/            <- the owner's PERSONAL projects (/wakil.personal-project): PROJECT.md + plans/ + tasks/ + assets/
+                                    planned with /wakil.plan personal <project> …; briefs: TASK: personal/<project>/<T-NNN>
   news/PREFERENCES.md            <- news + trends preferences
   news/<YYYY>/<MM>/<DD>/         <- TODO.md, NEWS.md, TRENDS.md of that day
   brand/                         <- personal brand (/wakil.brand): BRAND.md, strategy/STRATEGY.md, assets/,
