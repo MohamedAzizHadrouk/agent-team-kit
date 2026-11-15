@@ -63,7 +63,10 @@ tools/outlook-draft.ps1          <- creates email DRAFTS in the owner's Outlook 
 usage/PRICING.md                 <- API list prices: "API-equivalent" estimate of usage (not what the owner pays)
 usage/registry.json              <- PRIVATE AI registry: providers, subscriptions, prices/budgets history, expenses, ACU config,
                                     manual usage, change log. Written ONLY by tools/ai-registry.cjs (/wakil.provider,
-                                    /wakil.subscription, /wakil.usage) – from Claude Code, Cursor or Codex – read by Wakil Desktop
+                                    /wakil.subscription, /wakil.billing-period, /wakil.usage) – from Claude Code, Cursor or Codex – read by Wakil Desktop
+usage/credits.jsonl              <- PRIVATE credit log: ONE LINE PER PROMPT (tool, provider, model, tokens, credits, session, agent,
+                                    entity/project/task). Written ONLY by tools/credit-log.cjs – after every prompt by the hooks
+                                    (.claude/settings.json, .cursor/hooks.json, .codex/config.toml) – read by Wakil Desktop (/wakil.credits)
 .claude/commands/wakil.<name>.md <- slash commands (/wakil.process, /wakil.overview, /wakil.new-task …) – one file per command
 COMMANDS.md                      <- catalog of all commands, their arguments and schedules
 tools/sync-ai-tools.cjs          <- /wakil.sync-tools: mirrors .claude/ + CLAUDE.md for Cursor and Codex (generated, never edit):

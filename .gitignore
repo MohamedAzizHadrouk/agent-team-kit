@@ -19,3 +19,7 @@ ecosystem/*
 # ── Privacy: AI subscriptions, prices, expenses and usage records (Wakil AI registry) stay on this computer. ──
 usage/registry.json
 usage/registry.json.tmp
+# Credit usage log: one line per prompt (prompt excerpts, projects) – tools/credit-log.cjs
+usage/credits.jsonl
+usage/.credits-pending.json
+usage/.credits-hook-errors.log

@@ -225,6 +225,48 @@ const actions = {
     s.updatedAt = today()
     return { summary: amount === null ? `Budget of ${s.id} removed from ${from}` : `Monthly budget of ${s.id} from ${from}: ${amount} ${s.currency} (a budget is a limit, not an expense)`, target: `sub:${s.id}` }
   },
+  // Billing periods: the real dates of each paid period (e.g. 2026-11-15 → 2026-12-14). Wakil Desktop computes, per
+  // period: daily cost = fee ÷ days, cost to date = daily cost × days elapsed, 1 credit = cost to date ÷ credits used.
+  // Without declared periods, periods are derived from the start date and the price frequency.
+  'sub period'(reg, id, o) {
+    const s = findSub(reg, id)
+    s.periods = s.periods || []
+    if (o.remove) {
+      const start = date(o.remove, 'remove')
+      needYes(o, 'Removing a billing period')
+      const before = s.periods.length
+      s.periods = s.periods.filter((p) => p.start !== start)
+      if (s.periods.length === before) fail(`No period of ${s.id} starts on ${start}`)
+      s.updatedAt = today()
+      return { summary: `Billing period of ${s.id} starting ${start} removed`, target: `sub:${s.id}` }
+    }
+    const start = date(o.start || fail('sub period needs --start YYYY-MM-DD (first day of the paid period)'), 'start')
+    const price = current(s.prices, start)
+    const step = !price || price.frequency === 'monthly' ? 1 : price.frequency === 'yearly' ? 12 : Math.max(1, price.months || 1)
+    const addMonths = (day, n) => {
+      const [y, m, d] = day.split('-').map(Number)
+      const f = new Date(Date.UTC(y, m - 1 + n, 1))
+      const dim = new Date(Date.UTC(f.getUTCFullYear(), f.getUTCMonth() + 1, 0)).getUTCDate()
+      return `${f.getUTCFullYear()}-${String(f.getUTCMonth() + 1).padStart(2, '0')}-${String(Math.min(d, dim)).padStart(2, '0')}`
+    }
+    const minusDay = (day) => new Date(Date.parse(day + 'T12:00:00Z') - 86400000).toISOString().slice(0, 10)
+    const end = o.end ? date(o.end, 'end') : minusDay(addMonths(start, step))
+    if (end < start) fail(`--end (${end}) is before --start (${start})`)
+    if (o.amount !== undefined) needYes(o, 'Setting the amount paid for a period')
+    const amount = o.amount !== undefined ? num(o.amount, 'amount') : price ? price.amount : fail(`${s.id} has no price in effect on ${start}: add --amount`)
+    const cur = currency(o.currency || (price && price.currency) || s.currency)
+    const overlap = s.periods.find((p) => p.start !== start && p.start <= end && p.end >= start)
+    if (overlap) fail(`Overlaps the period ${overlap.start} → ${overlap.end} of ${s.id} (remove it first: sub period ${s.id} --remove ${overlap.start} --yes)`)
+    const days = Math.round((Date.parse(end + 'T12:00:00Z') - Date.parse(start + 'T12:00:00Z')) / 86400000) + 1
+    const entry = { start, end, amount, currency: cur, note: o.note && o.note !== true ? String(o.note) : '', at: today() }
+    s.periods = s.periods.filter((p) => p.start !== start).concat(entry).sort((a, b) => a.start.localeCompare(b.start))
+    s.updatedAt = today()
+    return { summary: `Billing period of ${s.id}: ${start} → ${end} (${days} days), ${amount} ${cur} → ${(amount / days).toFixed(4)} ${cur}/day`, target: `sub:${s.id}` }
+  },
+  'sub periods'(reg, id) {
+    const s = findSub(reg, id)
+    return { read: { subscription: s.id, startDate: s.startDate, periods: s.periods || [], note: 'Periods not declared here are derived from the start date and the price frequency.' } }
+  },
   'sub activate': (reg, id) => setStatus(findSub(reg, id), 'active', 'subscription'),
   'sub deactivate': (reg, id) => setStatus(findSub(reg, id), 'inactive', 'subscription'),
   'sub archive'(reg, id, o) { needYes(o, 'Archiving a subscription'); return setStatus(findSub(reg, id), 'archived', 'subscription') },
@@ -374,6 +416,7 @@ const HELP = `Wakil AI registry – usage/registry.json
   sub budget <id> --budget 50|none [--from]                                       (a budget is not an expense)
   sub expense <id> --period YYYY-MM --amount 12.4 --kind fixed|variable [--status actual|reported] [--source invoice] --yes
   sub plan-usage <id> --metric premium-requests --value 320 [--limit 500] [--date] [--source cursor-dashboard]
+  sub period <id> --start YYYY-MM-DD [--end YYYY-MM-DD] [--amount 20 --yes] [--currency] · sub period <id> --remove START --yes · sub periods <id>
   sub activate|deactivate|show <id> · sub archive|remove <id> --yes
   usage record <sub-id> --project <entity>/<project> [--requests 3] [--model] [--category] [--input --output --cached] [--task T-004] [--agent ui-ux]
   usage show · acu show · acu set [--input 1 --output 2 --cached 0.25 --overhead 0.5] [--multiplier claude-opus=1.5] [--estimate cursor=3] --yes

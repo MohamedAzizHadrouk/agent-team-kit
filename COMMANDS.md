@@ -60,8 +60,10 @@ After `/wakil.focus`, a missing `<entity-slug>` (and project / team) is taken fr
 | `/wakil.provider` | `add\|update\|show\|activate\|deactivate\|archive\|remove [provider] [details]` | AI providers in the registry (`usage/registry.json`) read by Wakil Desktop | `show` |
 | `/wakil.subscription` | `add\|update\|price\|billing\|budget\|expense\|plan-usage\|activate\|deactivate\|archive\|remove\|show [sub] [details]` | AI subscriptions: price history, billing model, budget, actual expenses, plan usage | `show` |
 | `/wakil.usage` | `record\|acu\|settings\|show\|log [details]` | Record usage tools do not log (Cursor), ACU weights / multipliers, currencies, change log | `show`, `log` |
+| `/wakil.billing-period` | `<subscription> <start> [end] [amount]` · `show <subscription>` · `remove <subscription> <start>` | The real dates of each paid subscription period – the base of the cost of one credit | `show` |
+| `/wakil.credits` | `sync\|add\|show\|report [details]` | Credit usage log `usage/credits.jsonl` (one line per prompt: provider, model, credits) and cost report per prompt, session, project, task, entity, agent | `sync`, `show`, `report` |
 
-All three work from Claude Code, Cursor and Codex and write only through `node tools/ai-registry.cjs` (validated, versioned, logged with the chat and agent).
+These commands work from Claude Code, Cursor and Codex. The registry is written only through `node tools/ai-registry.cjs` (validated, versioned, logged with the chat and agent); the credit log only through `node tools/credit-log.cjs` – automatically after every prompt by the hooks in `.claude/settings.json`, `.cursor/hooks.json` and `.codex/config.toml`.
 
 ## Setup & maintenance
 | Command | Arguments | What it does | Schedulable |

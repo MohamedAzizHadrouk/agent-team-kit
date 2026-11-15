@@ -20,9 +20,11 @@ The user may type a command in any of these forms – they all mean the same thi
 | `/wakil.add-people` | `/wakil-add-people` | `$wakil-add-people` | Add or update people in a client's PEOPLE.md (work contacts only) |
 | `/wakil.add-resource` | `/wakil-add-resource` | `$wakil-add-resource` | Add a book, course or resource (article, video, tool, community) to one of your skills |
 | `/wakil.add-team` | `/wakil-add-team` | `$wakil-add-team` | Add a team to a managed department – TEAM.md, team board, registry row, label to create |
+| `/wakil.billing-period` | `/wakil-billing-period` | `$wakil-billing-period` | Enter the real dates of a subscription's paid period (start, end, amount) – the base Wakil Desktop uses to compute the cost of one credit |
 | `/wakil.brand` | `/wakil-brand` | `$wakil-brand` | Build and run your personal brand – strategy, one folder per channel (Instagram, TikTok, LinkedIn…) with its content, ideas, plans and post drafts (ecosystem/brand/) |
 | `/wakil.butler-rules` | `/wakil-butler-rules` | `$wakil-butler-rules` | Print the Butler rules for a team board, filled and ready to paste in Trello |
 | `/wakil.check-privacy` | `/wakil-check-privacy` | `$wakil-check-privacy` | Check that no client data, people or emails would be committed or pushed to git |
+| `/wakil.credits` | `/wakil-credits` | `$wakil-credits` | Credit usage log (usage/credits.jsonl, one line per prompt with provider, model and credits) and cost report per prompt, session, project, task, entity and agent |
 | `/wakil.focus` | `/wakil-focus` | `$wakil-focus` | Select the working context (client, department, team, project) so the next commands use it by default |
 | `/wakil.learn` | `/wakil-learn` | `$wakil-learn` | I want to learn X" – create the skill folder, set level and goal, propose a roadmap with real resources and a first practice project |
 | `/wakil.list-commands` | `/wakil-list-commands` | `$wakil-list-commands` | Show all available commands with their arguments and examples (COMMANDS.md) |
@@ -175,7 +177,10 @@ tools/outlook-draft.ps1          <- creates email DRAFTS in the owner's Outlook 
 usage/PRICING.md                 <- API list prices: "API-equivalent" estimate of usage (not what the owner pays)
 usage/registry.json              <- PRIVATE AI registry: providers, subscriptions, prices/budgets history, expenses, ACU config,
                                     manual usage, change log. Written ONLY by tools/ai-registry.cjs (/wakil.provider,
-                                    /wakil.subscription, /wakil.usage) – from Claude Code, Cursor or Codex – read by Wakil Desktop
+                                    /wakil.subscription, /wakil.billing-period, /wakil.usage) – from Claude Code, Cursor or Codex – read by Wakil Desktop
+usage/credits.jsonl              <- PRIVATE credit log: ONE LINE PER PROMPT (tool, provider, model, tokens, credits, session, agent,
+                                    entity/project/task). Written ONLY by tools/credit-log.cjs – after every prompt by the hooks
+                                    (.claude/settings.json, .cursor/hooks.json, .codex/config.toml) – read by Wakil Desktop (/wakil.credits)
 .claude/commands/wakil.<name>.md <- slash commands (/wakil.process, /wakil.overview, /wakil.new-task …) – one file per command
 COMMANDS.md                      <- catalog of all commands, their arguments and schedules
 tools/sync-ai-tools.cjs          <- /wakil.sync-tools: mirrors .claude/ + CLAUDE.md for Cursor and Codex (generated, never edit):

@@ -30,6 +30,7 @@ split every subscription's expense across the projects that consumed it. Works f
 | ACTIVATE / DEACTIVATE_SUBSCRIPTION | `sub activate <id>` · `sub deactivate <id>` |
 | archive / remove | `sub archive <id> --yes` · `sub remove <id> --yes` (refused when history exists) |
 | GET_SUBSCRIPTION_DETAILS | `sub show [<id>]` |
+| SET_BILLING_PERIOD "my period runs 15 Nov → 14 Dec" | use `/wakil.billing-period` (`sub period <id> --start … [--end …]`) |
 
 **Billing models:** `fixed` (fixed fee per period) · `payg` (usage-based; the budget is only a limit) · `hybrid`
 (fixed fee + variable charges). **Usage source** (`--tool claude|codex|cursor|other`, optional `--models claude-opus,claude-sonnet`)
