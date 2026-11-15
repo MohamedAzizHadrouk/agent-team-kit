@@ -11,6 +11,7 @@ last-checked: 2026-11-13
 
 ## Brief skeleton
 ```
+TASK: <entity slug>/<project slug or none>/<task id, e.g. T-004>     (direct mode – no task file: write "MODE: direct" instead)
 CLIENT: <entity slug> (Type: …)          PROJECT: <project or none>
 CARD: <title + Trello link>
 GOAL: one sentence – the outcome, not the activity

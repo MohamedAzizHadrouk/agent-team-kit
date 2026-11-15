@@ -36,8 +36,12 @@ After `/wakil.focus`, a missing `<entity-slug>` (and project / team) is taken fr
 | Command | Arguments | What it does | Schedulable |
 |---|---|---|---|
 | `/wakil.new-task` | `<entity-slug> <project\|none> <description>` | Draft a complete card in 📥 Proposed (team, executor, assignee, reviewers, criteria, labels) | ❌ |
-| `/wakil.plan-project` | `<entity-slug> <project> [--next N]` | Propose a task breakdown; after your OK create the first N cards in Proposed | ❌ |
+| *(plain request)* | – | **Direct mode**: the agent does it now – no plan, no task file, no Trello card | – |
+| `/wakil.plan` | `<entity-slug> <project\|none> <goal>` · `approve <plan-id\|T-…>` · `run <plan-id\|T-NNN\|next\|approved>` · `show` | **Local plan**: plan file + task files (phases, order, dependencies) shown in the Wakil Desktop Kanban – never on Trello; then run it | `show` |
+| `/wakil.plan.trello` | `<entity-slug> <project\|none> <goal>` · `--from <plan-id>` | **Trello plan**: same markdown plan + one Trello card per task in Proposed (after your OK) | ❌ |
+| `/wakil.plan-project` | `<entity-slug> <project> [--next N]` | Propose a task breakdown; after your OK create the first N cards in Proposed (older form of `/wakil.plan.trello`) | ❌ |
 | `/wakil.new-project` | `<entity-slug> <name> [goal]` | Create PROJECT.md and say which `project : …` label to create | ❌ |
+| `/wakil.task` | `<entity-slug> <project\|none> [<task-id> show\|status <s>\|note "…"]` · `--import <entity-slug>` | Local task files (`tasks/`) mirroring the cards – Kanban and token usage in Wakil Desktop | `--import` |
 
 ## Entities (organisations & individuals)
 | Command | Arguments | What it does | Schedulable |
@@ -49,6 +53,15 @@ After `/wakil.focus`, a missing `<entity-slug>` (and project / team) is taken fr
 | `/wakil.add-document` | `<entity-slug> <file\|link\|text> [about] [--confidential]` | File + index a document and extract facts into the context | ❌ |
 | `/wakil.update-context` | `<entity-slug> <information>` | Save new info in the right file with a dated log entry | ❌ |
 
+## AI providers, subscriptions & usage (`usage/registry.json` – private)
+| Command | Arguments | What it does | Schedulable |
+|---|---|---|---|
+| `/wakil.provider` | `add\|update\|show\|activate\|deactivate\|archive\|remove [provider] [details]` | AI providers in the registry (`usage/registry.json`) read by Wakil Desktop | `show` |
+| `/wakil.subscription` | `add\|update\|price\|billing\|budget\|expense\|plan-usage\|activate\|deactivate\|archive\|remove\|show [sub] [details]` | AI subscriptions: price history, billing model, budget, actual expenses, plan usage | `show` |
+| `/wakil.usage` | `record\|acu\|settings\|show\|log [details]` | Record usage tools do not log (Cursor), ACU weights / multipliers, currencies, change log | `show`, `log` |
+
+All three work from Claude Code, Cursor and Codex and write only through `node tools/ai-registry.cjs` (validated, versioned, logged with the chat and agent).
+
 ## Setup & maintenance
 | Command | Arguments | What it does | Schedulable |
 |---|---|---|---|
@@ -57,6 +70,7 @@ After `/wakil.focus`, a missing `<entity-slug>` (and project / team) is taken fr
 | `/wakil.butler-rules` | `<entity-slug> <team\|all>` | Print the Butler rules ready to paste | ❌ |
 | `/wakil.schedule-local` | `"<command>" <interval> [days] [hours]` · `--list` · `--remove <name>` | Run a schedulable command automatically on this computer | ❌ |
 | `/wakil.check-privacy` | `[--staged-only]` | Check nothing private would be committed / pushed | ✅ |
+| `/wakil.sync-tools` | `[--check]` | Regenerate AGENTS.md, `.agents/skills`, `.cursor/agents`, `.codex/agents` so the agents, skills and commands work in Cursor and Codex | ✅ |
 | `/wakil.new-command` | `<name> <purpose>` | Create a new command file from the standard layout | ❌ |
 | `/wakil.list-commands` | `[command-name]` | Show this catalog, or one command's details | ❌ |
 

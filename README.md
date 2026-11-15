@@ -82,11 +82,26 @@ Full list with arguments: [COMMANDS.md](COMMANDS.md).
 - Nothing is sent, published, bought, deployed or deleted without your approval. Emails are drafts you send yourself.
 - No invented facts: resources, news and trends always come with real sources.
 
+## Use it from Claude Code, Cursor or Codex
+The agents, skills and commands are written once in `.claude/` and mirrored for the other tools by
+`node tools/sync-ai-tools.cjs` (or `/wakil.sync-tools`):
+
+| | Claude Code | Cursor | Codex (ChatGPT) |
+|---|---|---|---|
+| Rules | `CLAUDE.md` | `AGENTS.md` | `AGENTS.md` |
+| Commands | `/wakil.news` | `/wakil-news` (skill) | `$wakil-news` (skill) |
+| Agents | `.claude/agents/` | `.cursor/agents/` | `.codex/agents/*.toml` |
+| Skills | `.claude/agents/<agent>/skills/` | `.agents/skills/` | `.agents/skills/` |
+
+Start Cursor or Codex in this folder and type the command form of your tool. Wakil Desktop shows the token usage of
+Claude Code and Codex sessions run in this folder (Cursor only keeps usage on its online dashboard).
+
 ## Privacy
 This repo shares only the **structure**. `.gitignore` keeps everything under `entities/` and `ecosystem/` (except
 their `_templates/`) on your computer. Run `/wakil.check-privacy` before every commit or push.
 Client data and personal data never mix.
 
 ## Requirements
-- Claude Code (CLI or desktop app)
+- Claude Code (CLI or desktop app), Cursor, or OpenAI Codex – one is enough
+- Node.js (to run `tools/sync-ai-tools.cjs` after changing agents, skills or commands)
 - Optional: Trello connector (client boards), Figma and GitHub connectors, Outlook desktop on Windows (email drafts)

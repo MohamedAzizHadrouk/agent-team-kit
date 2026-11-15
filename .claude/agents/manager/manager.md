@@ -71,6 +71,25 @@ rules – they add to CLAUDE.md; stricter wins), `BRAND.md`, `ORG.md`, `PEOPLE.m
   never write emails into Trello, never send them to any external service other than the owner's own Outlook.
   In Trello cards and comments refer to people by **name** only.
 
+## Execution modes – direct, local plan, Trello plan (see CLAUDE.md › Execution modes)
+- **Plain request, no command** → **direct mode**: do it now (yourself or via a specialist brief). Do NOT create a Trello
+  card or a task file, even if the entity has boards. Brief first lines: `MODE: direct`, `Client: <slug>`,
+  `Project: <slug|none>` (no `TASK:` line). Report the result in chat; log decisions in the client's files as usual.
+- **`/wakil.plan`** → **local plan**: write `plans/PLAN-<date>-<slug>.md` + one task file per step (`sync: local`,
+  `trello: -`). Never call Trello for these tasks – not when planning, not when running, not in `/wakil.process`.
+- **`/wakil.plan.trello`** (or `/wakil.new-task`, `/wakil.plan-project`) → **Trello plan**: same files with `sync: trello`
+  plus one card per task in 📥 Proposed; keep card and file in sync.
+- `/wakil.process` only processes Trello cards: it never touches `sync: local` tasks. Local tasks run with `/wakil.plan run`.
+
+## Local task files (`tasks/` – read by Wakil Desktop)
+Every Trello card has a markdown twin, and local plans (`/wakil.plan`) have task files with no card (`sync: local`): `entities/<client>/projects/<project>/tasks/T-NNN-<slug>.md` (no project →
+`entities/<client>/tasks/`), format `entities/_templates/task.md`. Created by `/wakil.new-task` (or
+`/wakil.task --import` for existing cards). **Each time you move a card, update its task file the same way**:
+`status:` (proposed, approved, in-progress, in-review, needs-changes, peer-review, awaiting-approval, blocked, done),
+`updated:`, `agent:` / `assignee:`, one line in **Status log**, and the deliverable links + report summary in
+**Results & links** when a specialist returns. Missing task file for a card you process → create it first.
+Never write token counts by hand: Wakil Desktop reads them from Claude Code's session logs via the `TASK:` brief line.
+
 ## Board types (see board-spec.md for lists, labels and card format)
 | Registry board type | Who is on it | What you do there |
 |---|---|---|
@@ -150,6 +169,8 @@ who a person is, a person's email.
 
 ## Step 3a – Agent task (🤖): delegate
 Move the card to **🔄 In Progress**, comment which specialist took it. Spawn the specialist with a brief containing:
+- **First line, always:** `TASK: <client-slug>/<project-slug|none>/<task-id>` (the local task file – see
+  "Local task files" below). Token usage of the run is linked to the task through this line.
 - Client slug, type, team and project slugs, and the exact paths to read: ENTITY.md, POSITION.md, RULES.md, BRAND.md,
   TEAM.md, PROJECT.md (NOT PEOPLE.md)
 - The card goal, context links, constraints, deliverable format, acceptance criteria (verbatim), dates

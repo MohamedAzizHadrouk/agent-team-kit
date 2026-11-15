@@ -31,6 +31,10 @@ Turn a short description into a complete, verifiable card in **📥 Proposed** o
 4. Add the checklist **Acceptance criteria** (3–8 verifiable items).
 5. Attach the existing labels: executor, specialist, `team : …`, `project : …`. Missing label → tell the owner which to create.
 6. Title: `[Dev|UI/UX|Marketing|Media|Brand] …` or `[Human] <Team> – …`.
+7. **Local task file**: create `projects/<project>/tasks/T-NNN-<short-slug>.md` (no project → `entities/<slug>/tasks/`)
+   from `entities/_templates/task.md` – next free id, `status: proposed`, executor, agent, assignee, reviewers,
+   priority, `trello:` = the card URL, goal, deliverable and acceptance criteria copied from the card. Put the task id
+   in the card description (`Task: T-NNN`). This file feeds the Kanban and token usage in Wakil Desktop.
 
 ## Rules
 - Create in 📥 Proposed only – never in Approved.

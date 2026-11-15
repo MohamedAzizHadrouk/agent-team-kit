@@ -55,11 +55,44 @@ entities/
     departments/<dept>/DEPARTMENT.md            <- organisations only
       teams/<team>/TEAM.md                      <- teams of managed departments
     projects/<project>/PROJECT.md + assets/     <- independent of departments/teams
+      tasks/T-NNN-<slug>.md                     <- one file per Trello card (status, agent, criteria, log) – /wakil.task
     documents/INDEX.md + files                  <- client documents (confidential ones: location only)
 tools/outlook-draft.ps1          <- creates email DRAFTS in the owner's Outlook (never sends)
+usage/PRICING.md                 <- API list prices: "API-equivalent" estimate of usage (not what the owner pays)
+usage/registry.json              <- PRIVATE AI registry: providers, subscriptions, prices/budgets history, expenses, ACU config,
+                                    manual usage, change log. Written ONLY by tools/ai-registry.cjs (/wakil.provider,
+                                    /wakil.subscription, /wakil.usage) – from Claude Code, Cursor or Codex – read by Wakil Desktop
 .claude/commands/wakil.<name>.md <- slash commands (/wakil.process, /wakil.overview, /wakil.new-task …) – one file per command
 COMMANDS.md                      <- catalog of all commands, their arguments and schedules
+tools/sync-ai-tools.cjs          <- /wakil.sync-tools: mirrors .claude/ + CLAUDE.md for Cursor and Codex (generated, never edit):
+  AGENTS.md  .agents/skills/  .cursor/agents/  .codex/agents/  .wakil/tools.json
 ```
+
+## Execution modes (even when the entity has a Trello board)
+| Owner writes | Mode | Plan file / task files | Trello | Kanban in Wakil Desktop |
+|---|---|---|---|---|
+| a plain request ("refais le header du site acme") | **Direct** – do it now | none | **never** | no (usage still counted per project) |
+| `/wakil.plan <entity> <project> <goal>` | **Local plan** | `plans/PLAN-*.md` + `tasks/T-NNN-*.md` (`sync: local`) | **never** | yes |
+| `/wakil.plan.trello <entity> <project> <goal>` | **Trello plan** | same files (`sync: trello`, `trello:` = card URL) | cards in 📥 Proposed | yes |
+- **Direct**: the manager (or the specialist it briefs) does the work immediately – no card, no task file, no approval
+  step for the task itself (approval gates of rule 4 still apply). Briefs keep the `Client:` / `Project:` lines so usage is
+  attributed to the project. Never turn a direct request into a card or a task file unless the owner asks.
+- **Local plan**: the plan lives only in markdown; it is executed with `/wakil.plan run …` once the owner approves.
+  Approvals and status changes are written in the task files (Status log), never on Trello.
+- **Trello plan**: same files + one Trello card per task, kept in sync by `/wakil.task` and `/wakil.process`.
+- The owner can promote a local plan to Trello later with `/wakil.plan.trello <entity> <project> --from <plan-id>`.
+
+## Other AI tools (Cursor, Codex)
+The same ecosystem works in **Claude Code, Cursor and OpenAI Codex**. `.claude/` and this file are the only sources;
+`/wakil.sync-tools` (`node tools/sync-ai-tools.cjs`) generates what the other tools read. Command forms:
+Claude Code `/wakil.news` · Cursor `/wakil-news` · Codex `$wakil-news`. After any change to an agent, a skill or a
+command, run `/wakil.sync-tools` and commit the generated files with the change.
+
+## AI subscriptions & usage (natural language → registry)
+When the owner talks about AI providers, subscriptions, prices, budgets, invoices or usage in ANY tool ("add Claude Pro at
+$20/month", "set Cursor budget to $50", "show my Codex subscription"), use `/wakil.provider`, `/wakil.subscription` or
+`/wakil.usage`: the change goes through `node tools/ai-registry.cjs` with `--source-tool <claude|cursor|codex>`, and financial
+or destructive changes are confirmed by the owner first. Never edit `usage/registry.json` by hand and never invent figures.
 
 ## Commands
 The owner drives the work with slash commands (see COMMANDS.md). When a command is used, follow its file's
@@ -98,16 +131,18 @@ Client data and personal data never mix (no client info in `ecosystem/`, no pers
      (for associations and clubs: the board / president or the person named in RULES.md).
    - Associations and clubs: never store or publish members' personal data; never publish photos, names or
      results of minors without written parental consent recorded in ENTITY.md.
-4. **Human approval gates.** Never do these without a recorded approval in the Trello card:
+4. **Human approval gates.** Never do these without a recorded approval – in the Trello card (Trello mode), in the
+   task file's Status log (local plan), or the owner's explicit "yes" in the chat (direct mode):
    production deploys, publishing/posting anything publicly, spending money, deleting data,
    sending messages to a client's customers, changing DNS/domains/billing.
 5. **No secrets in files.** Never write passwords, API keys, tokens or ID numbers into the
    repo, Trello, or these markdown files. Reference where they live ("in client's password manager").
 6. **No fabrication.** No invented testimonials, reviews, statistics, client names, awards,
    or legal claims. Mark assumptions explicitly.
-7. **Everything goes through the Trello card.** Deliverables come back with a short summary
-   and links; decisions and answers are saved into the client's files (decisions logs) so
-   no question is asked twice.
+7. **The owner chooses how much tracking a task gets** (see "Execution modes" below): direct (no card, no task file),
+   local plan (`/wakil.plan` – task files only, never Trello) or Trello plan (`/wakil.plan.trello`, `/wakil.new-task`).
+   Never create a Trello card the owner did not ask for. In every mode deliverables come back with a short summary
+   and links; decisions and answers are saved into the client's files (decisions logs) so no question is asked twice.
 8. **Language.** Talk to the owner in the language they write in. Write deliverables in the
    languages listed in the client's ENTITY.md.
 9. **Small, reviewable steps.** One card = one reviewable deliverable.

@@ -37,6 +37,8 @@ Follow manager.md › **Operating loop**, in this order, for each client:
 - Never send email – Outlook drafts only (`tools/outlook-draft.ps1`).
 - Max 5 approved cards per run. Never guess – Blocked with questions instead.
 - `--dry-run` → zero writes.
+- Trello cards only: tasks with `sync: local` (from `/wakil.plan`) are never processed here and never pushed to Trello –
+  they run with `/wakil.plan run`. Direct requests never create cards.
 
 ## Output
 Short report, in this order: ✉️ email drafts to send · 🛑 waiting for your approval · ❓ blocked (questions) ·
