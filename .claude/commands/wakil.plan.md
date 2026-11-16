@@ -1,6 +1,6 @@
 ---
 description: Plan work as structured markdown (plan file + task files) visible in the Wakil Desktop Kanban – never on Trello; then run it task by task
-argument-hint: <entity-slug> <project|none> <goal> · approve <plan-id|task-ids> · run <plan-id|T-NNN|next|approved> · show [plan-id]
+argument-hint: [<entity-slug> <project|none>] [--agent <agent|auto>] <goal> · approve <plan-id|task-ids> · run <plan-id|T-NNN|next|approved> · show [plan-id]
 ---
 # /wakil.plan – Local plan (markdown only, no Trello)
 
@@ -18,6 +18,7 @@ The three modes: plain request = do it now (no plan) · `/wakil.plan` = local pl
 | `<entity-slug>` | yes | slug from `entities/`, or `personal` for a personal project (`ecosystem/projects/<project>/`, see `/wakil.personal-project`) | focus |
 | `<project>` | yes | a folder under `projects/` or `none` | focus |
 | `<goal>` | yes (create) | free text: what to achieve, constraints, deadline | – |
+| `--agent` | no | `auto` or one agent of `.claude/agents/` (`ui-ux`, `fullstack-devops`, `marketing`, `media`, `brand`…): every 🤖 task of the plan goes to it; 👤 human tasks are unchanged | `auto` – the executor is chosen per task |
 | `approve <plan-id \| T-…>` | no | owner approves the plan or some tasks | – |
 | `run <plan-id \| T-NNN \| next \| approved>` | no | execute approved tasks (in order, respecting dependencies) | `next` |
 | `show [plan-id]` | no | list plans / show one with task statuses | latest plan |

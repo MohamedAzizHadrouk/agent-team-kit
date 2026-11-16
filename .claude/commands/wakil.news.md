@@ -1,37 +1,54 @@
 ---
 description: Build the day's folder news/YYYY/MM/DD with NEWS.md, TRENDS.md and TODO.md, following your preferences
-argument-hint: [YYYY-MM-DD|today] [--news-only|--trends-only] [--refresh]
+argument-hint: [YYYY-MM-DD|today] [--scope world|local|both] [--lang en,fr,ar] [--news-only|--trends-only] [--refresh]
 ---
 # /wakil.news – Daily news, trends and to-do
 
 Act as the **manager** (`.claude/agents/manager/manager.md`). Arguments: `$ARGUMENTS`
 
 ## Purpose
-Keep the owner up to date with the world: one folder per day, `ecosystem/news/<YYYY>/<MM>/<DD>/`, holding
-`NEWS.md` (what happened), `TRENDS.md` (what is growing) and `TODO.md` (today's tasks), built from
-`ecosystem/news/PREFERENCES.md`.
+Keep the owner up to date with the world and with their own area: one folder per day,
+`ecosystem/news/<YYYY>/<MM>/<DD>/`, built from `ecosystem/news/PREFERENCES.md`:
+```
+<DD>/TODO.md                      today's tasks (one language: the master language)
+<DD>/<lang>/NEWS.world.md         world news            – one folder per language of the preferences (e.g. en/ fr/ ar/)
+<DD>/<lang>/NEWS.local.md         local news (the "local" scope of the preferences, e.g. Tunisia + Grand Tunis)
+<DD>/<lang>/TRENDS.md             what is growing (world + local, local ones tagged "(local)")
+```
+The first language of the preferences is the **master**: it is researched; the other languages are faithful
+translations of it (same items, order, facts, numbers and links) – research is done once, not once per language.
+Wakil Desktop shows a language selector and a World / Local selector on these files.
+Older days with a single `NEWS.md` / `TRENDS.md` stay valid (shown as "world, master language").
 
 ## Arguments
 | Argument | Required | Values | Default |
 |---|---|---|---|
 | `[date]` | no | `YYYY-MM-DD` or `today` | today (owner's time zone from PROFILE.md) |
-| `--news-only` / `--trends-only` | no | build only one of the two files | both |
+| `--scope` | no | `world` · `local` · `both` | both |
+| `--lang` | no | comma list of language codes from the preferences | all languages of the preferences |
+| `--news-only` / `--trends-only` | no | build only the news files or only TRENDS.md | both |
 | `--refresh` | no | rebuild files that already exist for that day | existing files are kept |
 
 ## Preconditions
-- `ecosystem/news/PREFERENCES.md` is filled (no `TODO` in General and News) – else run `/wakil.news-preferences`.
+- `ecosystem/news/PREFERENCES.md` is filled (no `TODO` in General, Scopes and News) – else run `/wakil.news-preferences`.
+  No Scopes section (old preferences) → treat it as `world` only and suggest adding a local area.
 - Web search is available.
 
 ## Steps
 1. Create `ecosystem/news/<YYYY>/<MM>/<DD>/` if missing.
 2. **TODO.md** (from `ecosystem/_templates/news/day/TODO.md`), unless it exists: if PREFERENCES says so, carry over the
    unticked items of the most recent previous day and add the next step of each active skill (knowledge/SKILLS.md).
-3. Spawn **news-curator** with: the date, the full PREFERENCES.md text, the owner's languages and region (from
-   PROFILE.md – only those fields), the paths of the last 7 days' TRENDS.md (to spot repeats), and the two output
-   paths. It writes NEWS.md and TRENDS.md from the templates in `ecosystem/_templates/news/day/`.
-4. Check the result: every item has a source link + publication date, no item older than 48 h in NEWS.md (unless
-   marked), no "never" topic, length as preferred. Fix or ask the curator to fix.
-5. Report: the "In 30 seconds" lines, the top trends, today's to-do count, the folder path.
+3. Spawn **news-curator** with: the date, the full PREFERENCES.md text, the languages (master first) and the scopes
+   to build, the owner's region (from PROFILE.md – only that field), the paths of the last 7 days' master TRENDS.md
+   (to spot repeats), and every output path (`<lang>/NEWS.world.md`, `<lang>/NEWS.local.md`, `<lang>/TRENDS.md`).
+   It researches and writes the master files first, then translates them into the other languages, from the
+   templates in `ecosystem/_templates/news/day/`.
+4. Check the result: every item has a source link + publication date, no item older than 48 h (unless marked
+   "background"), no "never" topic, length as preferred **per scope**; local files really cover the local area;
+   every translation has the same number of items and the same links as its master; Arabic text is Modern Standard
+   Arabic. Fix or ask the curator to fix.
+5. Report: the "In 30 seconds" lines of world and local (master language), the top trends, today's to-do count,
+   the folder path and the languages written.
 
 ## Rules
 - No invented facts, quotes or numbers; sources disagree → say so. Summaries in our own words, no long quotes.
@@ -46,5 +63,7 @@ Yes – read-only web + local files, never sends. Example: `/wakil.schedule-loca
 
 ## Examples
 - `/wakil.news`
+- `/wakil.news --scope local` – only the local news, in every language
+- `/wakil.news today --lang fr --refresh` – rebuild the French files only (translated from the master)
 - `/wakil.news 2026-01-15 --trends-only`
 - `/wakil.news today --refresh`

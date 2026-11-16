@@ -76,9 +76,10 @@ tools/sync-ai-tools.cjs          <- /wakil.sync-tools: mirrors .claude/ + CLAUDE
 ## Execution modes (even when the entity has a Trello board)
 | Owner writes | Mode | Plan file / task files | Trello | Kanban in Wakil Desktop |
 |---|---|---|---|---|
-| a plain request ("refais le header du site acme") | **Direct** – do it now | none | **never** | no (usage still counted per project) |
-| `/wakil.plan <entity> <project> <goal>` | **Local plan** | `plans/PLAN-*.md` + `tasks/T-NNN-*.md` (`sync: local`) | **never** | yes |
-| `/wakil.plan.trello <entity> <project> <goal>` | **Trello plan** | same files (`sync: trello`, `trello:` = card URL) | cards in 📥 Proposed | yes |
+| a plain request ("refais le header du site acme") or `/wakil.do [--agent <a>] <request>` | **Direct** – do it now | none | **never** | no (usage still counted per project) |
+| `/wakil.plan [<entity> <project>] [--agent <a>] <goal>` | **Local plan** | `plans/PLAN-*.md` + `tasks/T-NNN-*.md` (`sync: local`) | **never** | yes |
+| `/wakil.plan.trello [<entity> <project>] [--agent <a>] <goal>` | **Trello plan** | same files (`sync: trello`, `trello:` = card URL) | cards in 📥 Proposed | yes |
+- Entity / project default to the focus (`/wakil.focus`); `--agent` picks the agent (default: the manager chooses).
 - **Direct**: the manager (or the specialist it briefs) does the work immediately – no card, no task file, no approval
   step for the task itself (approval gates of rule 4 still apply). Briefs keep the `Client:` / `Project:` lines so usage is
   attributed to the project. Never turn a direct request into a card or a task file unless the owner asks.

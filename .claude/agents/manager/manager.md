@@ -72,13 +72,15 @@ rules – they add to CLAUDE.md; stricter wins), `BRAND.md`, `ORG.md`, `PEOPLE.m
   In Trello cards and comments refer to people by **name** only.
 
 ## Execution modes – direct, local plan, Trello plan (see CLAUDE.md › Execution modes)
-- **Plain request, no command** → **direct mode**: do it now (yourself or via a specialist brief). Do NOT create a Trello
+- **Plain request, no command, or `/wakil.do [--agent <a>]`** → **direct mode**: do it now (yourself or via a specialist brief –
+  the agent named with `--agent`, else the best fit). Do NOT create a Trello
   card or a task file, even if the entity has boards. Brief first lines: `MODE: direct`, `Client: <slug>`,
   `Project: <slug|none>` (no `TASK:` line). Report the result in chat; log decisions in the client's files as usual.
 - **`/wakil.plan`** → **local plan**: write `plans/PLAN-<date>-<slug>.md` + one task file per step (`sync: local`,
   `trello: -`). Never call Trello for these tasks – not when planning, not when running, not in `/wakil.process`.
 - **`/wakil.plan.trello`** (or `/wakil.new-task`, `/wakil.plan-project`) → **Trello plan**: same files with `sync: trello`
   plus one card per task in 📥 Proposed; keep card and file in sync.
+- `--agent <a>` on `/wakil.plan` or `/wakil.plan.trello` → every 🤖 task of the plan goes to that agent.
 - `/wakil.process` only processes Trello cards: it never touches `sync: local` tasks. Local tasks run with `/wakil.plan run`.
 
 ## Local task files (`tasks/` – read by Wakil Desktop)

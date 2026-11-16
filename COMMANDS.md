@@ -18,7 +18,7 @@ After `/wakil.focus`, a missing `<entity-slug>` (and project / team) is taken fr
 | `/wakil.add-resource` | `<skill> <book\|course\|resource> <title\|link> [notes]` | Add a book, course or resource to a skill | ❌ |
 | `/wakil.skill-project` | `<skill> <project-name> [goal]` · `<skill> <project> --done` | Create, update or close a practice (academic) project | ❌ |
 | `/wakil.news-preferences` | `[--show] [news\|trends\|general\|todo] [change]` | Interview or update your news & trends preferences | ❌ |
-| `/wakil.news` | `[YYYY-MM-DD\|today] [--news-only\|--trends-only] [--refresh]` | Build `news/YYYY/MM/DD/` with NEWS.md, TRENDS.md, TODO.md | ✅ |
+| `/wakil.news` | `[YYYY-MM-DD\|today] [--scope world\|local\|both] [--lang en,fr,ar] [--news-only\|--trends-only] [--refresh]` | Build `news/YYYY/MM/DD/`: TODO.md + one folder per language with `NEWS.world.md`, `NEWS.local.md`, `TRENDS.md` (master language researched, others translated) | ✅ |
 | `/wakil.personal-project` | `add <name> [goal]` · `list` · `show <slug>` · `update <slug> <info>` · `status <slug> <status>` | Your personal projects in `ecosystem/projects/` (plan them with `/wakil.plan personal <slug> …`) | `list`, `show` |
 | `/wakil.todo` | `show \| add <item> [--learning] \| done <n>` · `[date]` | Today's to-do list | `show` |
 | `/wakil.brand` | `[--show]` · `--setup` · `--add-channel <name> [handle]` · `--stop-channel <channel>` · `<section> [info]` · `--ideas [channel]` · `--plan [weeks] [channel]` · `--draft <channel> <topic>` · `--asset <file\|link>` · `--log <channel> <link> [result]` | Your personal brand (`brand/`): strategy, one folder per channel with its content, ideas, plans, post drafts – you post | `--show`, `--ideas` |
@@ -34,15 +34,33 @@ After `/wakil.focus`, a missing `<entity-slug>` (and project / team) is taken fr
 | `/wakil.reply` | `<entity-slug> <card> <pasted reply>` | Record an email reply (a person's result or a reviewer's ✅/🔁) on the right card | ❌ |
 
 ## Tasks & projects
+Three ways to get work done – choose how much tracking you want. Entity / project default to the focus
+(`/wakil.focus`); `--agent` chooses the agent (default `auto`: the manager picks the best one per task).
+
+### 1 · Do it now (direct – no plan, no task file, no Trello)
 | Command | Arguments | What it does | Schedulable |
 |---|---|---|---|
-| `/wakil.new-task` | `<entity-slug> <project\|none> <description>` | Draft a complete card in 📥 Proposed (team, executor, assignee, reviewers, criteria, labels) | ❌ |
-| *(plain request)* | – | **Direct mode**: the agent does it now – no plan, no task file, no Trello card | – |
-| `/wakil.plan` | `<entity-slug> <project\|none> <goal>` · `approve <plan-id\|T-…>` · `run <plan-id\|T-NNN\|next\|approved>` · `show` | **Local plan**: plan file + task files (phases, order, dependencies) shown in the Wakil Desktop Kanban – never on Trello; then run it | `show` |
-| `/wakil.plan.trello` | `<entity-slug> <project\|none> <goal>` · `--from <plan-id>` | **Trello plan**: same markdown plan + one Trello card per task in Proposed (after your OK) | ❌ |
-| `/wakil.plan-project` | `<entity-slug> <project> [--next N]` | Propose a task breakdown; after your OK create the first N cards in Proposed (older form of `/wakil.plan.trello`) | ❌ |
+| `/wakil.do` | `[<entity-slug\|personal> [project\|none]] [--agent <agent\|auto>] <request>` | Runs the request **now** with the chosen agent (or the best fit); result in the chat, usage still counted on the project | ❌ |
+| *(plain request)* | – | Same as `/wakil.do` with `--agent auto` | – |
+
+### 2 · Plan locally (project Kanban in Wakil Desktop – never Trello)
+| Command | Arguments | What it does | Schedulable |
+|---|---|---|---|
+| `/wakil.plan` | `[<entity-slug> <project\|none>] [--agent <a>] <goal>` · `approve <plan-id\|T-…>` · `run <plan-id\|T-NNN\|next\|approved>` · `show` | **Local plan**: plan file + task files (phases, order, dependencies) in the project Kanban; approve, then run | `show` |
+| `/wakil.task` | `<entity-slug> <project\|none> [<task-id> show\|status <s>\|note "…"]` · `--import <entity-slug>` | Show / move local task files (the Kanban cards) – also used for Trello twins | `--import` |
+
+### 3 · Plan on Trello (same files + one card per task)
+| Command | Arguments | What it does | Schedulable |
+|---|---|---|---|
+| `/wakil.plan.trello` | `[<entity-slug> <project\|none>] [--agent <a>] <goal>` · `--from <plan-id>` | **Trello plan**: the markdown plan + one card per task in 📥 Proposed (after your OK); `--from` publishes a local plan | ❌ |
+| `/wakil.new-task` | `<entity-slug> <project\|none> <description>` | One single card in 📥 Proposed (team, executor, assignee, reviewers, criteria, labels) + its task file | ❌ |
+| `/wakil.plan-project` | `<entity-slug> <project> [--next N]` | Older form of `/wakil.plan.trello` for a whole project | ❌ |
+
+### Projects
+| Command | Arguments | What it does | Schedulable |
+|---|---|---|---|
 | `/wakil.new-project` | `<entity-slug> <name> [goal]` | Create PROJECT.md and say which `project : …` label to create | ❌ |
-| `/wakil.task` | `<entity-slug> <project\|none> [<task-id> show\|status <s>\|note "…"]` · `--import <entity-slug>` | Local task files (`tasks/`) mirroring the cards – Kanban and token usage in Wakil Desktop | `--import` |
+| `/wakil.personal-project` | see Personal ecosystem | Your own projects (`personal` in the commands above) | – |
 
 ## Entities (organisations & individuals)
 | Command | Arguments | What it does | Schedulable |

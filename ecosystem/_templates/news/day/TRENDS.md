@@ -1,4 +1,6 @@
 # TRENDS – YYYY-MM-DD
+Language: en | fr | ar · Master: yes | translation of ../<master>/TRENDS.md
+<!-- Saved as news/<YYYY>/<MM>/<DD>/<lang>/TRENDS.md – world and local trends together; local ones are tagged "(local)". -->
 <!-- Written by /wakil.news (news-curator). A trend = something growing over weeks, not a one-day story.
      Every trend has sources. Signal strength: weak (1–2 sources) · medium · strong (many independent sources). -->
 

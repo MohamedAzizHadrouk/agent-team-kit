@@ -8,7 +8,7 @@
 // demand by `sync` (catch-up of everything the local logs hold that the file does not). Append-only: a line whose usage
 // changed later is re-written with the same id and rev+1 – readers keep the LAST line of each id.
 //
-//   node tools/credit-log.cjs sync [--tool claude|codex|all] [--quiet]
+//   node tools/credit-log.cjs sync [--tool claude|codex|cursor|all] [--quiet]
 //   node tools/credit-log.cjs hook --tool claude|codex|cursor            (payload on stdin, or last argv for Codex)
 //   node tools/credit-log.cjs add --tool cursor [--model m] [--credits N | --requests N | --input --output --cached]
 //        [--project <entity>/<project|none>] [--task T-001] [--agent ui-ux] [--prompt "…"] [--date YYYY-MM-DD] --source-tool claude|cursor|codex
@@ -332,6 +332,88 @@ function parseCodex(file) {
   return { sessionId, title: meta.title || title, turns, runs: [] }
 }
 
+// ---------- local logs: Cursor (~/.cursor/projects/<encoded workspace>/agent-transcripts/<conv>/<conv>.jsonl) ----------
+// Transcripts hold every prompt (<user_query>, with a <timestamp>) and the answers, but NO token counts. The stop hook
+// gives the exact tokens of the turn that just ended; turns the hook missed are added by `sync` with tokens ESTIMATED
+// from the text (~4 chars/token). Both use the same id (cursor:turn:<conversation>:<n>, n = prompt number), so an
+// exact line is never replaced by an estimate.
+const cursorTranscriptDirs = () => {
+  const base = path.join(os.homedir(), '.cursor', 'projects')
+  const enc = path.resolve(ROOT).replace(/[^A-Za-z0-9]/g, '-').replace(/^([A-Za-z])--/, '$1-').toLowerCase()
+  const plain = path.resolve(ROOT).replace(/[^A-Za-z0-9]/g, '-').toLowerCase()
+  try { return fs.readdirSync(base).filter((n) => [enc, plain].includes(n.toLowerCase())).map((n) => path.join(base, n, 'agent-transcripts')).filter((d) => fs.existsSync(d)) } catch { return [] }
+}
+const MONTHS = { jan: 0, feb: 1, mar: 2, apr: 3, may: 4, jun: 5, jul: 6, aug: 7, sep: 8, oct: 9, nov: 10, dec: 11 }
+/** "Sunday, Nov 15, 2026, 4:17 PM (UTC+1)" → ISO (UTC). */
+function cursorTime(s) {
+  const m = String(s || '').match(/([A-Za-z]{3})[a-z]*\s+(\d{1,2}),\s*(\d{4}),\s*(\d{1,2}):(\d{2})\s*(AM|PM)?\s*(?:\(UTC([+-]\d{1,2})(?::?(\d{2}))?\))?/)
+  if (!m || MONTHS[m[1].toLowerCase()] === undefined) return null
+  let h = Number(m[4]) % 12
+  if (m[6] === 'PM') h += 12
+  if (!m[6]) h = Number(m[4])
+  const off = m[7] ? Number(m[7]) * 60 + Math.sign(Number(m[7]) || 1) * Number(m[8] || 0) : 0
+  return new Date(Date.UTC(Number(m[3]), MONTHS[m[1].toLowerCase()], Number(m[2]), h, Number(m[5])) - off * 60000).toISOString()
+}
+function parseCursorTranscript(file) {
+  const recs = readJsonl(file)
+  const turns = []
+  let cur = null
+  for (const r of recs) {
+    const parts = (r.message && r.message.content) || []
+    const text = parts.map((c) => (c && c.type === 'text' ? c.text : c && c.type === 'tool_use' ? JSON.stringify(c.input || {}) : c && c.type === 'tool_result' ? textOf(c.content) : '')).join('\n')
+    if (r.role === 'user') {
+      const q = text.match(/<user_query>\s*([\s\S]*?)\s*<\/user_query>/)
+      if (q) {
+        const at = cursorTime((text.match(/<timestamp>([^<]+)<\/timestamp>/) || [])[1])
+        turns.push((cur = { n: turns.length + 1, at, prompt: q[1].trim(), inChars: text.length, outChars: 0 }))
+        continue
+      }
+      if (cur) cur.inChars += text.length // attachments, tool results
+    } else if (r.role === 'assistant' && cur) cur.outChars += text.length
+  }
+  // turns without a timestamp: between their neighbours, else the file time
+  let mtime = new Date().toISOString()
+  try { mtime = fs.statSync(file).mtime.toISOString() } catch {}
+  for (let i = 0; i < turns.length; i++) if (!turns[i].at) turns[i].at = (turns.slice(0, i).reverse().find((t) => t.at) || {}).at || mtime
+  return turns
+}
+function cursorLine(reg, conv, t, exact) {
+  const model = (exact && exact.model) || 'cursor'
+  const byModel = exact
+    ? { [model]: { ...emptyTokens(), input: exact.input, output: exact.output, cacheRead: exact.cacheRead, cacheWrite5m: exact.cacheWrite, requests: 1 } }
+    : { [model]: { ...emptyTokens(), input: Math.ceil(t.inChars / 4), output: Math.ceil(t.outChars / 4), requests: 1 } }
+  const cfg = acuAt(reg, localDay(t.at))
+  const perRequest = exact ? null : estimatedCredits(1, [model, 'cursor'], cfg)
+  const cmd = (t.prompt.match(/^[\/$](wakil[.-][\w-]+)/) || [])[1]
+  const attr = attribute(t.prompt)
+  return {
+    v: LINE_VERSION, id: `cursor:turn:${conv}:${t.n}`, at: t.at, tool: 'cursor', provider: providerFor(reg, 'cursor', model), model, kind: 'prompt',
+    session: conv, sessionTitle: '', agent: 'manager', entity: attr ? attr.entity : null, project: attr ? attr.project : null, task: attr ? attr.task : null,
+    command: cmd ? cmd.replace(/^wakil-/, 'wakil.') : null, prompt: clip(t.prompt), tokens: sumTokens(byModel), ...(exact ? {} : { tokensEstimated: true }), byModel, requests: 1,
+    credits: perRequest !== null ? perRequest : creditsOf(byModel, cfg), creditsMethod: exact ? 'exact' : 'estimated', acuVersion: cfg.version, source: exact ? 'cursor-hook' : 'cursor-transcript',
+  }
+}
+/** Focus set by /wakil.focus inside a conversation → attribution of its following prompts (same rule as Claude). */
+function withFocus(lines) {
+  let focus = null
+  for (const l of lines) {
+    if (l.command === 'wakil.focus' && l.entity) focus = { entity: l.entity, project: l.project }
+    else if (!l.entity && focus) Object.assign(l, focus)
+  }
+  return lines
+}
+function syncCursor(reg) {
+  const lines = []
+  for (const dir of cursorTranscriptDirs()) {
+    for (const conv of dirs(dir)) {
+      const file = path.join(dir, conv, `${conv}.jsonl`)
+      if (!fs.existsSync(file)) continue
+      try { lines.push(...withFocus(parseCursorTranscript(file).map((t) => cursorLine(reg, conv, t, null)))) } catch {}
+    }
+  }
+  return lines
+}
+
 // ---------- lines ----------
 function sumTokens(byModel) {
   const s = { input: 0, output: 0, cacheWrite: 0, cacheRead: 0, total: 0 }
@@ -396,6 +478,7 @@ function appendNew(lines) {
   for (const l of lines) {
     const prev = known.get(l.id)
     if (prev && fingerprint(prev) === fingerprint(l)) continue
+    if (prev && prev.creditsMethod === 'exact' && l.creditsMethod !== 'exact') continue // never replace measured tokens by an estimate
     // keep the attribution the owner (or a former run) already gave, when the new pass finds none
     if (prev && !l.entity && prev.entity) Object.assign(l, { entity: prev.entity, project: prev.project, task: prev.task })
     if (prev && fingerprint(prev) === fingerprint(l)) continue
@@ -433,14 +516,25 @@ function syncCodex(reg, since = 0) {
 }
 
 // ---------- hooks ----------
+const parseJson = (s) => { try { return JSON.parse(String(s || '').replace(/^﻿/, '').trim() || '{}') } catch { return {} } }
+/** Hook payload: Codex passes it as the last argument; Claude Code and Cursor write it on stdin. On Windows a
+ *  synchronous read of a pipe can fail (EOF / EAGAIN) and gave an EMPTY payload – so stdin is read asynchronously,
+ *  until it closes (or 3 s, whichever comes first). */
 function readPayload(tool, argv) {
-  if (tool === 'codex') {
-    const last = argv[argv.length - 1]
-    try { return JSON.parse(last) } catch { return {} }
-  }
-  if (process.stdin.isTTY) return {}
-  try { return JSON.parse(fs.readFileSync(0, 'utf8') || '{}') } catch { return {} }
+  if (tool === 'codex') return Promise.resolve(parseJson(argv[argv.length - 1]))
+  if (process.stdin.isTTY) return Promise.resolve({})
+  return new Promise((resolve) => {
+    let buf = ''
+    let done = false
+    const end = () => { if (!done) { done = true; resolve(parseJson(buf)) } }
+    const t = setTimeout(end, 3000)
+    process.stdin.setEncoding('utf8')
+    process.stdin.on('data', (c) => { buf += c })
+    process.stdin.on('end', () => { clearTimeout(t); end() })
+    process.stdin.on('error', () => { clearTimeout(t); end() })
+  })
 }
+const estTokens = (s) => Math.ceil(String(s || '').length / 4) // ~4 characters per token (estimate, never exact)
 function readPending() { try { return JSON.parse(fs.readFileSync(PENDING, 'utf8')) } catch { return {} } }
 function writePending(p) {
   const keep = Object.fromEntries(Object.entries(p).filter(([, v]) => Date.now() - Date.parse(v.at) < 86400000)) // drop entries older than a day
@@ -448,9 +542,9 @@ function writePending(p) {
   fs.writeFileSync(PENDING, JSON.stringify(keep))
 }
 
-function hook(opt, argv) {
+async function hook(opt, argv) {
   const tool = opt.tool
-  const payload = readPayload(tool, argv)
+  const payload = await readPayload(tool, argv)
   const reg = loadRegistry()
   if (tool === 'claude') {
     const file = payload.transcript_path && fs.existsSync(payload.transcript_path) ? payload.transcript_path : null
@@ -462,35 +556,78 @@ function hook(opt, argv) {
     return
   }
   if (tool === 'cursor') {
-    // Cursor keeps no local token log: one line per generation, credits from the per-request estimate (acu estimation).
+    // Cursor keeps no local token log. Hooks: beforeSubmitPrompt (prompt) → afterAgentResponse (answer text, may come
+    // several times) → stop. One line per generation at "stop": tokens ESTIMATED from the text (~4 chars/token, the
+    // real context Cursor sends is larger), credits from the per-request estimate of the ACU config when there is one
+    // (/wakil.usage acu estimate cursor=N), else from those estimated tokens. creditsMethod is always "estimated".
     const event = payload.hook_event_name || opt.event || ''
-    const gen = payload.generation_id || payload.conversation_id || String(Date.now())
+    const conv = payload.conversation_id || null
+    const gen = payload.generation_id || null
+    try { fs.writeFileSync(path.join(ROOT, 'usage', '.cursor-hook-last.json'), JSON.stringify({ at: new Date().toISOString(), event, keys: Object.keys(payload), model: payload.model || null, version: payload.cursor_version || null })) } catch {}
+    const p = readPending()
+    const key = gen || (conv && Object.keys(p).filter((k) => p[k].conversation === conv).pop()) || `t${Date.now()}`
     if (event === 'beforeSubmitPrompt') {
-      const p = readPending()
-      p[gen] = { at: new Date().toISOString(), prompt: String(payload.prompt || '').slice(0, 4000), conversation: payload.conversation_id || null }
+      p[key] = { at: new Date().toISOString(), prompt: String(payload.prompt || '').slice(0, 4000), conversation: conv, model: payload.model || null, response: 0 }
       writePending(p)
       process.stdout.write(JSON.stringify({ continue: true }))
       return
     }
-    const p = readPending()
-    const pend = p[gen] || {}
-    delete p[gen]
+    if (event === 'afterAgentResponse' || event === 'afterAgentThought') {
+      const e = p[key] || (p[key] = { at: new Date().toISOString(), prompt: '', conversation: conv, model: payload.model || null, response: 0 })
+      e.response = (e.response || 0) + String(payload.text || '').length
+      writePending(p)
+      process.stdout.write('{}')
+      return
+    }
+    // stop – Cursor ≥ 3.8 sends the exact tokens of the turn and the transcript path
+    const pendKey = (gen && p[gen] ? gen : null) || (conv && Object.keys(p).filter((k) => p[k].conversation === conv).pop()) || key
+    const pend = p[pendKey] || {}
+    delete p[pendKey]
     try { writePending(p) } catch {}
-    if (payload.status && payload.status !== 'completed') { process.stdout.write('{}'); return }
+    if (payload.status && !['completed', 'success'].includes(payload.status)) { process.stdout.write('{}'); return }
+    const n = (v) => (typeof v === 'number' && Number.isFinite(v) ? v : null)
+    const hasTokens = n(payload.input_tokens) !== null || n(payload.output_tokens) !== null
+    const tp = payload.transcript_path && fs.existsSync(payload.transcript_path) ? payload.transcript_path : null
+    const turns = tp ? parseCursorTranscript(tp) : []
+    if (conv && turns.length) {
+      const t = turns[turns.length - 1]
+      if (!t.prompt && pend.prompt) t.prompt = pend.prompt
+      const modelId = [payload.model_id, payload.model].find((x) => x && x !== 'default') || (payload.model === 'default' ? 'cursor-auto' : null)
+      const exact = hasTokens ? { model: modelId || 'cursor', input: n(payload.input_tokens) || 0, output: n(payload.output_tokens) || 0, cacheRead: n(payload.cache_read_tokens) || 0, cacheWrite: n(payload.cache_write_tokens) || 0 } : null
+      const lines = withFocus(turns.map((x) => cursorLine(reg, conv, x, null)))
+      const last = cursorLine(reg, conv, t, exact)
+      if (!last.entity) Object.assign(last, lines[lines.length - 1].entity ? { entity: lines[lines.length - 1].entity, project: lines[lines.length - 1].project } : focusAttr() || {})
+      if (last.task === undefined) last.task = null
+      lines[lines.length - 1] = last
+      appendNew(lines) // earlier turns the hook missed are added as estimates
+      process.stdout.write('{}')
+      return
+    }
     const at = pend.at || new Date().toISOString()
-    const model = payload.model || null
+    const model = payload.model || pend.model || null
     const cfg = acuAt(reg, localDay(at))
-    const credits = estimatedCredits(1, [model, 'cursor'], cfg)
-    const attr = attribute(pend.prompt || '')
+    const byModel = { [model || 'cursor']: { ...emptyTokens(), input: estTokens(pend.prompt), output: Math.ceil((pend.response || 0) / 4), requests: 1 } }
+    const perRequest = estimatedCredits(1, [model, 'cursor'], cfg)
+    const credits = perRequest !== null ? perRequest : creditsOf(byModel, cfg)
+    const attr = attribute(pend.prompt || '') || focusAttr()
     appendNew([{
-      v: LINE_VERSION, id: `cursor:gen:${gen}`, at, tool: 'cursor', provider: providerFor(reg, 'cursor', model), model, kind: 'prompt',
-      session: payload.conversation_id || pend.conversation || null, sessionTitle: '', agent: 'manager',
+      v: LINE_VERSION, id: `cursor:gen:${gen || key}`, at, tool: 'cursor', provider: providerFor(reg, 'cursor', model), model, kind: 'prompt',
+      session: conv || pend.conversation || null, sessionTitle: '', agent: 'manager',
       entity: attr ? attr.entity : null, project: attr ? attr.project : null, task: attr ? attr.task : null,
-      command: (String(pend.prompt || '').match(/^[\/$](wakil[.-][\w-]+)/) || [])[1] || null, prompt: clip(pend.prompt || '(prompt Cursor)'),
-      tokens: null, byModel: null, requests: 1, credits, creditsMethod: credits === null ? 'unavailable' : 'estimated', acuVersion: cfg.version, source: 'cursor-hook',
+      command: ((String(pend.prompt || '').match(/^[\/$](wakil[.-][\w-]+)/) || [])[1] || '').replace(/^wakil-/, 'wakil.') || null, prompt: clip(pend.prompt || '(prompt Cursor)'),
+      tokens: sumTokens(byModel), tokensEstimated: true, byModel, requests: 1, credits, creditsMethod: 'estimated', acuVersion: cfg.version, source: 'cursor-hook',
     }])
     process.stdout.write('{}')
   }
+}
+/** Current focus (entities/.focus.md) – used when a Cursor prompt names no client, like a Claude session after /wakil.focus. */
+function focusAttr() {
+  try {
+    const t = fs.readFileSync(path.join(ROOT, 'entities', '.focus.md'), 'utf8')
+    const client = (t.match(/^client:\s*([\w.-]+)/m) || [])[1]
+    const project = (t.match(/^project:\s*([\w.-]+)/m) || [])[1]
+    return client ? { entity: client, project: project && project !== '-' ? project : null, task: null } : null
+  } catch { return null }
 }
 
 // ---------- cost model (same as Wakil Desktop › Usage & crédits › Coûts) ----------
@@ -599,12 +736,14 @@ const commands = {
     const lines = []
     if (tool === 'all' || tool === 'claude') lines.push(...syncClaude(reg))
     if (tool === 'all' || tool === 'codex') lines.push(...syncCodex(reg))
+    if (tool === 'all' || tool === 'cursor') lines.push(...syncCursor(reg))
     const r = appendNew(lines)
     if (!opt.quiet) console.log(`✓ credit log: ${r.added} new line(s), ${r.updated} updated – ${readLog().size} prompt/agent line(s) in usage/credits.jsonl`)
   },
   hook(opt, argv) {
     if (!['claude', 'codex', 'cursor'].includes(opt.tool)) fail('hook needs --tool claude|codex|cursor')
-    try { hook(opt, argv) } catch (e) { try { fs.appendFileSync(path.join(ROOT, 'usage', '.credits-hook-errors.log'), `${new Date().toISOString()} ${opt.tool} ${e.stack || e}\n`) } catch {} }
+    const logErr = (e) => { try { fs.appendFileSync(path.join(ROOT, 'usage', '.credits-hook-errors.log'), `${new Date().toISOString()} ${opt.tool} ${e.stack || e}\n`) } catch {} }
+    return hook(opt, argv).catch(logErr)
   },
   add(opt) {
     const tool = opt.tool || fail('add needs --tool cursor|claude|codex|other')
@@ -695,7 +834,7 @@ const commands = {
 }
 
 const HELP = `Wakil credit log – usage/credits.jsonl (one line per prompt / sub-agent run, read by Wakil Desktop)
-  sync [--tool claude|codex|all] [--quiet]        catch up every prompt of the local logs that is not in the file yet
+  sync [--tool claude|codex|cursor|all] [--quiet] catch up every prompt of the local logs that is not in the file yet
   hook --tool claude|codex|cursor                  used by the hooks after every prompt (never prints errors)
   add --tool cursor [--model m] [--credits N | --requests N | --input --output --cached] [--project e/p] [--task T-001]
       [--agent a] [--prompt "…"] [--date YYYY-MM-DD] --source-tool claude|cursor|codex

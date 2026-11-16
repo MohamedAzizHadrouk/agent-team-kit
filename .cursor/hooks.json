@@ -2,6 +2,7 @@
   "version": 1,
   "hooks": {
     "beforeSubmitPrompt": [{ "command": "node tools/credit-log.cjs hook --tool cursor --event beforeSubmitPrompt" }],
+    "afterAgentResponse": [{ "command": "node tools/credit-log.cjs hook --tool cursor --event afterAgentResponse" }],
     "stop": [{ "command": "node tools/credit-log.cjs hook --tool cursor --event stop" }]
   }
 }

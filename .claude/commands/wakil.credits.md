@@ -16,7 +16,11 @@ Lines are written automatically after every prompt:
 |---|---|---|
 | Claude Code | `Stop` / `SubagentStop` hooks in `.claude/settings.json` | exact, from the session log tokens |
 | Codex | `notify` in `.codex/config.toml` (trusted project) | exact, from the rollout tokens |
-| Cursor | `beforeSubmitPrompt` / `stop` hooks in `.cursor/hooks.json` | estimated: requests × `/wakil.usage acu estimate cursor=N` (unknown until set) |
+| Cursor | `beforeSubmitPrompt` / `afterAgentResponse` / `stop` hooks in `.cursor/hooks.json` | estimated: requests × `/wakil.usage acu estimate cursor=N` when set, else ACU of tokens estimated from the prompt and answer text (~4 chars/token, `tokensEstimated: true`) |
+
+Wakil Desktop computes **all** usage views from this file (one source of truth); on start and on refresh (at most once a
+minute) it runs `sync` to catch up prompts a hook missed. Last Cursor hook call (event + payload keys, no text):
+`usage/.cursor-hook-last.json` – check it when Cursor prompts do not appear.
 
 Cost (same rule everywhere): per billing period (`/wakil.billing-period`) of a subscription, cost of one day = fee ÷
 days, cost to date = one day × days elapsed, **1 credit = cost to date ÷ credits of the period**, and every element costs

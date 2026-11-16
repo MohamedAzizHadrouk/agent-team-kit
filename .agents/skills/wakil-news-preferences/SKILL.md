@@ -33,7 +33,9 @@ length, trends areas, things to never show. Stored in `ecosystem/news/PREFERENCE
 ## Steps
 1. With a change → apply it to the right table/field, show old → new, log it.
 2. Interview (3–5 questions at a time, suggested defaults taken from PROFILE.md – work, region, languages):
-   - General: languages, regions, format, length, when, read or listen.
+   - General: languages (ISO codes, master first – e.g. `en, fr, ar`), regions, format, length, when, read or listen.
+   - Scopes: the `local` area (country, priority city/region) next to `world`; each news topic gets a scope
+     (world / local / both).
    - News: topics with priority must / nice / never; preferred and avoided sources; never-show list; always-tell-me list.
    - Trends: areas, kind of trends, link to skills? link to clients?
    - To-do: carry over open items? add learning steps?

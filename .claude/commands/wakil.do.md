@@ -1,0 +1,76 @@
+---
+description: Run a request now with an agent (direct mode) – choose the agent with --agent or let the manager pick – no plan, no task file, no Trello card
+argument-hint: [<entity-slug|personal> [project|none]] [--agent <agent|auto>] <request>
+---
+# /wakil.do – Do it now with an agent (direct mode)
+
+Act as the **manager** (`.claude/agents/manager/manager.md`). Arguments: `$ARGUMENTS`
+
+## Purpose
+The fastest way to use the agent team: the request is executed **now**, by the agent you choose or by the one the
+manager picks, without planning. It is the explicit form of a plain request (CLAUDE.md › Execution modes › Direct):
+no plan file, no task file, no Trello card – even when the entity has boards – but the prompt is still attributed to
+the client / project in the credit log (`usage/credits.jsonl`), so Wakil Desktop counts its usage.
+
+The three ways to get work done – pick by how much tracking you want:
+| You want | Command | Tracking |
+|---|---|---|
+| it done now | `/wakil.do` (or a plain request) | none – result in the chat |
+| a plan in the project Kanban (Wakil Desktop) | `/wakil.plan` | plan + task files, `sync: local`, never Trello |
+| a plan on Trello too | `/wakil.plan.trello` | same files + one card per task in 📥 Proposed |
+
+## Arguments
+| Argument | Required | Values | Default |
+|---|---|---|---|
+| `<entity-slug>` | no | slug from `entities/`, or `personal` (owner's personal projects / ecosystem) | focus (`entities/.focus.md`); no focus → ask |
+| `[project]` | no | a folder under the entity's `projects/`, or `none` | focus project, else `none` |
+| `--agent` | no | `auto` · `brand` · `ui-ux` · `fullstack-devops` · `marketing` · `media` · `learning-coach` · `news-curator` · `manager` (the manager does it itself) | `auto` |
+| `<request>` | yes | free text: what to do, constraints, files or links | – |
+
+The first word is an entity only if it matches a folder in `entities/` (or is `personal`); the next one is a project
+only if it matches a folder under that entity's `projects/` (or is `none`). Everything else is the request.
+
+## Preconditions
+- The entity exists (`entities/registry.md` or `entities/<slug>/ENTITY.md`). Unknown name → show the valid ones, ask.
+- The agent exists in `.claude/agents/` (unknown → list them, ask). `learning-coach` and `news-curator` work only on
+  the personal ecosystem (`personal`) – never on client work.
+
+## Steps
+1. Resolve **entity / project**: explicit arguments > focus. Load only that context (ENTITY, POSITION, RULES, BRAND,
+   PROJECT.md) – golden rule 1. `personal` → `ecosystem/` files only.
+2. Resolve the **agent**:
+   - `--agent <name>` → that agent, even if another would fit better (say so in one line if it is a poor fit).
+   - `auto` → pick from the request, the same way as a card label: design/UI → `ui-ux`, code/deploy → `fullstack-devops`,
+     social/SEO/copy → `marketing`, visuals/video → `media`, positioning/naming/identity → `brand`, learning → `learning-coach`,
+     news → `news-curator`; several fields → the manager splits the request and briefs each agent in turn;
+     small or organisational request → the manager does it itself.
+3. Missing context the agent needs (golden rule 2) → ask first: max 5 questions, each with a suggested default.
+4. Brief the agent (manager.md › Execution modes) with first lines:
+   `MODE: direct` · `Client: <slug>` · `Project: <slug|none>` · `Agent: <name>` – **no `TASK:` line** – then the
+   request, the context paths it may read and the expected deliverable.
+5. Review the return (specialist return format): `NEEDS_INFO` → ask the owner; `BLOCKED` → explain; `DONE` → check it
+   against the request.
+6. Save decisions and answers into the client's files (decisions logs) as usual (golden rule 7).
+7. Report in the chat.
+
+## Rules
+- Never create a plan, a task file or a Trello card here. The owner wants tracking → suggest `/wakil.plan` or
+  `/wakil.plan.trello` with the same request.
+- Approval gates still apply (golden rule 4): production deploys, publishing, spending, deleting, messaging customers,
+  DNS/billing → stop and ask for an explicit "yes" in the chat first.
+- Never act beyond the owner's authority (POSITION.md) and never mix clients.
+- Specialists never receive PEOPLE.md data or emails.
+
+## Output
+Agent used (and why, when `auto`) · summary · deliverables (paths / links) · how to verify · open questions ·
+approvals needed. One line at the end: `Tracking: none (direct) – /wakil.plan to plan it instead.`
+
+## Schedulable
+No – it may ask questions and run approval-gated work. For recurring work use a command that is schedulable.
+
+## Examples
+- `/wakil.do refais le header du site` – focus client / project, agent chosen automatically
+- `/wakil.do --agent ui-ux maquette de l'écran de connexion` – forced agent
+- `/wakil.do acme website --agent marketing 5 idées de posts LinkedIn pour le lancement`
+- `/wakil.do acme none --agent brand audit rapide du ton de voix`
+- `/wakil.do personal --agent learning-coach plan d'apprentissage TypeScript sur 4 semaines`

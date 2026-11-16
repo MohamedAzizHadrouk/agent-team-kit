@@ -1,6 +1,6 @@
 ---
 description: Plan work as structured markdown (visible in the Wakil Desktop Kanban) AND create one Trello card per task in Proposed
-argument-hint: <entity-slug> <project|none> <goal> · --from <plan-id> (publish an existing local plan to Trello)
+argument-hint: [<entity-slug> <project|none>] [--agent <agent|auto>] <goal> · --from <plan-id> (publish an existing local plan to Trello)
 ---
 # /wakil.plan.trello – Plan in markdown + Trello cards
 
@@ -16,6 +16,7 @@ on the entity's board, so the team workflow (approvals, team boards, reviews) ru
 | `<entity-slug>` | yes | slug from the registry (or the focus) | focus |
 | `<project>` | yes | a folder under `projects/` or `none` | focus |
 | `<goal>` | yes (new plan) | free text | – |
+| `--agent` | no | `auto` or one agent of `.claude/agents/` (`ui-ux`, `fullstack-devops`, `marketing`, `media`, `brand`…): every 🤖 task of the plan goes to it; 👤 human tasks are unchanged | `auto` – the executor is chosen per task |
 | `--from <plan-id>` | no | publish an existing local plan (`sync: local`) to Trello instead of creating a new plan | – |
 
 ## Preconditions

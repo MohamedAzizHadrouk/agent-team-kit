@@ -1,7 +1,7 @@
 {
   "generator": "tools/sync-ai-tools.cjs",
-  "generatedAt": "2026-11-15T19:10:38.566Z",
-  "sourceMtime": "2026-11-15T19:10:36.093Z",
+  "generatedAt": "2026-11-16T07:30:48.524Z",
+  "sourceMtime": "2026-11-16T07:30:47.159Z",
   "tools": {
     "claude": {
       "reads": [
@@ -26,7 +26,7 @@
     }
   },
   "counts": {
-    "commands": 41,
+    "commands": 42,
     "agents": 8,
     "subagents": 7,
     "skills": 18
@@ -72,6 +72,8 @@
     ".agents/skills/wakil-check-privacy/agents/openai.yaml",
     ".agents/skills/wakil-credits/SKILL.md",
     ".agents/skills/wakil-credits/agents/openai.yaml",
+    ".agents/skills/wakil-do/SKILL.md",
+    ".agents/skills/wakil-do/agents/openai.yaml",
     ".agents/skills/wakil-focus/SKILL.md",
     ".agents/skills/wakil-focus/agents/openai.yaml",
     ".agents/skills/wakil-learn/SKILL.md",

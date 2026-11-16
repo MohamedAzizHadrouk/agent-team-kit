@@ -3,15 +3,22 @@ Updated: TODO
 <!-- Filled by /wakil.news-preferences. Used by /wakil.news and the news-curator to build each day's NEWS.md and TRENDS.md. -->
 
 ## General
-- Languages of the summaries: TODO
+- Languages of the summaries: TODO (ISO codes, e.g. en, fr, ar – first = master language, researched; others are faithful translations)
 - Regions I follow (world / country / city): TODO
 - Format: short bullets | short paragraphs | headline + why it matters
 - Length: TODO (e.g. 10 news items, 5 trends – about 5 minutes of reading)
 - When: TODO (e.g. every workday at 08:00 via /wakil.schedule-local)
 - Listen or read: read | listen-friendly (written to be read aloud)
 
+## Scopes
+<!-- Two kinds of news, each in its own file per language (NEWS.world.md, NEWS.local.md); Wakil Desktop lets you pick one. -->
+| Scope | Area covered | Notes |
+|---|---|---|
+| world | World | TODO |
+| local | TODO (country, priority city/region) | TODO |
+
 ## News
-| Topic | Priority (must / nice / never) | Region | Notes |
+| Topic | Priority (must / nice / never) | Scope (world / local / both) | Notes |
 |---|---|---|---|
 | TODO (e.g. world, economy, tech, AI, my industry, local, sports…) | | | |
 
