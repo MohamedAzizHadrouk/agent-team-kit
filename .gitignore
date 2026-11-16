@@ -24,3 +24,5 @@ usage/credits.jsonl
 usage/.credits-pending.json
 usage/.credits-hook-errors.log
 usage/.cursor-hook-last.json
+# File locks: one file per locked file, written by tools/file-lock.cjs (private, local only)
+.wakil/locks/

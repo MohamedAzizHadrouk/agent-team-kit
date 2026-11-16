@@ -60,6 +60,8 @@ entities/
       tasks/T-NNN-<slug>.md                     <- one file per Trello card (status, agent, criteria, log) – /wakil.task
     documents/INDEX.md + files                  <- client documents (confidential ones: location only)
 tools/outlook-draft.ps1          <- creates email DRAFTS in the owner's Outlook (never sends)
+tools/file-lock.cjs              <- file locks: two agents never edit the same file at once (hooks + /wakil.locks);
+                                    store .wakil/locks/ (PRIVATE, git-ignored)
 usage/PRICING.md                 <- API list prices: "API-equivalent" estimate of usage (not what the owner pays)
 usage/registry.json              <- PRIVATE AI registry: providers, subscriptions, prices/budgets history, expenses, ACU config,
                                     manual usage, change log. Written ONLY by tools/ai-registry.cjs (/wakil.provider,
@@ -157,6 +159,10 @@ Client data and personal data never mix (no client info in `ecosystem/`, no pers
     an agent: only drafts in the owner's Outlook, which the owner sends.
 11. **Know the owner's position.** Read the client's POSITION.md: it says who the owner is there,
     what they manage and what they may approve. Never act beyond that authority.
+12. **One file, one agent at a time.** Before every edit a hook locks the file for the agent editing it
+    (`tools/file-lock.cjs`, `/wakil.locks`). An edit refused with "File locked" is never worked around (no copy,
+    no shell edit, no releasing the lock yourself): continue with other files or report the file as waiting.
+    Edit files with the edit tools, not shell commands, so the lock applies.
 
 ## Specialist return format (all specialists)
 ```

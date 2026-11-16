@@ -87,6 +87,7 @@ These commands work from Claude Code, Cursor and Codex. The registry is written 
 | Command | Arguments | What it does | Schedulable |
 |---|---|---|---|
 | `/wakil.setup` | see Personal ecosystem | Start here after cloning the repo | ❌ |
+| `/wakil.locks` | `[show]` · `release <path…>\|--stale\|--owner <id>\|--all` · `take <path…> --owner <name>` | File locks between agents: who edits which file now; release or take a lock (Codex, manual work) | `show`, `release --stale` |
 | `/wakil.setup-trello` | `[entity-slug] [--templates]` | Create the Trello templates or a client's boards from board-spec.md | ❌ |
 | `/wakil.butler-rules` | `<entity-slug> <team\|all>` | Print the Butler rules ready to paste | ❌ |
 | `/wakil.schedule-local` | `"<command>" <interval> [days] [hours]` · `--list` · `--remove <name>` | Run a schedulable command automatically on this computer | ❌ |

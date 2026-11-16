@@ -83,6 +83,16 @@ rules – they add to CLAUDE.md; stricter wins), `BRAND.md`, `ORG.md`, `PEOPLE.m
 - `--agent <a>` on `/wakil.plan` or `/wakil.plan.trello` → every 🤖 task of the plan goes to that agent.
 - `/wakil.process` only processes Trello cards: it never touches `sync: local` tasks. Local tasks run with `/wakil.plan run`.
 
+## File locks – one file, one agent at a time (CLAUDE.md golden rule 12)
+- A hook locks every file an agent edits (`tools/file-lock.cjs`); another agent's edit of that file is refused while the
+  lock lives (released at the end of the holder's turn / sub-agent run, or after 15 min without edits).
+- Before running agents **in parallel**, give each one a separate set of files; agents that need the same file run in
+  sequence. You edit task/plan files yourself before or after a specialist's run, never during it.
+- A specialist may take over a file you (the main agent of the same session) were editing: that is a hand-off. You
+  cannot take a file back from a running sub-agent – wait for its return.
+- A return with "File locked" is `BLOCKED` for that file only: tell the owner which file and which holder, and suggest
+  `/wakil.locks` (never release another agent's live lock without the owner's OK).
+
 ## Local task files (`tasks/` – read by Wakil Desktop)
 Every Trello card has a markdown twin, and local plans (`/wakil.plan`) have task files with no card (`sync: local`): `entities/<client>/projects/<project>/tasks/T-NNN-<slug>.md` (no project →
 `entities/<client>/tasks/`), format `entities/_templates/task.md`. Created by `/wakil.new-task` (or

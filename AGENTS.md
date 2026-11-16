@@ -29,6 +29,7 @@ The user may type a command in any of these forms – they all mean the same thi
 | `/wakil.focus` | `/wakil-focus` | `$wakil-focus` | Select the working context (client, department, team, project) so the next commands use it by default |
 | `/wakil.learn` | `/wakil-learn` | `$wakil-learn` | I want to learn X" – create the skill folder, set level and goal, propose a roadmap with real resources and a first practice project |
 | `/wakil.list-commands` | `/wakil-list-commands` | `$wakil-list-commands` | Show all available commands with their arguments and examples (COMMANDS.md) |
+| `/wakil.locks` | `/wakil-locks` | `$wakil-locks` | File locks – see which agent is editing which file, release a lock, or take one by hand (Codex, manual work) so two agents never edit the same file |
 | `/wakil.new-command` | `/wakil-new-command` | `$wakil-new-command` | Create a new command file from the standard layout and add it to COMMANDS.md |
 | `/wakil.new-project` | `/wakil-new-project` | `$wakil-new-project` | Create a new project for a client (PROJECT.md) and say which Trello label to create |
 | `/wakil.new-task` | `/wakil-new-task` | `$wakil-new-task` | Draft a complete task card in Proposed (team, executor, assignee, reviewers, criteria, labels) |
@@ -175,6 +176,8 @@ entities/
       tasks/T-NNN-<slug>.md                     <- one file per Trello card (status, agent, criteria, log) – /wakil.task
     documents/INDEX.md + files                  <- client documents (confidential ones: location only)
 tools/outlook-draft.ps1          <- creates email DRAFTS in the owner's Outlook (never sends)
+tools/file-lock.cjs              <- file locks: two agents never edit the same file at once (hooks + /wakil.locks);
+                                    store .wakil/locks/ (PRIVATE, git-ignored)
 usage/PRICING.md                 <- API list prices: "API-equivalent" estimate of usage (not what the owner pays)
 usage/registry.json              <- PRIVATE AI registry: providers, subscriptions, prices/budgets history, expenses, ACU config,
                                     manual usage, change log. Written ONLY by tools/ai-registry.cjs (/wakil.provider,
@@ -272,6 +275,10 @@ Client data and personal data never mix (no client info in `ecosystem/`, no pers
     an agent: only drafts in the owner's Outlook, which the owner sends.
 11. **Know the owner's position.** Read the client's POSITION.md: it says who the owner is there,
     what they manage and what they may approve. Never act beyond that authority.
+12. **One file, one agent at a time.** Before every edit a hook locks the file for the agent editing it
+    (`tools/file-lock.cjs`, `/wakil.locks`). An edit refused with "File locked" is never worked around (no copy,
+    no shell edit, no releasing the lock yourself): continue with other files or report the file as waiting.
+    Edit files with the edit tools, not shell commands, so the lock applies.
 
 ## Specialist return format (all specialists)
 ```

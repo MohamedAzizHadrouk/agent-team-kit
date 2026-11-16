@@ -1,7 +1,7 @@
 {
   "generator": "tools/sync-ai-tools.cjs",
-  "generatedAt": "2026-11-16T07:30:48.524Z",
-  "sourceMtime": "2026-11-16T07:30:47.159Z",
+  "generatedAt": "2026-11-16T08:03:20.389Z",
+  "sourceMtime": "2026-11-16T08:02:57.645Z",
   "tools": {
     "claude": {
       "reads": [
@@ -26,7 +26,7 @@
     }
   },
   "counts": {
-    "commands": 42,
+    "commands": 43,
     "agents": 8,
     "subagents": 7,
     "skills": 18
@@ -80,6 +80,8 @@
     ".agents/skills/wakil-learn/agents/openai.yaml",
     ".agents/skills/wakil-list-commands/SKILL.md",
     ".agents/skills/wakil-list-commands/agents/openai.yaml",
+    ".agents/skills/wakil-locks/SKILL.md",
+    ".agents/skills/wakil-locks/agents/openai.yaml",
     ".agents/skills/wakil-new-command/SKILL.md",
     ".agents/skills/wakil-new-command/agents/openai.yaml",
     ".agents/skills/wakil-new-project/SKILL.md",

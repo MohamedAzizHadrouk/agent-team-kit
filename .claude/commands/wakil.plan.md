@@ -51,6 +51,10 @@ add `- <date> – approved – owner` to each Status log and to the plan's Appro
    with first line `TASK: <entity>/<project>/<T-NNN>`; human task → tell the owner who must do what (no email
    unless asked). 2. Check the result against each acceptance criterion (manager.md › Step 4). 3. Pass → `awaiting-approval`
    with results in **Results & links**; fail → `needs-changes` and re-brief once, then ask the owner.
+   Two tasks run **in parallel** only if they will not edit the same files (same deliverable, same task/plan file,
+   same source file): otherwise run them one after the other. A specialist returning "File locked" on a file → the
+   task stays `in-progress` with a Status log line naming the file and the holder; run it again once `/wakil.locks`
+   shows the file free.
 4. `next` runs one task; `approved` runs every runnable approved task (max 5 per run). The owner moves tasks to `done`
    (`/wakil.task … status done` or "ok, done").
 Approval gates (CLAUDE.md rule 4) are confirmed in chat and written in the Status log.
