@@ -31,7 +31,7 @@ waiting. This command shows and manages those locks.
 | All | – | automatically after 15 min without an edit by the holder (`WAKIL_LOCK_TTL_MIN`) |
 
 A sub-agent may take over a lock of **its own session's main agent** (the manager handed the file over); the main
-agent cannot take a file back from a sub-agent that is still running. Files outside the ecosystem, `usage/` and
+agent cannot take a file back from a sub-agent that is still running. Files outside the ecosystem and
 `.wakil/` are never locked. A hook error never blocks an edit (fail-open). Edits made through a shell command
 (sed, scripts) are not covered – agents use the edit tools for files.
 

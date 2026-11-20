@@ -1,5 +1,5 @@
 ---
-description: Show, move or import local task files (tasks/) that mirror the Trello cards – used by the Kanban and token usage in Wakil Desktop
+description: Show, move or import local task files (tasks/) that mirror the Trello cards – used by the Kanban in Wakil Desktop
 argument-hint: <entity-slug> <project|none> [<task-id> [show|status <new-status>|note "<text>"]] · --import <entity-slug> [project]
 ---
 # /wakil.task – Local task files
@@ -9,7 +9,7 @@ Act as the **manager** (`.claude/agents/manager/manager.md`). Arguments: `$ARGUM
 ## Purpose
 Keep one markdown file per task under `projects/<project>/tasks/` (or `entities/<slug>/tasks/` for tasks without a
 project), mirroring the Trello card. Wakil Desktop reads these files to draw a **Kanban per project** and to show
-**which agent worked on each task and how many tokens / how much credit it used**.
+**which agent worked on each task**.
 
 ## Arguments
 | Argument | Required | Values | Default |
@@ -43,7 +43,7 @@ project), mirroring the Trello card. Wakil Desktop reads these files to draw a *
 - One card = one task file; the card URL goes in `trello:`. Names only (never emails), no secrets.
 - Task ids are per project and never reused: `T-001`, `T-002`…
 - Every specialist brief for a task starts with `TASK: <entity-slug>/<project|none>/<task-id>` (skill
-  `delegation/write-brief`) – this is how token usage is linked to the task.
+  `delegation/write-brief`).
 
 ## Output
 The list or the changed task (id, title, old → new status), and the Trello moves done or still to do.

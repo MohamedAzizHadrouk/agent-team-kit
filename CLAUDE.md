@@ -48,6 +48,7 @@ entities/
     organization/  individual/   <- skeleton folders copied for every new entity (organization = company | association | club)
   <entity-slug>/                 <- PRIVATE, git-ignored (one folder = one entity's whole context)
     ENTITY.md                    <- entry point: identity, type, context map, decisions log
+    consultant/                 <- private consultant profile (AGENT.md) and sourced memory (MEMORY.md)
     POSITION.md                  <- the owner's position / role / authority in or for this client
     RULES.md                     <- this client's rules (approvals, reviews, notifications, confidentiality)
     .resume.md                   <- checkpoints: where the owner stopped (per client / project / team) – /wakil.resume
@@ -62,13 +63,6 @@ entities/
 tools/outlook-draft.ps1          <- creates email DRAFTS in the owner's Outlook (never sends)
 tools/file-lock.cjs              <- file locks: two agents never edit the same file at once (hooks + /wakil.locks);
                                     store .wakil/locks/ (PRIVATE, git-ignored)
-usage/PRICING.md                 <- API list prices: "API-equivalent" estimate of usage (not what the owner pays)
-usage/registry.json              <- PRIVATE AI registry: providers, subscriptions, prices/budgets history, expenses, ACU config,
-                                    manual usage, change log. Written ONLY by tools/ai-registry.cjs (/wakil.provider,
-                                    /wakil.subscription, /wakil.billing-period, /wakil.usage) – from Claude Code, Cursor or Codex – read by Wakil Desktop
-usage/credits.jsonl              <- PRIVATE credit log: ONE LINE PER PROMPT (tool, provider, model, tokens, credits, session, agent,
-                                    entity/project/task). Written ONLY by tools/credit-log.cjs – after every prompt by the hooks
-                                    (.claude/settings.json, .cursor/hooks.json, .codex/config.toml) – read by Wakil Desktop (/wakil.credits)
 .claude/commands/wakil.<name>.md <- slash commands (/wakil.process, /wakil.overview, /wakil.new-task …) – one file per command
 COMMANDS.md                      <- catalog of all commands, their arguments and schedules
 tools/sync-ai-tools.cjs          <- /wakil.sync-tools: mirrors .claude/ + CLAUDE.md for Cursor and Codex (generated, never edit):
@@ -78,13 +72,12 @@ tools/sync-ai-tools.cjs          <- /wakil.sync-tools: mirrors .claude/ + CLAUDE
 ## Execution modes (even when the entity has a Trello board)
 | Owner writes | Mode | Plan file / task files | Trello | Kanban in Wakil Desktop |
 |---|---|---|---|---|
-| a plain request ("refais le header du site acme") or `/wakil.do [--agent <a>] <request>` | **Direct** – do it now | none | **never** | no (usage still counted per project) |
+| a plain request ("refais le header du site acme") or `/wakil.do [--agent <a>] <request>` | **Direct** – do it now | none | **never** | no |
 | `/wakil.plan [<entity> <project>] [--agent <a>] <goal>` | **Local plan** | `plans/PLAN-*.md` + `tasks/T-NNN-*.md` (`sync: local`) | **never** | yes |
 | `/wakil.plan.trello [<entity> <project>] [--agent <a>] <goal>` | **Trello plan** | same files (`sync: trello`, `trello:` = card URL) | cards in 📥 Proposed | yes |
 - Entity / project default to the focus (`/wakil.focus`); `--agent` picks the agent (default: the manager chooses).
 - **Direct**: the manager (or the specialist it briefs) does the work immediately – no card, no task file, no approval
-  step for the task itself (approval gates of rule 4 still apply). Briefs keep the `Client:` / `Project:` lines so usage is
-  attributed to the project. Never turn a direct request into a card or a task file unless the owner asks.
+  step for the task itself (approval gates of rule 4 still apply). Briefs identify the client and project. Never turn a direct request into a card or a task file unless the owner asks.
 - **Local plan**: the plan lives only in markdown; it is executed with `/wakil.plan run …` once the owner approves.
   Approvals and status changes are written in the task files (Status log), never on Trello.
 - **Trello plan**: same files + one Trello card per task, kept in sync by `/wakil.task` and `/wakil.process`.
@@ -96,11 +89,9 @@ The same ecosystem works in **Claude Code, Cursor and OpenAI Codex**. `.claude/`
 Claude Code `/wakil.news` · Cursor `/wakil-news` · Codex `$wakil-news`. After any change to an agent, a skill or a
 command, run `/wakil.sync-tools` and commit the generated files with the change.
 
-## AI subscriptions & usage (natural language → registry)
-When the owner talks about AI providers, subscriptions, prices, budgets, invoices or usage in ANY tool ("add Claude Pro at
-$20/month", "set Cursor budget to $50", "show my Codex subscription"), use `/wakil.provider`, `/wakil.subscription` or
-`/wakil.usage`: the change goes through `node tools/ai-registry.cjs` with `--source-tool <claude|cursor|codex>`, and financial
-or destructive changes are confirmed by the owner first. Never edit `usage/registry.json` by hand and never invent figures.
+## Entity consultants and assigned skills
+
+For an entity-focused request, use its local consultant profile and memory when present. Follow `/wakil.consult`: load the relevant entity sources, cite them and retain durable facts or decisions supplied or confirmed by the owner as dated, sourced notes. Use the entity's canonical context files for official changes. Skip raw transcripts and sensitive details. Resolve each specialist's relevant methods from its `skills/` folder and `skills/ASSIGNMENTS.md`, using only references to existing shared skill files. Entity source material stays within the selected entity context.
 
 ## Commands
 The owner drives the work with slash commands (see COMMANDS.md). When a command is used, follow its file's

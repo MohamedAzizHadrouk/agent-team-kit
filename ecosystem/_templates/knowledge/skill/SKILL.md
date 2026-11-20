@@ -19,10 +19,12 @@ TODO
 | 1 | TODO | | | todo |
 
 ## Folders
-- `resources/INDEX.md` – articles, videos, docs, tools, communities
-- `books/INDEX.md` – reading list and book notes
-- `courses/INDEX.md` – courses, certificates, progress
-- `projects/<project>/PROJECT.md` – practice (academic) projects to learn and prove the skill
+- `Resources/INDEX.md` – articles, videos, docs, tools, communities
+- `Resources/Books/INDEX.md` – reading list and book notes
+- `Resources/Courses/INDEX.md` – courses, certificates, progress
+- `Project/<project>/PROJECT.md` – practice (academic) projects to learn and prove the skill
 
 ## Progress log
 <!-- date – what I did / learned – time spent – next step -->
+- `Presentation/` – slides, decks and talks
+- `Documents/` – notes, reference documents and deliverables

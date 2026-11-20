@@ -38,7 +38,7 @@ together), then offer the optional modules: skills & learning, news & trends, cl
    - Outlook drafts (optional, Windows): `tools/outlook-draft.ps1 -DryRun` with a scratchpad body file
    - web search available (needed by /wakil.news and /wakil.learn)
 2. **Create the ecosystem** (only what is missing, never overwrite): copy `ecosystem/_templates/PROFILE.md`,
-   `knowledge/SKILLS.md`, `news/PREFERENCES.md` into `ecosystem/` and create `knowledge/skills/` and `news/`.
+   `knowledge/SKILLS.md`, `news/PREFERENCES.md` into `ecosystem/` and create `knowledge/skills/soft-skills/`, `knowledge/skills/hard-skills/` and `news/`.
    Write `ecosystem/SETUP-STATUS.md` (steps done / pending, dates).
 3. **About you**: run `ecosystem/_templates/setup-questionnaire.md` sections A–D, 3–5 questions at a time, each
    with a suggested default. Fill `ecosystem/PROFILE.md`, log every answer (dated) in its change log.

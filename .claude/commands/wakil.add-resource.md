@@ -7,13 +7,13 @@ argument-hint: <skill> <book|course|resource> <title|link> [notes]
 Act as the **manager** (`.claude/agents/manager/manager.md`). Arguments: `$ARGUMENTS`
 
 ## Purpose
-Keep each skill's library up to date: one row in `books/`, `courses/` or `resources/INDEX.md` of the skill,
+Keep each skill's library up to date: one row in the skill’s `Resources/Books/INDEX.md`, `Resources/Courses/INDEX.md`, or `Resources/INDEX.md`,
 optionally linked to a roadmap milestone.
 
 ## Arguments
 | Argument | Required | Values | Default |
 |---|---|---|---|
-| `<skill>` | yes | slug of a folder in `ecosystem/knowledge/skills/` | asked (list shown) |
+| `<skill>` | yes | skill slug or category/slug under `ecosystem/knowledge/skills/` | asked (list shown) |
 | `<type>` | yes | `book` · `course` · `resource` | guessed from the link, then confirmed |
 | `<title\|link>` | yes | a title, a URL, or both | – |
 | `[notes]` | no | free text, status (to-read, in-progress, done), milestone number | status = to-read / planned |
@@ -22,7 +22,7 @@ optionally linked to a roadmap milestone.
 - The skill folder exists (else offer `/wakil.learn <skill>`).
 
 ## Steps
-1. Identify the item: with a link, read the page for title, author/provider, length, free/paid; with only a title,
+1. Resolve the skill using its category/slug, or a unique slug across both categories and legacy folders. Ask on collisions. If a legacy skill uses lowercase resource folders, keep using its existing indexes. Identify the item: with a link, read the page for title, author/provider, length, free/paid; with only a title,
    web-search it. Several matches or nothing found → ask, never guess.
 2. Already in the index → update its row (status, notes) instead of adding a duplicate.
 3. Add the row; if a milestone was given, add the item to that milestone's Resources cell in SKILL.md.

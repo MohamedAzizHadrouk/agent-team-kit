@@ -40,7 +40,7 @@ Three ways to get work done – choose how much tracking you want. Entity / proj
 ### 1 · Do it now (direct – no plan, no task file, no Trello)
 | Command | Arguments | What it does | Schedulable |
 |---|---|---|---|
-| `/wakil.do` | `[<entity-slug\|personal> [project\|none]] [--agent <agent\|auto>] <request>` | Runs the request **now** with the chosen agent (or the best fit); result in the chat, usage still counted on the project | ❌ |
+| `/wakil.do` | `[<entity-slug\|personal> [project\|none]] [--agent <agent\|auto>] <request>` | Runs the request **now** with the chosen agent (or the best fit); result in the chat | ❌ |
 | *(plain request)* | – | Same as `/wakil.do` with `--agent auto` | – |
 
 ### 2 · Plan locally (project Kanban in Wakil Desktop – never Trello)
@@ -71,17 +71,8 @@ Three ways to get work done – choose how much tracking you want. Entity / proj
 | `/wakil.add-team` | `<entity-slug> <department> <team>` | TEAM.md + team board + registry row + label to create | ❌ |
 | `/wakil.add-document` | `<entity-slug> <file\|link\|text> [about] [--confidential]` | File + index a document and extract facts into the context | ❌ |
 | `/wakil.update-context` | `<entity-slug> <information>` | Save new info in the right file with a dated log entry | ❌ |
+| `/wakil.consult` | `<entity-slug> <question>` | Ask an entity’s consultant and retain confirmed context | ❌ |
 
-## AI providers, subscriptions & usage (`usage/registry.json` – private)
-| Command | Arguments | What it does | Schedulable |
-|---|---|---|---|
-| `/wakil.provider` | `add\|update\|show\|activate\|deactivate\|archive\|remove [provider] [details]` | AI providers in the registry (`usage/registry.json`) read by Wakil Desktop | `show` |
-| `/wakil.subscription` | `add\|update\|price\|billing\|budget\|expense\|plan-usage\|activate\|deactivate\|archive\|remove\|show [sub] [details]` | AI subscriptions: price history, billing model, budget, actual expenses, plan usage | `show` |
-| `/wakil.usage` | `record\|acu\|settings\|show\|log [details]` | Record usage tools do not log (Cursor), ACU weights / multipliers, currencies, change log | `show`, `log` |
-| `/wakil.billing-period` | `<subscription> <start> [end] [amount]` · `show <subscription>` · `remove <subscription> <start>` | The real dates of each paid subscription period – the base of the cost of one credit | `show` |
-| `/wakil.credits` | `sync\|add\|show\|report [details]` | Credit usage log `usage/credits.jsonl` (one line per prompt: provider, model, credits) and cost report per prompt, session, project, task, entity, agent | `sync`, `show`, `report` |
-
-These commands work from Claude Code, Cursor and Codex. The registry is written only through `node tools/ai-registry.cjs` (validated, versioned, logged with the chat and agent); the credit log only through `node tools/credit-log.cjs` – automatically after every prompt by the hooks in `.claude/settings.json`, `.cursor/hooks.json` and `.codex/config.toml`.
 
 ## Setup & maintenance
 | Command | Arguments | What it does | Schedulable |

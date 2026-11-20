@@ -3,7 +3,7 @@
 
 This folder is a **Wakil ecosystem**. It works the same way in Claude Code, Cursor and OpenAI Codex:
 the agents, their skills and the `/wakil.*` commands all live in `.claude/` (single source of truth) and are
-mirrored for the other tools by `tools/sync-ai-tools.cjs`. Wakil Desktop shows the result, including token usage.
+mirrored for the other tools by `tools/sync-ai-tools.cjs`. Wakil Desktop shows the result.
 
 ## Who you are
 Unless the user picked another agent, **you are the manager**: before acting on any Wakil command or client task,
@@ -20,11 +20,10 @@ The user may type a command in any of these forms – they all mean the same thi
 | `/wakil.add-people` | `/wakil-add-people` | `$wakil-add-people` | Add or update people in a client's PEOPLE.md (work contacts only) |
 | `/wakil.add-resource` | `/wakil-add-resource` | `$wakil-add-resource` | Add a book, course or resource (article, video, tool, community) to one of your skills |
 | `/wakil.add-team` | `/wakil-add-team` | `$wakil-add-team` | Add a team to a managed department – TEAM.md, team board, registry row, label to create |
-| `/wakil.billing-period` | `/wakil-billing-period` | `$wakil-billing-period` | Enter the real dates of a subscription's paid period (start, end, amount) – the base Wakil Desktop uses to compute the cost of one credit |
 | `/wakil.brand` | `/wakil-brand` | `$wakil-brand` | Build and run your personal brand – strategy, one folder per channel (Instagram, TikTok, LinkedIn…) with its content, ideas, plans and post drafts (ecosystem/brand/) |
 | `/wakil.butler-rules` | `/wakil-butler-rules` | `$wakil-butler-rules` | Print the Butler rules for a team board, filled and ready to paste in Trello |
 | `/wakil.check-privacy` | `/wakil-check-privacy` | `$wakil-check-privacy` | Check that no client data, people or emails would be committed or pushed to git |
-| `/wakil.credits` | `/wakil-credits` | `$wakil-credits` | Credit usage log (usage/credits.jsonl, one line per prompt with provider, model and credits) and cost report per prompt, session, project, task, entity and agent |
+| `/wakil.consult` | `/wakil-consult` | `$wakil-consult` | Ask an entity's private consultant a question and retain useful confirmed context |
 | `/wakil.do` | `/wakil-do` | `$wakil-do` | Run a request now with an agent (direct mode) – choose the agent with --agent or let the manager pick – no plan, no task file, no Trello card |
 | `/wakil.focus` | `/wakil-focus` | `$wakil-focus` | Select the working context (client, department, team, project) so the next commands use it by default |
 | `/wakil.learn` | `/wakil-learn` | `$wakil-learn` | I want to learn X" – create the skill folder, set level and goal, propose a roadmap with real resources and a first practice project |
@@ -42,7 +41,6 @@ The user may type a command in any of these forms – they all mean the same thi
 | `/wakil.plan.trello` | `/wakil-plan-trello` | `$wakil-plan-trello` | Plan work as structured markdown (visible in the Wakil Desktop Kanban) AND create one Trello card per task in Proposed |
 | `/wakil.process` | `/wakil-process` | `$wakil-process` | Process a client's boards – audit, sync, reviews, approved cards, report |
 | `/wakil.profile` | `/wakil-profile` | `$wakil-profile` | Show or update what Claude knows about you (ecosystem/PROFILE.md) |
-| `/wakil.provider` | `/wakil-provider` | `$wakil-provider` | Register or update an AI provider (Anthropic, OpenAI, Cursor, Google…) in the AI registry shown by Wakil Desktop |
 | `/wakil.reply` | `/wakil-reply` | `$wakil-reply` | Record an email reply (a person's result or a reviewer's answer) on the right card |
 | `/wakil.resume` | `/wakil-resume` | `$wakil-resume` | Resume where you stopped last time – in general, or for a client, project, team or one of your skills |
 | `/wakil.schedule-local` | `/wakil-schedule-local` | `$wakil-schedule-local` | Schedule a command to run automatically on this computer (e.g. /wakil.process every 30 min on workdays) |
@@ -50,13 +48,11 @@ The user may type a command in any of these forms – they all mean the same thi
 | `/wakil.setup` | `/wakil-setup` | `$wakil-setup` | First-run guide – check the tools, create your private ecosystem, learn who you are, then set up skills, news and clients |
 | `/wakil.skill-project` | `/wakil-skill-project` | `$wakil-skill-project` | Create, update or close a practice (academic) project for one of your skills |
 | `/wakil.skills` | `/wakil-skills` | `$wakil-skills` | Interview about your skills, or show your skills, learning progress and next steps (knowledge/SKILLS.md) |
-| `/wakil.subscription` | `/wakil-subscription` | `$wakil-subscription` | Add or update an AI subscription (price, budget, billing model, dates, expenses, plan usage) in the AI registry shown by Wakil Desktop |
 | `/wakil.sync-tools` | `/wakil-sync-tools` | `$wakil-sync-tools` | Regenerate the files Cursor and Codex read (AGENTS.md, .agents/skills, .cursor/agents, .codex/agents) from .claude/ and CLAUDE.md |
 | `/wakil.sync` | `/wakil-sync` | `$wakil-sync` | Only read team boards (comments, files, Ready for Review) into the Command Center and context files |
-| `/wakil.task` | `/wakil-task` | `$wakil-task` | Show, move or import local task files (tasks/) that mirror the Trello cards – used by the Kanban and token usage in Wakil Desktop |
+| `/wakil.task` | `/wakil-task` | `$wakil-task` | Show, move or import local task files (tasks/) that mirror the Trello cards – used by the Kanban in Wakil Desktop |
 | `/wakil.todo` | `/wakil-todo` | `$wakil-todo` | Show, add or tick today's to-do items (news/YYYY/MM/DD/TODO.md) |
 | `/wakil.update-context` | `/wakil-update-context` | `$wakil-update-context` | Save new information about a client into the right context file, with a dated log entry |
-| `/wakil.usage` | `/wakil-usage` | `$wakil-usage` | AI usage management – record usage that tools do not log (Cursor), configure ACU weights and model multipliers, currencies, and show the registry |
 
 How to run one (any tool): open `.claude/commands/<name>.md` (e.g. `/wakil.news` → `.claude/commands/wakil.news.md`),
 treat the text the user wrote after the command as **the arguments** (`$ARGUMENTS` in the file), and follow its
@@ -79,7 +75,7 @@ Delegate a task to a specialist with your tool's subagent feature – Claude Cod
 `subagent_type: <agent>`; Cursor: `/<agent> <task>` or "use the <agent> subagent"; Codex: ask to spawn the custom
 agent `<agent>`. If your tool cannot run subagents, do the work yourself **as that agent**: read its definition file
 and its `skills/INDEX.md`, and follow them. Every specialist brief starts with
-`TASK: <entity>/<project|none>/<task-id>` (this is how Wakil Desktop links token usage to tasks).
+`TASK: <entity>/<project|none>/<task-id>`.
 
 ## Skills (methods of the specialists)
 Each agent's skills are indexed in `.claude/agents/<agent>/skills/INDEX.md`. They are mirrored as Agent Skills in
@@ -164,6 +160,7 @@ entities/
     organization/  individual/   <- skeleton folders copied for every new entity (organization = company | association | club)
   <entity-slug>/                 <- PRIVATE, git-ignored (one folder = one entity's whole context)
     ENTITY.md                    <- entry point: identity, type, context map, decisions log
+    consultant/                 <- private consultant profile (AGENT.md) and sourced memory (MEMORY.md)
     POSITION.md                  <- the owner's position / role / authority in or for this client
     RULES.md                     <- this client's rules (approvals, reviews, notifications, confidentiality)
     .resume.md                   <- checkpoints: where the owner stopped (per client / project / team) – /wakil.resume
@@ -178,13 +175,6 @@ entities/
 tools/outlook-draft.ps1          <- creates email DRAFTS in the owner's Outlook (never sends)
 tools/file-lock.cjs              <- file locks: two agents never edit the same file at once (hooks + /wakil.locks);
                                     store .wakil/locks/ (PRIVATE, git-ignored)
-usage/PRICING.md                 <- API list prices: "API-equivalent" estimate of usage (not what the owner pays)
-usage/registry.json              <- PRIVATE AI registry: providers, subscriptions, prices/budgets history, expenses, ACU config,
-                                    manual usage, change log. Written ONLY by tools/ai-registry.cjs (/wakil.provider,
-                                    /wakil.subscription, /wakil.billing-period, /wakil.usage) – from Claude Code, Cursor or Codex – read by Wakil Desktop
-usage/credits.jsonl              <- PRIVATE credit log: ONE LINE PER PROMPT (tool, provider, model, tokens, credits, session, agent,
-                                    entity/project/task). Written ONLY by tools/credit-log.cjs – after every prompt by the hooks
-                                    (.claude/settings.json, .cursor/hooks.json, .codex/config.toml) – read by Wakil Desktop (/wakil.credits)
 .claude/commands/wakil.<name>.md <- slash commands (/wakil.process, /wakil.overview, /wakil.new-task …) – one file per command
 COMMANDS.md                      <- catalog of all commands, their arguments and schedules
 tools/sync-ai-tools.cjs          <- /wakil.sync-tools: mirrors .claude/ + CLAUDE.md for Cursor and Codex (generated, never edit):
@@ -194,13 +184,12 @@ tools/sync-ai-tools.cjs          <- /wakil.sync-tools: mirrors .claude/ + CLAUDE
 ## Execution modes (even when the entity has a Trello board)
 | Owner writes | Mode | Plan file / task files | Trello | Kanban in Wakil Desktop |
 |---|---|---|---|---|
-| a plain request ("refais le header du site acme") or `/wakil.do [--agent <a>] <request>` | **Direct** – do it now | none | **never** | no (usage still counted per project) |
+| a plain request ("refais le header du site acme") or `/wakil.do [--agent <a>] <request>` | **Direct** – do it now | none | **never** | no |
 | `/wakil.plan [<entity> <project>] [--agent <a>] <goal>` | **Local plan** | `plans/PLAN-*.md` + `tasks/T-NNN-*.md` (`sync: local`) | **never** | yes |
 | `/wakil.plan.trello [<entity> <project>] [--agent <a>] <goal>` | **Trello plan** | same files (`sync: trello`, `trello:` = card URL) | cards in 📥 Proposed | yes |
 - Entity / project default to the focus (`/wakil.focus`); `--agent` picks the agent (default: the manager chooses).
 - **Direct**: the manager (or the specialist it briefs) does the work immediately – no card, no task file, no approval
-  step for the task itself (approval gates of rule 4 still apply). Briefs keep the `Client:` / `Project:` lines so usage is
-  attributed to the project. Never turn a direct request into a card or a task file unless the owner asks.
+  step for the task itself (approval gates of rule 4 still apply). Briefs identify the client and project. Never turn a direct request into a card or a task file unless the owner asks.
 - **Local plan**: the plan lives only in markdown; it is executed with `/wakil.plan run …` once the owner approves.
   Approvals and status changes are written in the task files (Status log), never on Trello.
 - **Trello plan**: same files + one Trello card per task, kept in sync by `/wakil.task` and `/wakil.process`.
@@ -212,11 +201,9 @@ The same ecosystem works in **Claude Code, Cursor and OpenAI Codex**. `.claude/`
 Claude Code `/wakil.news` · Cursor `/wakil-news` · Codex `$wakil-news`. After any change to an agent, a skill or a
 command, run `/wakil.sync-tools` and commit the generated files with the change.
 
-## AI subscriptions & usage (natural language → registry)
-When the owner talks about AI providers, subscriptions, prices, budgets, invoices or usage in ANY tool ("add Claude Pro at
-$20/month", "set Cursor budget to $50", "show my Codex subscription"), use `/wakil.provider`, `/wakil.subscription` or
-`/wakil.usage`: the change goes through `node tools/ai-registry.cjs` with `--source-tool <claude|cursor|codex>`, and financial
-or destructive changes are confirmed by the owner first. Never edit `usage/registry.json` by hand and never invent figures.
+## Entity consultants and assigned skills
+
+For an entity-focused request, use its local consultant profile and memory when present. Follow `/wakil.consult`: load the relevant entity sources, cite them and retain durable facts or decisions supplied or confirmed by the owner as dated, sourced notes. Use the entity's canonical context files for official changes. Skip raw transcripts and sensitive details. Resolve each specialist's relevant methods from its `skills/` folder and `skills/ASSIGNMENTS.md`, using only references to existing shared skill files. Entity source material stays within the selected entity context.
 
 ## Commands
 The owner drives the work with slash commands (see COMMANDS.md). When a command is used, follow its file's

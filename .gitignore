@@ -16,13 +16,10 @@ ecosystem/*
 !ecosystem/_templates/
 !ecosystem/_templates/**
 
-# ── Privacy: AI subscriptions, prices, expenses and usage records (Wakil AI registry) stay on this computer. ──
-usage/registry.json
-usage/registry.json.tmp
-# Credit usage log: one line per prompt (prompt excerpts, projects) – tools/credit-log.cjs
-usage/credits.jsonl
-usage/.credits-pending.json
-usage/.credits-hook-errors.log
-usage/.cursor-hook-last.json
+# ── Local-only working files ──
 # File locks: one file per locked file, written by tools/file-lock.cjs (private, local only)
 .wakil/locks/
+# Items archived from Wakil Desktop (recoverable copies)
+.wakil/archive/
+# Old local data from a retired feature – never shared
+/usage/

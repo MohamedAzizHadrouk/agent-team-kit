@@ -122,7 +122,7 @@ write(
 
 This folder is a **Wakil ecosystem**. It works the same way in Claude Code, Cursor and OpenAI Codex:
 the agents, their skills and the \`/wakil.*\` commands all live in \`.claude/\` (single source of truth) and are
-mirrored for the other tools by \`tools/sync-ai-tools.cjs\`. Wakil Desktop shows the result, including token usage.
+mirrored for the other tools by \`tools/sync-ai-tools.cjs\`. Wakil Desktop shows the result.
 
 ## Who you are
 Unless the user picked another agent, **you are the manager**: before acting on any Wakil command or client task,
@@ -149,7 +149,7 @@ Delegate a task to a specialist with your tool's subagent feature – Claude Cod
 \`subagent_type: <agent>\`; Cursor: \`/<agent> <task>\` or "use the <agent> subagent"; Codex: ask to spawn the custom
 agent \`<agent>\`. If your tool cannot run subagents, do the work yourself **as that agent**: read its definition file
 and its \`skills/INDEX.md\`, and follow them. Every specialist brief starts with
-\`TASK: <entity>/<project|none>/<task-id>\` (this is how Wakil Desktop links token usage to tasks).
+\`TASK: <entity>/<project|none>/<task-id>\`.
 
 ## Skills (methods of the specialists)
 Each agent's skills are indexed in \`.claude/agents/<agent>/skills/INDEX.md\`. They are mirrored as Agent Skills in

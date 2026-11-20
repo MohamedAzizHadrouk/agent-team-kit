@@ -19,8 +19,7 @@ Act as the **manager** (`.claude/agents/manager/manager.md`). Arguments: the tex
 ## Purpose
 The fastest way to use the agent team: the request is executed **now**, by the agent you choose or by the one the
 manager picks, without planning. It is the explicit form of a plain request (CLAUDE.md › Execution modes › Direct):
-no plan file, no task file, no Trello card – even when the entity has boards – but the prompt is still attributed to
-the client / project in the credit log (`usage/credits.jsonl`), so Wakil Desktop counts its usage.
+no plan file, no task file, no Trello card – even when the entity has boards.
 
 The three ways to get work done – pick by how much tracking you want:
 | You want | Command | Tracking |

@@ -24,7 +24,7 @@ slugs (`entities/registry.md`), then skill slugs (`ecosystem/knowledge/skills/`)
 departments of the focused client. A name that matches more than one → ask which one; never guess.
 
 ## Preconditions
-- For a client: the client is in `entities/registry.md`. For a skill: `ecosystem/knowledge/skills/<skill>/` exists.
+- For a client: the client is in `entities/registry.md`. For a skill: resolve category/slug or the unique slug in either category or the legacy root. Ask when the slug is ambiguous.
 
 ## Where checkpoints live (see manager.md › Checkpoints)
 - Client work → `entities/<entity-slug>/.resume.md` (one section per scope: `client`, `project:<p>`, `team:<t>`, `department:<d>`).

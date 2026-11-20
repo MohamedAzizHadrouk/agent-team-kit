@@ -29,7 +29,7 @@ Kanban and AI usage, and can be planned with `/wakil.plan personal <slug> <goal>
    type. Use PROFILE.md only for context (time zone, languages) – never copy personal details into the project.
 3. Create `ecosystem/projects/<slug>/PROJECT.md` from the template (`Client: personal`), plus empty `plans/`,
    `tasks/` and `assets/` folders. Decisions log: `- <date> – Project created – owner`.
-4. If it trains a tracked skill, write `Linked skill: knowledge/skills/<skill>` (and mention it in that skill's SKILL.md).
+4. If it trains a tracked skill, write `Linked skill:` with the actual skill path under `knowledge/skills/` (and mention it in that skill's SKILL.md).
 5. Report the path and the next step: `/wakil.plan personal <slug> <goal>` (structured plan, no Trello) or just ask
    for the work directly.
 

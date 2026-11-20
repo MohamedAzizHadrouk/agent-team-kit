@@ -62,6 +62,8 @@ apply under `SKILLS TO USE:` in the brief; the specialist still picks its own sk
 CLAUDE.md, the client's RULES.md / BRAND.md or this file. When the owner asks to add a skill to an agent, follow
 "Add a skill" in the README (copy the template, add the INDEX row; generic content only, no client data).
 
+For specialist routing, include relevant existing shared methods listed in the specialist's `skills/ASSIGNMENTS.md` when present. Treat any missing reference as inactive.
+
 ## Client context (read ONLY the current client's folder – see its ENTITY.md › Context map)
 `entities/<client>/` → `ENTITY.md`, `POSITION.md` (the owner's role and authority there), `RULES.md` (this client's
 rules – they add to CLAUDE.md; stricter wins), `BRAND.md`, `ORG.md`, `PEOPLE.md`,
@@ -70,6 +72,8 @@ rules – they add to CLAUDE.md; stricter wins), `BRAND.md`, `ORG.md`, `PEOPLE.m
 - **PEOPLE.md is private**: only you read it, only to address notifications. Never pass emails to specialists,
   never write emails into Trello, never send them to any external service other than the owner's own Outlook.
   In Trello cards and comments refer to people by **name** only.
+
+For each entity-focused prompt, read the selected entity's consultant profile and memory when present and follow the source and learning rules in `/wakil.consult`. Keep confirmed owner facts and decisions there as short, dated notes with sources. Use canonical entity files for official context updates.
 
 ## Execution modes – direct, local plan, Trello plan (see CLAUDE.md › Execution modes)
 - **Plain request, no command, or `/wakil.do [--agent <a>]`** → **direct mode**: do it now (yourself or via a specialist brief –
@@ -100,7 +104,6 @@ Every Trello card has a markdown twin, and local plans (`/wakil.plan`) have task
 `status:` (proposed, approved, in-progress, in-review, needs-changes, peer-review, awaiting-approval, blocked, done),
 `updated:`, `agent:` / `assignee:`, one line in **Status log**, and the deliverable links + report summary in
 **Results & links** when a specialist returns. Missing task file for a card you process → create it first.
-Never write token counts by hand: Wakil Desktop reads them from Claude Code's session logs via the `TASK:` brief line.
 
 ## Board types (see board-spec.md for lists, labels and card format)
 | Registry board type | Who is on it | What you do there |
@@ -182,7 +185,7 @@ who a person is, a person's email.
 ## Step 3a – Agent task (🤖): delegate
 Move the card to **🔄 In Progress**, comment which specialist took it. Spawn the specialist with a brief containing:
 - **First line, always:** `TASK: <client-slug>/<project-slug|none>/<task-id>` (the local task file – see
-  "Local task files" below). Token usage of the run is linked to the task through this line.
+  "Local task files" below).
 - Client slug, type, team and project slugs, and the exact paths to read: ENTITY.md, POSITION.md, RULES.md, BRAND.md,
   TEAM.md, PROJECT.md (NOT PEOPLE.md)
 - The card goal, context links, constraints, deliverable format, acceptance criteria (verbatim), dates
@@ -270,7 +273,7 @@ The owner can add or change anything at any time, in chat or via a card titled "
 ```
 ecosystem/
   PROFILE.md  SETUP-STATUS.md
-  knowledge/SKILLS.md  knowledge/skills/<skill>/{SKILL.md, resources/, books/, courses/, projects/<p>/PROJECT.md}
+  knowledge/SKILLS.md  knowledge/skills/<soft-skills|hard-skills>/<skill>/{SKILL.md, Resources/, Presentation/, Project/, Documents/}
   news/PREFERENCES.md  news/<YYYY>/<MM>/<DD>/{TODO.md, NEWS.md, TRENDS.md}
   brand/{BRAND.md, strategy/STRATEGY.md, assets/INDEX.md, channels/INDEX.md,
          channels/<channel>/{CHANNEL.md, CONTENT.md, content/<YYYY-MM-DD>-<slug>/}}   ← one folder per channel

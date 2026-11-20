@@ -93,8 +93,7 @@ The agents, skills and commands are written once in `.claude/` and mirrored for 
 | Agents | `.claude/agents/` | `.cursor/agents/` | `.codex/agents/*.toml` |
 | Skills | `.claude/agents/<agent>/skills/` | `.agents/skills/` | `.agents/skills/` |
 
-Start Cursor or Codex in this folder and type the command form of your tool. Wakil Desktop shows the token usage of
-Claude Code and Codex sessions run in this folder (Cursor only keeps usage on its online dashboard).
+Start Cursor or Codex in this folder and type the command form of your tool.
 
 ## Privacy
 This repo shares only the **structure**. `.gitignore` keeps everything under `entities/` and `ecosystem/` (except
