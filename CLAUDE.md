@@ -36,6 +36,8 @@ ecosystem/                       <- PRIVATE, git-ignored except _templates/
   PROFILE.md                     <- who the owner is, goals, how to work with them
   knowledge/SKILLS.md            <- skills I have / learning now / backlog
   knowledge/skills/<skill>/      <- SKILL.md + resources/ + books/ + courses/ + projects/<project>/
+  projects/<project>/            <- the owner's PERSONAL projects (/wakil.personal-project): PROJECT.md + plans/ + tasks/ + assets/
+                                    planned with /wakil.plan personal <project> …; briefs: TASK: personal/<project>/<T-NNN>
   news/PREFERENCES.md            <- news + trends preferences
   news/<YYYY>/<MM>/<DD>/         <- TODO.md, NEWS.md, TRENDS.md of that day
   brand/                         <- personal brand (/wakil.brand): BRAND.md, strategy/STRATEGY.md, assets/,
@@ -59,6 +61,16 @@ entities/
       tasks/T-NNN-<slug>.md                     <- one file per Trello card (status, agent, criteria, log) – /wakil.task
     documents/INDEX.md + files                  <- client documents (confidential ones: location only)
 tools/outlook-draft.ps1          <- creates email DRAFTS in the owner's Outlook (never sends)
+<<<<<<< HEAD
+=======
+usage/PRICING.md                 <- API list prices: "API-equivalent" estimate of usage (not what the owner pays)
+usage/registry.json              <- PRIVATE AI registry: providers, subscriptions, prices/budgets history, expenses, ACU config,
+                                    manual usage, change log. Written ONLY by tools/ai-registry.cjs (/wakil.provider,
+                                    /wakil.subscription, /wakil.billing-period, /wakil.usage) – from Claude Code, Cursor or Codex – read by Wakil Desktop
+usage/credits.jsonl              <- PRIVATE credit log: ONE LINE PER PROMPT (tool, provider, model, tokens, credits, session, agent,
+                                    entity/project/task). Written ONLY by tools/credit-log.cjs – after every prompt by the hooks
+                                    (.claude/settings.json, .cursor/hooks.json, .codex/config.toml) – read by Wakil Desktop (/wakil.credits)
+>>>>>>> e18a310c7c0f0b368dfcdb9b845b5560631fa12a
 .claude/commands/wakil.<name>.md <- slash commands (/wakil.process, /wakil.overview, /wakil.new-task …) – one file per command
 COMMANDS.md                      <- catalog of all commands, their arguments and schedules
 tools/sync-ai-tools.cjs          <- /wakil.sync-tools: mirrors .claude/ + CLAUDE.md for Cursor and Codex (generated, never edit):

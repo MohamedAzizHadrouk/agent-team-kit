@@ -1,0 +1,18 @@
+{
+  "hooks": {
+    "Stop": [
+      {
+        "hooks": [
+          { "type": "command", "command": "node tools/credit-log.cjs hook --tool claude", "timeout": 30 }
+        ]
+      }
+    ],
+    "SubagentStop": [
+      {
+        "hooks": [
+          { "type": "command", "command": "node tools/credit-log.cjs hook --tool claude", "timeout": 30 }
+        ]
+      }
+    ]
+  }
+}

@@ -20,6 +20,7 @@ The user may type a command in any of these forms – they all mean the same thi
 | `/wakil.add-people` | `/wakil-add-people` | `$wakil-add-people` | Add or update people in a client's PEOPLE.md (work contacts only) |
 | `/wakil.add-resource` | `/wakil-add-resource` | `$wakil-add-resource` | Add a book, course or resource (article, video, tool, community) to one of your skills |
 | `/wakil.add-team` | `/wakil-add-team` | `$wakil-add-team` | Add a team to a managed department – TEAM.md, team board, registry row, label to create |
+| `/wakil.billing-period` | `/wakil-billing-period` | `$wakil-billing-period` | Enter the real dates of a subscription's paid period (start, end, amount) – the base Wakil Desktop uses to compute the cost of one credit |
 | `/wakil.brand` | `/wakil-brand` | `$wakil-brand` | Build and run your personal brand – strategy, one folder per channel (Instagram, TikTok, LinkedIn…) with its content, ideas, plans and post drafts (ecosystem/brand/) |
 | `/wakil.butler-rules` | `/wakil-butler-rules` | `$wakil-butler-rules` | Print the Butler rules for a team board, filled and ready to paste in Trello |
 | `/wakil.check-privacy` | `/wakil-check-privacy` | `$wakil-check-privacy` | Check that no client data, people or emails would be committed or pushed to git |
@@ -33,6 +34,7 @@ The user may type a command in any of these forms – they all mean the same thi
 | `/wakil.news-preferences` | `/wakil-news-preferences` | `$wakil-news-preferences` | Interview or update your news and trend preferences (news/PREFERENCES.md) used by /wakil.news |
 | `/wakil.news` | `/wakil-news` | `$wakil-news` | Build the day's folder news/YYYY/MM/DD with NEWS.md, TRENDS.md and TODO.md, following your preferences |
 | `/wakil.overview` | `/wakil-overview` | `$wakil-overview` | Read-only overview of a client – what waits for you, what is blocked, what is in progress |
+| `/wakil.personal-project` | `/wakil-personal-project` | `$wakil-personal-project` | Create and manage the owner's personal projects (not for a client) in ecosystem/projects/ – planned with /wakil.plan and shown in Wakil Desktop |
 | `/wakil.plan-project` | `/wakil-plan-project` | `$wakil-plan-project` | Propose a task breakdown for a project, then create the cards in Proposed after your OK |
 | `/wakil.plan` | `/wakil-plan` | `$wakil-plan` | Plan work as structured markdown (plan file + task files) visible in the Wakil Desktop Kanban – never on Trello; then run it task by task |
 | `/wakil.plan.trello` | `/wakil-plan-trello` | `$wakil-plan-trello` | Plan work as structured markdown (visible in the Wakil Desktop Kanban) AND create one Trello card per task in Proposed |
@@ -145,6 +147,8 @@ ecosystem/                       <- PRIVATE, git-ignored except _templates/
   PROFILE.md                     <- who the owner is, goals, how to work with them
   knowledge/SKILLS.md            <- skills I have / learning now / backlog
   knowledge/skills/<skill>/      <- SKILL.md + resources/ + books/ + courses/ + projects/<project>/
+  projects/<project>/            <- the owner's PERSONAL projects (/wakil.personal-project): PROJECT.md + plans/ + tasks/ + assets/
+                                    planned with /wakil.plan personal <project> …; briefs: TASK: personal/<project>/<T-NNN>
   news/PREFERENCES.md            <- news + trends preferences
   news/<YYYY>/<MM>/<DD>/         <- TODO.md, NEWS.md, TRENDS.md of that day
   brand/                         <- personal brand (/wakil.brand): BRAND.md, strategy/STRATEGY.md, assets/,

@@ -1,0 +1,63 @@
+---
+description: Credit usage log (usage/credits.jsonl, one line per prompt with provider, model and credits) and cost report per prompt, session, project, task, entity and agent
+argument-hint: sync|add|show|report [details in plain words]
+---
+# /wakil.credits – Credit usage log & cost report
+
+Act as the **manager** (`.claude/agents/manager/manager.md`). Arguments: `$ARGUMENTS`
+
+## Purpose
+`usage/credits.jsonl` (private, git-ignored) holds **one JSON line per prompt** (and per sub-agent run): date, tool,
+**provider**, **model**, tokens, **credits** (ACU, formula of `/wakil.usage acu`), session, agent, entity, project, task
+and a short prompt excerpt. Wakil Desktop › Usage & crédits › **Coûts par crédit** reads only this file.
+
+Lines are written automatically after every prompt:
+| Tool | How | Credits |
+|---|---|---|
+| Claude Code | `Stop` / `SubagentStop` hooks in `.claude/settings.json` | exact, from the session log tokens |
+| Codex | `notify` in `.codex/config.toml` (trusted project) | exact, from the rollout tokens |
+| Cursor | `beforeSubmitPrompt` / `stop` hooks in `.cursor/hooks.json` | estimated: requests × `/wakil.usage acu estimate cursor=N` (unknown until set) |
+
+Cost (same rule everywhere): per billing period (`/wakil.billing-period`) of a subscription, cost of one day = fee ÷
+days, cost to date = one day × days elapsed, **1 credit = cost to date ÷ credits of the period**, and every element costs
+its credits × that value. A provider's percentages are shares of its own credits.
+
+## Arguments
+| Owner says | Tool call (`node tools/credit-log.cjs …`) |
+|---|---|
+| "sync the credit log" / lines missing in the app | `sync` |
+| "In Cursor this prompt used 12 credits on acme/website" | `add --tool cursor --model <m> --credits 12 --project acme/website [--task T-004] [--agent ui-ux] --prompt "<excerpt>" --source-tool <tool>` |
+| "I did 5 Cursor requests on acme/site" | `add --tool cursor --requests 5 --project acme/site --source-tool <tool>` (estimated) |
+| "show the last lines" | `show --last 20` |
+| "how much did project X / agent Y / this session cost?" | `report [--provider anthropic \| --subscription claude-pro] [--from] [--to] --by project\|session\|task\|entity\|agent\|model\|prompt\|day` |
+
+## Preconditions
+- Node.js. For costs: the subscription exists with a price (`/wakil.subscription`) and, if its dates are not the
+  calendar of its start date, its periods (`/wakil.billing-period`).
+
+## Steps
+1. Map the request to one call from the table. A project is `<entity-slug>/<project-slug>` (or `<entity>/none`).
+2. `add`: only figures the owner or the tool reported – never invent credits or tokens; without credits or tokens
+   the line is `estimated` (or `unavailable` when no per-request estimate is configured – say so and suggest
+   `/wakil.usage acu estimate cursor=N`).
+3. Run from the ecosystem root and report the `✓` line, or the report's period calculation and table.
+4. Lines without an entity/project are shown as "non attribué": tell the owner that briefs with
+   `TASK: <entity>/<project>/<T-NNN>` or `Client:` / `Project:` lines are attributed automatically.
+
+## Rules
+- Only `tools/credit-log.cjs` writes `usage/credits.jsonl` (append-only; a corrected line keeps its id, `rev` + 1).
+- Never commit, paste or send the log: it holds prompt excerpts and client projects.
+- Credits are a relative consumption unit; money only comes from the subscription prices and periods.
+
+## Output
+The validated line, the last lines, or the cost report (period calculation + table credits / % / cost).
+
+## Schedulable
+`sync`, `show` and `report`.
+
+## Examples
+- `/wakil.credits sync`
+- `/wakil.credits add cursor 12 credits claude-sonnet on acme/website task T-004`
+- `/wakil.credits report anthropic by project`
+- `/wakil.credits report claude-pro by agent from 2026-11-15`
+- `/wakil.credits show`
