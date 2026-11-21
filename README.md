@@ -93,7 +93,11 @@ The agents, skills and commands are written once in `.claude/` and mirrored for 
 | Agents | `.claude/agents/` | `.cursor/agents/` | `.codex/agents/*.toml` |
 | Skills | `.claude/agents/<agent>/skills/` | `.agents/skills/` | `.agents/skills/` |
 
-Start Cursor or Codex in this folder and type the command form of your tool.
+Open Cursor or Codex **on this folder** (the ecosystem root) and type the command form of your tool.
+Working in a project's code folder (a sub-folder, often its own git repo)? Run `node tools/sync-ai-tools.cjs --global`
+once: it installs the commands for your user (`~/.agents/skills/wakil-*`), so `/wakil-x` (Cursor) and `$wakil-x` (Codex)
+work in any folder. Later syncs keep them up to date.
+New or changed commands appear after `node tools/sync-ai-tools.cjs` and a restart of Cursor / a new Codex session.
 
 ## Privacy
 This repo shares only the **structure**. `.gitignore` keeps everything under `entities/` and `ecosystem/` (except

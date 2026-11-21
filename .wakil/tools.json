@@ -1,7 +1,7 @@
 {
   "generator": "tools/sync-ai-tools.cjs",
-  "generatedAt": "2026-11-19T22:29:27.169Z",
-  "sourceMtime": "2026-11-19T22:29:15.830Z",
+  "generatedAt": "2026-11-21T12:10:19.445Z",
+  "sourceMtime": "2026-11-21T12:09:48.904Z",
   "tools": {
     "claude": {
       "reads": [
@@ -27,7 +27,7 @@
     }
   },
   "counts": {
-    "commands": 36,
+    "commands": 39,
     "agents": 8,
     "subagents": 7,
     "skills": 18
@@ -60,19 +60,8 @@
     ".agents/skills/wakil-brand/SKILL.md",
     ".agents/skills/wakil-butler-rules/SKILL.md",
     ".agents/skills/wakil-check-privacy/SKILL.md",
-<<<<<<< HEAD
     ".agents/skills/wakil-consult/SKILL.md",
     ".agents/skills/wakil-do/SKILL.md",
-=======
-    ".agents/skills/wakil-check-privacy/agents/openai.yaml",
-<<<<<<< HEAD
-    ".agents/skills/wakil-consult/SKILL.md",
-    ".agents/skills/wakil-consult/agents/openai.yaml",
-=======
-    ".agents/skills/wakil-credits/SKILL.md",
-    ".agents/skills/wakil-credits/agents/openai.yaml",
->>>>>>> e18a310c7c0f0b368dfcdb9b845b5560631fa12a
->>>>>>> 283c27e7af2a4b1ce1c1dc624d451cd8706e79ca
     ".agents/skills/wakil-focus/SKILL.md",
     ".agents/skills/wakil-learn/SKILL.md",
     ".agents/skills/wakil-list-commands/SKILL.md",
@@ -89,10 +78,6 @@
     ".agents/skills/wakil-plan/SKILL.md",
     ".agents/skills/wakil-process/SKILL.md",
     ".agents/skills/wakil-profile/SKILL.md",
-<<<<<<< HEAD
-=======
-    ".agents/skills/wakil-profile/agents/openai.yaml",
->>>>>>> 283c27e7af2a4b1ce1c1dc624d451cd8706e79ca
     ".agents/skills/wakil-reply/SKILL.md",
     ".agents/skills/wakil-resume/SKILL.md",
     ".agents/skills/wakil-schedule-local/SKILL.md",
@@ -100,19 +85,11 @@
     ".agents/skills/wakil-setup/SKILL.md",
     ".agents/skills/wakil-skill-project/SKILL.md",
     ".agents/skills/wakil-skills/SKILL.md",
-<<<<<<< HEAD
-=======
-    ".agents/skills/wakil-skills/agents/openai.yaml",
->>>>>>> 283c27e7af2a4b1ce1c1dc624d451cd8706e79ca
     ".agents/skills/wakil-sync-tools/SKILL.md",
     ".agents/skills/wakil-sync/SKILL.md",
     ".agents/skills/wakil-task/SKILL.md",
     ".agents/skills/wakil-todo/SKILL.md",
     ".agents/skills/wakil-update-context/SKILL.md",
-<<<<<<< HEAD
-=======
-    ".agents/skills/wakil-update-context/agents/openai.yaml",
->>>>>>> 283c27e7af2a4b1ce1c1dc624d451cd8706e79ca
     ".codex/agents/brand.toml",
     ".codex/agents/fullstack-devops.toml",
     ".codex/agents/learning-coach.toml",

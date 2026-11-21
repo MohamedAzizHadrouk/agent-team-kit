@@ -60,7 +60,7 @@ Three ways to get work done – choose how much tracking you want. Entity / proj
 | Command | Arguments | What it does | Schedulable |
 |---|---|---|---|
 | `/wakil.new-project` | `<entity-slug> <name> [goal]` | Create PROJECT.md and say which `project : …` label to create | ❌ |
-| `/wakil.task` | `<entity-slug> <project\|none> [<task-id> show\|status <s>\|note "…"]` · `--import <entity-slug>` | Local task files (`tasks/`) mirroring the cards – Kanban in Wakil Desktop | `--import` |
+| `/wakil.personal-project` | see Personal ecosystem | Your own projects (`personal` in the commands above) | – |
 
 ## Entities (organisations & individuals)
 | Command | Arguments | What it does | Schedulable |
@@ -83,7 +83,7 @@ Three ways to get work done – choose how much tracking you want. Entity / proj
 | `/wakil.butler-rules` | `<entity-slug> <team\|all>` | Print the Butler rules ready to paste | ❌ |
 | `/wakil.schedule-local` | `"<command>" <interval> [days] [hours]` · `--list` · `--remove <name>` | Run a schedulable command automatically on this computer | ❌ |
 | `/wakil.check-privacy` | `[--staged-only]` | Check nothing private would be committed / pushed | ✅ |
-| `/wakil.sync-tools` | `[--check]` | Regenerate AGENTS.md, `.agents/skills`, `.cursor/agents`, `.codex/agents` so the agents, skills and commands work in Cursor and Codex | ✅ |
+| `/wakil.sync-tools` | `[--check] [--global]` | Regenerate AGENTS.md, `.agents/skills`, `.cursor/commands`, `.cursor/agents`, `.codex/agents` so the agents, skills and commands work in Cursor and Codex (`--global`: in any folder) | ✅ |
 | `/wakil.new-command` | `<name> <purpose>` | Create a new command file from the standard layout | ❌ |
 | `/wakil.list-commands` | `[command-name]` | Show this catalog, or one command's details | ❌ |
 
