@@ -60,7 +60,7 @@ Three ways to get work done – choose how much tracking you want. Entity / proj
 | Command | Arguments | What it does | Schedulable |
 |---|---|---|---|
 | `/wakil.new-project` | `<entity-slug> <name> [goal]` | Create PROJECT.md and say which `project : …` label to create | ❌ |
-| `/wakil.personal-project` | see Personal ecosystem | Your own projects (`personal` in the commands above) | – |
+| `/wakil.task` | `<entity-slug> <project\|none> [<task-id> show\|status <s>\|note "…"]` · `--import <entity-slug>` | Local task files (`tasks/`) mirroring the cards – Kanban in Wakil Desktop | `--import` |
 
 ## Entities (organisations & individuals)
 | Command | Arguments | What it does | Schedulable |

@@ -93,8 +93,7 @@ The agents, skills and commands are written once in `.claude/` and mirrored for 
 | Agents | `.claude/agents/` | `.cursor/agents/` | `.codex/agents/*.toml` |
 | Skills | `.claude/agents/<agent>/skills/` | `.agents/skills/` | `.agents/skills/` |
 
-Open Cursor or Codex **on this folder** (the ecosystem root, not a sub-folder) and type the command form of your tool.
-New or changed commands appear after `node tools/sync-ai-tools.cjs` and a restart of Cursor / a new Codex session.
+Start Cursor or Codex in this folder and type the command form of your tool.
 
 ## Privacy
 This repo shares only the **structure**. `.gitignore` keeps everything under `entities/` and `ecosystem/` (except
