@@ -34,7 +34,7 @@ Turn a short description into a complete, verifiable card in **📥 Proposed** o
 7. **Local task file**: create `projects/<project>/tasks/T-NNN-<short-slug>.md` (no project → `entities/<slug>/tasks/`)
    from `entities/_templates/task.md` – next free id, `status: proposed`, executor, agent, assignee, reviewers,
    priority, `trello:` = the card URL, goal, deliverable and acceptance criteria copied from the card. Put the task id
-   in the card description (`Task: T-NNN`). This file feeds the Kanban and token usage in Wakil Desktop.
+   in the card description (`Task: T-NNN`). This file feeds the Kanban in Wakil Desktop.
 
 ## Rules
 - Create in 📥 Proposed only – never in Approved.

@@ -41,7 +41,7 @@ After `/wakil.focus`, a missing `<entity-slug>` (and project / team) is taken fr
 | `/wakil.plan.trello` | `<entity-slug> <project\|none> <goal>` · `--from <plan-id>` | **Trello plan**: same markdown plan + one Trello card per task in Proposed (after your OK) | ❌ |
 | `/wakil.plan-project` | `<entity-slug> <project> [--next N]` | Propose a task breakdown; after your OK create the first N cards in Proposed (older form of `/wakil.plan.trello`) | ❌ |
 | `/wakil.new-project` | `<entity-slug> <name> [goal]` | Create PROJECT.md and say which `project : …` label to create | ❌ |
-| `/wakil.task` | `<entity-slug> <project\|none> [<task-id> show\|status <s>\|note "…"]` · `--import <entity-slug>` | Local task files (`tasks/`) mirroring the cards – Kanban and token usage in Wakil Desktop | `--import` |
+| `/wakil.task` | `<entity-slug> <project\|none> [<task-id> show\|status <s>\|note "…"]` · `--import <entity-slug>` | Local task files (`tasks/`) mirroring the cards – Kanban in Wakil Desktop | `--import` |
 
 ## Entities (organisations & individuals)
 | Command | Arguments | What it does | Schedulable |
@@ -52,15 +52,8 @@ After `/wakil.focus`, a missing `<entity-slug>` (and project / team) is taken fr
 | `/wakil.add-team` | `<entity-slug> <department> <team>` | TEAM.md + team board + registry row + label to create | ❌ |
 | `/wakil.add-document` | `<entity-slug> <file\|link\|text> [about] [--confidential]` | File + index a document and extract facts into the context | ❌ |
 | `/wakil.update-context` | `<entity-slug> <information>` | Save new info in the right file with a dated log entry | ❌ |
+| `/wakil.consult` | `<entity-slug> <question>` | Ask an entity’s consultant and retain confirmed context | ❌ |
 
-## AI providers, subscriptions & usage (`usage/registry.json` – private)
-| Command | Arguments | What it does | Schedulable |
-|---|---|---|---|
-| `/wakil.provider` | `add\|update\|show\|activate\|deactivate\|archive\|remove [provider] [details]` | AI providers in the registry (`usage/registry.json`) read by Wakil Desktop | `show` |
-| `/wakil.subscription` | `add\|update\|price\|billing\|budget\|expense\|plan-usage\|activate\|deactivate\|archive\|remove\|show [sub] [details]` | AI subscriptions: price history, billing model, budget, actual expenses, plan usage | `show` |
-| `/wakil.usage` | `record\|acu\|settings\|show\|log [details]` | Record usage tools do not log (Cursor), ACU weights / multipliers, currencies, change log | `show`, `log` |
-
-All three work from Claude Code, Cursor and Codex and write only through `node tools/ai-registry.cjs` (validated, versioned, logged with the chat and agent).
 
 ## Setup & maintenance
 | Command | Arguments | What it does | Schedulable |

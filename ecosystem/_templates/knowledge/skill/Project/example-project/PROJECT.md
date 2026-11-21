@@ -15,7 +15,7 @@ TODO
 - [ ] TODO
 
 ## Resources used
-- TODO (links to resources/, books/, courses/)
+- TODO (links to Resources/, Resources/Books/, Resources/Courses/)
 
 ## Where the work lives
 - Files: `assets/` in this folder · Repo: TODO (optional)

@@ -1,7 +1,7 @@
 {
   "generator": "tools/sync-ai-tools.cjs",
-  "generatedAt": "2026-11-15T12:43:14.375Z",
-  "sourceMtime": "2026-11-15T12:43:13.798Z",
+  "generatedAt": "2026-11-19T22:29:27.169Z",
+  "sourceMtime": "2026-11-19T22:29:15.830Z",
   "tools": {
     "claude": {
       "reads": [
@@ -26,7 +26,7 @@
     }
   },
   "counts": {
-    "commands": 38,
+    "commands": 36,
     "agents": 8,
     "subagents": 7,
     "skills": 18
@@ -68,6 +68,8 @@
     ".agents/skills/wakil-butler-rules/agents/openai.yaml",
     ".agents/skills/wakil-check-privacy/SKILL.md",
     ".agents/skills/wakil-check-privacy/agents/openai.yaml",
+    ".agents/skills/wakil-consult/SKILL.md",
+    ".agents/skills/wakil-consult/agents/openai.yaml",
     ".agents/skills/wakil-focus/SKILL.md",
     ".agents/skills/wakil-focus/agents/openai.yaml",
     ".agents/skills/wakil-learn/SKILL.md",
@@ -96,8 +98,6 @@
     ".agents/skills/wakil-process/agents/openai.yaml",
     ".agents/skills/wakil-profile/SKILL.md",
     ".agents/skills/wakil-profile/agents/openai.yaml",
-    ".agents/skills/wakil-provider/SKILL.md",
-    ".agents/skills/wakil-provider/agents/openai.yaml",
     ".agents/skills/wakil-reply/SKILL.md",
     ".agents/skills/wakil-reply/agents/openai.yaml",
     ".agents/skills/wakil-resume/SKILL.md",
@@ -112,8 +112,6 @@
     ".agents/skills/wakil-skill-project/agents/openai.yaml",
     ".agents/skills/wakil-skills/SKILL.md",
     ".agents/skills/wakil-skills/agents/openai.yaml",
-    ".agents/skills/wakil-subscription/SKILL.md",
-    ".agents/skills/wakil-subscription/agents/openai.yaml",
     ".agents/skills/wakil-sync-tools/SKILL.md",
     ".agents/skills/wakil-sync-tools/agents/openai.yaml",
     ".agents/skills/wakil-sync/SKILL.md",
@@ -124,8 +122,6 @@
     ".agents/skills/wakil-todo/agents/openai.yaml",
     ".agents/skills/wakil-update-context/SKILL.md",
     ".agents/skills/wakil-update-context/agents/openai.yaml",
-    ".agents/skills/wakil-usage/SKILL.md",
-    ".agents/skills/wakil-usage/agents/openai.yaml",
     ".codex/agents/brand.toml",
     ".codex/agents/fullstack-devops.toml",
     ".codex/agents/learning-coach.toml",

@@ -27,16 +27,14 @@ labels: -
      - order: execution order inside the plan · depends: task ids that must be done first (T-001, T-002)
      - estimate: rough size (S | M | L) – never a promise of hours
      Path: entities/<entity>/projects/<project>/tasks/T-001-short-slug.md  (no project → entities/<entity>/tasks/)
-     Read by Wakil Desktop (Kanban per project + token usage per task).
+     Read by Wakil Desktop (Kanban per project).
 
      Frontmatter values:
      - status: proposed | approved | in-progress | in-review | needs-changes | peer-review | awaiting-approval | blocked | done
        (= the Command Center lists 📥 ✅ 🔄 🔍 🔁 👀 🛑 ❓ 🏁)
      - executor: agent | human     - agent: the specialist (brand, ui-ux, fullstack-devops, marketing, media…) or -
      - assignee / reviewers: names from PEOPLE.md (names only, never emails)
-     - priority: urgent | high | normal | low      - trello: the card URL
-     Token usage is NOT written here: Wakil Desktop reads it from Claude Code's local session logs, using the
-     `TASK: <entity>/<project>/<id>` line that starts every specialist brief. -->
+     - priority: urgent | high | normal | low      - trello: the card URL -->
 
 ## Goal
 TODO – one sentence: the outcome, not the activity

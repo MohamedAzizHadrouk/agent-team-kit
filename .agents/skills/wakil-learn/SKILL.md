@@ -17,8 +17,8 @@ metadata:
 Act as the **manager** (`.claude/agents/manager/manager.md`). Arguments: the text the user wrote after the command
 
 ## Purpose
-Tell Claude you want to learn something. It creates `ecosystem/knowledge/skills/<slug>/` from the template
-(SKILL.md + resources/ + books/ + courses/ + projects/), asks where you are and where you want to go, and proposes
+Tell Claude you want to learn something. It creates `ecosystem/knowledge/skills/<soft-skills|hard-skills>/<slug>/` from the template
+(SKILL.md + Resources/ + Presentation/ + Project/ + Documents/), asks where you are and where you want to go, and proposes
 a roadmap with real resources and a first practice (academic) project.
 
 ## Arguments
@@ -32,15 +32,15 @@ a roadmap with real resources and a first practice (academic) project.
 - The skill folder does not exist yet. If it does → show it and offer `/wakil.skills --review <skill>` instead.
 
 ## Steps
-1. Ask (max 5, suggested defaults): why · level now (0–5) and what you can already do · target level and a concrete
+1. Ask which category to use (soft-skills or hard-skills), then ask about the goal · level now (0–5) and what you can already do · target level and a concrete
    "I can…" outcome · target date and hours per week · preferred ways to learn (books / courses / practice / free only?).
-2. Copy `ecosystem/_templates/knowledge/skill/` to `ecosystem/knowledge/skills/<slug>/`; rename
-   `projects/example-project` only when the first project is created. Fill SKILL.md with the answers.
+2. Copy `ecosystem/_templates/knowledge/skill/` to `ecosystem/knowledge/skills/<soft-skills|hard-skills>/<slug>/`; rename
+   `Project/example-project` only when the first project is created. Fill SKILL.md with the answers.
 3. Spawn **learning-coach** with: skill, answers, the SKILL.md path, the owner's languages (from PROFILE.md – only
    that field). It returns a roadmap (3–6 milestones), real resources for each (books, courses, resources – with links,
    verified by web search) and one first practice project.
-4. Show the proposal. After the owner's OK: fill the roadmap, add the resources to the three INDEX.md files, create
-   `projects/<project-slug>/PROJECT.md` for the first project, add the skill to SKILLS.md › Learning now.
+4. Show the proposal. After the owner's OK: fill the roadmap, add the resources to the relevant indexes under Resources/, create
+   `Project/<project-slug>/PROJECT.md` for the first project, add the skill to SKILLS.md › Learning now.
 5. Ask whether to add the first steps to today's to-do (`/wakil.todo add`).
 
 ## Rules

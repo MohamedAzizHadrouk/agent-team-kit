@@ -8,7 +8,7 @@ Act as the **manager** (`.claude/agents/manager/manager.md`). Arguments: `$ARGUM
 
 ## Purpose
 Learn by doing: each practice project proves one roadmap milestone. Creates
-`ecosystem/knowledge/skills/<skill>/projects/<slug>/PROJECT.md` (+ `assets/`), or closes it with a short review.
+`ecosystem/knowledge/skills/<category>/<skill>/Project/<slug>/PROJECT.md` (+ `assets/`), or closes it with a short review.
 
 ## Arguments
 | Argument | Required | Values | Default |
@@ -19,6 +19,7 @@ Learn by doing: each practice project proves one roadmap milestone. Creates
 | `--done` | no | close the project: review + level update | – |
 
 ## Preconditions
+- Resolve a category/skill path or a unique slug under soft-skills, hard-skills or the legacy skills folder. Ask on collisions. For legacy skills use the existing projects/ directory.
 - The skill folder exists (else `/wakil.learn <skill>`).
 
 ## Steps

@@ -17,5 +17,6 @@ ecosystem/*
 !ecosystem/_templates/**
 
 # ── Privacy: AI subscriptions, prices, expenses and usage records (Wakil AI registry) stay on this computer. ──
-usage/registry.json
-usage/registry.json.tmp
+# Historical local usage data
+/usage/
+.wakil/archive/
