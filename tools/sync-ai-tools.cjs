@@ -4,7 +4,8 @@
 // This script GENERATES the files that Cursor and OpenAI Codex read, so the same agents, skills and commands
 // work there too:
 //   AGENTS.md                                   shared rules + how to run Wakil commands   (Codex, Cursor, others)
-//   .agents/skills/wakil-<command>/SKILL.md     one skill per /wakil.* command  → Cursor /wakil-x · Codex $wakil-x
+//   .agents/skills/wakil-<command>/SKILL.md     one skill per /wakil.* command  → Codex $wakil-x (and /skills) · Cursor /wakil-x
+//   .cursor/commands/wakil.<command>.md         one Cursor command per /wakil.* command → Cursor /wakil.x (same as Claude Code)
 //   .agents/skills/<agent>-<skill>/SKILL.md     the agents' method skills (Agent Skills standard)
 //   .cursor/agents/<agent>.md                   Cursor subagents
 //   .codex/agents/<agent>.toml                  Codex custom agents
@@ -109,7 +110,7 @@ const header = (src) => `<!-- ${MARK} from ${src} – do not edit here: edit the
 
 // ---------- AGENTS.md ----------
 const cmdRows = commands
-  .map((c) => `| \`/${c.name}\` | \`/${c.skill}\` | \`$${c.skill}\` | ${c.description.replace(/\|/g, '\\|')} |`)
+  .map((c) => `| \`/${c.name}\` | \`/${c.name}\` or \`/${c.skill}\` | \`$${c.skill}\` | ${c.description.replace(/\|/g, '\\|')} |`)
   .join('\n')
 const agentRows = agents
   .map((a) => `| ${a.id} | \`${a.file}\` | ${a.id === 'manager' ? 'main agent (you)' : `\`.cursor/agents/${a.id}.md\` · \`.codex/agents/${a.id}.toml\``} | ${a.skills.length} |`)
@@ -137,8 +138,10 @@ ${cmdRows}
 
 How to run one (any tool): open \`.claude/commands/<name>.md\` (e.g. \`/wakil.news\` → \`.claude/commands/wakil.news.md\`),
 treat the text the user wrote after the command as **the arguments** (\`$ARGUMENTS\` in the file), and follow its
-**Steps** and **Rules** exactly. In Cursor and Codex the same instructions are also available as skills
-(\`.agents/skills/wakil-*/SKILL.md\`). If the user writes \`/wakil.x\` literally in Codex, run the skill \`wakil-x\`.
+**Steps** and **Rules** exactly. The same instructions are also available as Cursor commands
+(\`.cursor/commands/wakil.*.md\`) and as skills for Codex and Cursor (\`.agents/skills/wakil-*/SKILL.md\`).
+In Codex, commands are skills: type \`$wakil-x\` (or pick it in \`/skills\`). If the user writes \`/wakil.x\` or
+\`wakil.x\` as plain text in any tool, treat it as that command: run the skill \`wakil-x\` / follow \`.claude/commands/wakil.x.md\`.
 
 ## Agents (specialists)
 | Agent | Definition (source) | Cursor / Codex | Skills |
@@ -163,7 +166,7 @@ ${skillRows}
 - Connectors (Trello, Gmail/Outlook, Figma, GitHub…) are configured per tool. If the one a command needs is missing in
   your tool, say so and stop (\`NEEDS_INFO\`) – never work around it. \`tools/outlook-draft.ps1\` works from any tool.
 - Changed an agent, a skill or a command in \`.claude/\`? Run \`node tools/sync-ai-tools.cjs\` (or \`/wakil.sync-tools\`).
-- Never edit the generated files (\`AGENTS.md\`, \`.agents/skills/\`, \`.cursor/agents/\`, \`.codex/agents/\`).
+- Never edit the generated files (\`AGENTS.md\`, \`.agents/skills/\`, \`.cursor/commands/\`, \`.cursor/agents/\`, \`.codex/agents/\`).
 
 ---
 
@@ -196,9 +199,18 @@ ${header(c.file)}
 
 ${body}`,
   )
+  // No agents/openai.yaml with `allow_implicit_invocation: false` any more: Codex then left the command out of its
+  // skill list, so `$wakil-x` and plain "/wakil.x" requests were not found. The description already limits its use.
+
+  // Cursor custom command: typed exactly like in Claude Code (/wakil.focus …); the text after it is the arguments.
   write(
-    `.agents/skills/${c.skill}/agents/openai.yaml`,
-    `# ${MARK} from ${c.file}\npolicy:\n  allow_implicit_invocation: false\n`,
+    `.cursor/commands/${c.name}.md`,
+    `${header(c.file)}
+
+> Wakil command **/${c.name}**. Arguments: everything the user wrote after \`/${c.name}\`${c.hint ? ` – expected: \`${c.hint}\`` : ''}
+> (none = use the defaults described below). Read \`AGENTS.md\` (shared rules) first if you have not yet.
+
+${body}`,
   )
 }
 
@@ -285,7 +297,7 @@ fs.writeFileSync(
       sourceMtime: new Date(sourceMtime).toISOString(),
       tools: {
         claude: { reads: ['CLAUDE.md', '.claude/agents', '.claude/commands'] },
-        cursor: { reads: ['AGENTS.md', '.agents/skills', '.cursor/agents'] },
+        cursor: { reads: ['AGENTS.md', '.cursor/commands', '.agents/skills', '.cursor/agents'] },
         codex: { reads: ['AGENTS.md', '.agents/skills', '.codex/agents'] },
       },
       counts: { commands: commands.length, agents: agents.length, subagents: specialists.length, skills: allSkills.length },
@@ -297,6 +309,6 @@ fs.writeFileSync(
 )
 console.log(
   `Wakil sync: ${commands.length} commands, ${specialists.length} subagents, ${allSkills.length} skills → ` +
-    `AGENTS.md, .agents/skills (${commands.length + allSkills.length}), .cursor/agents, .codex/agents` +
+    `AGENTS.md, .agents/skills (${commands.length + allSkills.length}), .cursor/commands (${commands.length}), .cursor/agents, .codex/agents` +
     (removed ? ` · ${removed} stale file(s) removed` : ''),
 )

@@ -89,11 +89,12 @@ The agents, skills and commands are written once in `.claude/` and mirrored for 
 | | Claude Code | Cursor | Codex (ChatGPT) |
 |---|---|---|---|
 | Rules | `CLAUDE.md` | `AGENTS.md` | `AGENTS.md` |
-| Commands | `/wakil.news` | `/wakil-news` (skill) | `$wakil-news` (skill) |
+| Commands | `/wakil.news` | `/wakil.news` (`.cursor/commands/`) or `/wakil-news` (skill) | `$wakil-news` (skill, also in `/skills`) |
 | Agents | `.claude/agents/` | `.cursor/agents/` | `.codex/agents/*.toml` |
 | Skills | `.claude/agents/<agent>/skills/` | `.agents/skills/` | `.agents/skills/` |
 
-Start Cursor or Codex in this folder and type the command form of your tool.
+Open Cursor or Codex **on this folder** (the ecosystem root, not a sub-folder) and type the command form of your tool.
+New or changed commands appear after `node tools/sync-ai-tools.cjs` and a restart of Cursor / a new Codex session.
 
 ## Privacy
 This repo shares only the **structure**. `.gitignore` keeps everything under `entities/` and `ecosystem/` (except

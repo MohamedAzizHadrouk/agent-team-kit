@@ -86,7 +86,8 @@ tools/sync-ai-tools.cjs          <- /wakil.sync-tools: mirrors .claude/ + CLAUDE
 ## Other AI tools (Cursor, Codex)
 The same ecosystem works in **Claude Code, Cursor and OpenAI Codex**. `.claude/` and this file are the only sources;
 `/wakil.sync-tools` (`node tools/sync-ai-tools.cjs`) generates what the other tools read. Command forms:
-Claude Code `/wakil.news` · Cursor `/wakil-news` · Codex `$wakil-news`. After any change to an agent, a skill or a
+Claude Code `/wakil.news` · Cursor `/wakil.news` (or `/wakil-news`) · Codex `$wakil-news` (or pick it in `/skills`).
+Open Cursor / Codex on this folder (the ecosystem root), not a sub-folder. After any change to an agent, a skill or a
 command, run `/wakil.sync-tools` and commit the generated files with the change.
 
 ## Entity consultants and assigned skills
