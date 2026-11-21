@@ -14,44 +14,45 @@ The user may type a command in any of these forms – they all mean the same thi
 
 | Claude Code | Cursor | Codex | What it does |
 |---|---|---|---|
-| `/wakil.add-department` | `/wakil-add-department` | `$wakil-add-department` | Add a department (committee, section) to an organisation – company, association or club (DEPARTMENT.md + ORG.md) |
-| `/wakil.add-document` | `/wakil-add-document` | `$wakil-add-document` | File a client document, index it, and extract useful facts into the context files |
-| `/wakil.add-entity` | `/wakil-add-entity` | `$wakil-add-entity` | Add a new entity – an organisation (company, association, club) or an individual – questionnaire, folder, boards, registry |
-| `/wakil.add-people` | `/wakil-add-people` | `$wakil-add-people` | Add or update people in a client's PEOPLE.md (work contacts only) |
-| `/wakil.add-resource` | `/wakil-add-resource` | `$wakil-add-resource` | Add a book, course or resource (article, video, tool, community) to one of your skills |
-| `/wakil.add-team` | `/wakil-add-team` | `$wakil-add-team` | Add a team to a managed department – TEAM.md, team board, registry row, label to create |
-| `/wakil.billing-period` | `/wakil-billing-period` | `$wakil-billing-period` | Enter the real dates of a subscription's paid period (start, end, amount) – the base Wakil Desktop uses to compute the cost of one credit |
-| `/wakil.brand` | `/wakil-brand` | `$wakil-brand` | Build and run your personal brand – strategy, one folder per channel (Instagram, TikTok, LinkedIn…) with its content, ideas, plans and post drafts (ecosystem/brand/) |
-| `/wakil.butler-rules` | `/wakil-butler-rules` | `$wakil-butler-rules` | Print the Butler rules for a team board, filled and ready to paste in Trello |
-| `/wakil.check-privacy` | `/wakil-check-privacy` | `$wakil-check-privacy` | Check that no client data, people or emails would be committed or pushed to git |
-| `/wakil.consult` | `/wakil-consult` | `$wakil-consult` | Ask an entity's private consultant a question and retain useful confirmed context |
-| `/wakil.focus` | `/wakil-focus` | `$wakil-focus` | Select the working context (client, department, team, project) so the next commands use it by default |
-| `/wakil.learn` | `/wakil-learn` | `$wakil-learn` | I want to learn X" – create the skill folder, set level and goal, propose a roadmap with real resources and a first practice project |
-| `/wakil.list-commands` | `/wakil-list-commands` | `$wakil-list-commands` | Show all available commands with their arguments and examples (COMMANDS.md) |
-| `/wakil.new-command` | `/wakil-new-command` | `$wakil-new-command` | Create a new command file from the standard layout and add it to COMMANDS.md |
-| `/wakil.new-project` | `/wakil-new-project` | `$wakil-new-project` | Create a new project for a client (PROJECT.md) and say which Trello label to create |
-| `/wakil.new-task` | `/wakil-new-task` | `$wakil-new-task` | Draft a complete task card in Proposed (team, executor, assignee, reviewers, criteria, labels) |
-| `/wakil.news-preferences` | `/wakil-news-preferences` | `$wakil-news-preferences` | Interview or update your news and trend preferences (news/PREFERENCES.md) used by /wakil.news |
-| `/wakil.news` | `/wakil-news` | `$wakil-news` | Build the day's folder news/YYYY/MM/DD with NEWS.md, TRENDS.md and TODO.md, following your preferences |
-| `/wakil.overview` | `/wakil-overview` | `$wakil-overview` | Read-only overview of a client – what waits for you, what is blocked, what is in progress |
-| `/wakil.personal-project` | `/wakil-personal-project` | `$wakil-personal-project` | Create and manage the owner's personal projects (not for a client) in ecosystem/projects/ – planned with /wakil.plan and shown in Wakil Desktop |
-| `/wakil.plan-project` | `/wakil-plan-project` | `$wakil-plan-project` | Propose a task breakdown for a project, then create the cards in Proposed after your OK |
-| `/wakil.plan` | `/wakil-plan` | `$wakil-plan` | Plan work as structured markdown (plan file + task files) visible in the Wakil Desktop Kanban – never on Trello; then run it task by task |
-| `/wakil.plan.trello` | `/wakil-plan-trello` | `$wakil-plan-trello` | Plan work as structured markdown (visible in the Wakil Desktop Kanban) AND create one Trello card per task in Proposed |
-| `/wakil.process` | `/wakil-process` | `$wakil-process` | Process a client's boards – audit, sync, reviews, approved cards, report |
-| `/wakil.profile` | `/wakil-profile` | `$wakil-profile` | Show or update what Claude knows about you (ecosystem/PROFILE.md) |
-| `/wakil.reply` | `/wakil-reply` | `$wakil-reply` | Record an email reply (a person's result or a reviewer's answer) on the right card |
-| `/wakil.resume` | `/wakil-resume` | `$wakil-resume` | Resume where you stopped last time – in general, or for a client, project, team or one of your skills |
-| `/wakil.schedule-local` | `/wakil-schedule-local` | `$wakil-schedule-local` | Schedule a command to run automatically on this computer (e.g. /wakil.process every 30 min on workdays) |
-| `/wakil.setup-trello` | `/wakil-setup-trello` | `$wakil-setup-trello` | Create the Trello templates, or a client's boards, from board-spec.md |
-| `/wakil.setup` | `/wakil-setup` | `$wakil-setup` | First-run guide – check the tools, create your private ecosystem, learn who you are, then set up skills, news and clients |
-| `/wakil.skill-project` | `/wakil-skill-project` | `$wakil-skill-project` | Create, update or close a practice (academic) project for one of your skills |
-| `/wakil.skills` | `/wakil-skills` | `$wakil-skills` | Interview about your skills, or show your skills, learning progress and next steps (knowledge/SKILLS.md) |
-| `/wakil.sync-tools` | `/wakil-sync-tools` | `$wakil-sync-tools` | Regenerate the files Cursor and Codex read (AGENTS.md, .agents/skills, .cursor/agents, .codex/agents) from .claude/ and CLAUDE.md |
-| `/wakil.sync` | `/wakil-sync` | `$wakil-sync` | Only read team boards (comments, files, Ready for Review) into the Command Center and context files |
-| `/wakil.task` | `/wakil-task` | `$wakil-task` | Show, move or import local task files (tasks/) that mirror the Trello cards – used by the Kanban in Wakil Desktop |
-| `/wakil.todo` | `/wakil-todo` | `$wakil-todo` | Show, add or tick today's to-do items (news/YYYY/MM/DD/TODO.md) |
-| `/wakil.update-context` | `/wakil-update-context` | `$wakil-update-context` | Save new information about a client into the right context file, with a dated log entry |
+| `/wakil.add-department` | `/wakil.add-department` or `/wakil-add-department` | `$wakil-add-department` | Add a department (committee, section) to an organisation – company, association or club (DEPARTMENT.md + ORG.md) |
+| `/wakil.add-document` | `/wakil.add-document` or `/wakil-add-document` | `$wakil-add-document` | File a client document, index it, and extract useful facts into the context files |
+| `/wakil.add-entity` | `/wakil.add-entity` or `/wakil-add-entity` | `$wakil-add-entity` | Add a new entity – an organisation (company, association, club) or an individual – questionnaire, folder, boards, registry |
+| `/wakil.add-people` | `/wakil.add-people` or `/wakil-add-people` | `$wakil-add-people` | Add or update people in a client's PEOPLE.md (work contacts only) |
+| `/wakil.add-resource` | `/wakil.add-resource` or `/wakil-add-resource` | `$wakil-add-resource` | Add a book, course or resource (article, video, tool, community) to one of your skills |
+| `/wakil.add-team` | `/wakil.add-team` or `/wakil-add-team` | `$wakil-add-team` | Add a team to a managed department – TEAM.md, team board, registry row, label to create |
+| `/wakil.brand` | `/wakil.brand` or `/wakil-brand` | `$wakil-brand` | Build and run your personal brand – strategy, one folder per channel (Instagram, TikTok, LinkedIn…) with its content, ideas, plans and post drafts (ecosystem/brand/) |
+| `/wakil.butler-rules` | `/wakil.butler-rules` or `/wakil-butler-rules` | `$wakil-butler-rules` | Print the Butler rules for a team board, filled and ready to paste in Trello |
+| `/wakil.check-privacy` | `/wakil.check-privacy` or `/wakil-check-privacy` | `$wakil-check-privacy` | Check that no client data, people or emails would be committed or pushed to git |
+| `/wakil.consult` | `/wakil.consult` or `/wakil-consult` | `$wakil-consult` | Ask an entity's private consultant a question and retain useful confirmed context |
+| `/wakil.do` | `/wakil.do` or `/wakil-do` | `$wakil-do` | Run a request now with an agent (direct mode) – choose the agent with --agent or let the manager pick – no plan, no task file, no Trello card |
+| `/wakil.focus` | `/wakil.focus` or `/wakil-focus` | `$wakil-focus` | Select the working context (client, department, team, project) so the next commands use it by default |
+| `/wakil.learn` | `/wakil.learn` or `/wakil-learn` | `$wakil-learn` | I want to learn X" – create the skill folder, set level and goal, propose a roadmap with real resources and a first practice project |
+| `/wakil.list-commands` | `/wakil.list-commands` or `/wakil-list-commands` | `$wakil-list-commands` | Show all available commands with their arguments and examples (COMMANDS.md) |
+| `/wakil.locks` | `/wakil.locks` or `/wakil-locks` | `$wakil-locks` | File locks – see which agent is editing which file, release a lock, or take one by hand (Codex, manual work) so two agents never edit the same file |
+| `/wakil.new-command` | `/wakil.new-command` or `/wakil-new-command` | `$wakil-new-command` | Create a new command file from the standard layout and add it to COMMANDS.md |
+| `/wakil.new-project` | `/wakil.new-project` or `/wakil-new-project` | `$wakil-new-project` | Create a new project for a client (PROJECT.md) and say which Trello label to create |
+| `/wakil.new-task` | `/wakil.new-task` or `/wakil-new-task` | `$wakil-new-task` | Draft a complete task card in Proposed (team, executor, assignee, reviewers, criteria, labels) |
+| `/wakil.news-preferences` | `/wakil.news-preferences` or `/wakil-news-preferences` | `$wakil-news-preferences` | Interview or update your news and trend preferences (news/PREFERENCES.md) used by /wakil.news |
+| `/wakil.news` | `/wakil.news` or `/wakil-news` | `$wakil-news` | Build the day's folder news/YYYY/MM/DD with NEWS.md, TRENDS.md and TODO.md, following your preferences |
+| `/wakil.overview` | `/wakil.overview` or `/wakil-overview` | `$wakil-overview` | Read-only overview of a client – what waits for you, what is blocked, what is in progress |
+| `/wakil.personal-project` | `/wakil.personal-project` or `/wakil-personal-project` | `$wakil-personal-project` | Create and manage the owner's personal projects (not for a client) in ecosystem/projects/ – planned with /wakil.plan and shown in Wakil Desktop |
+| `/wakil.plan-project` | `/wakil.plan-project` or `/wakil-plan-project` | `$wakil-plan-project` | Propose a task breakdown for a project, then create the cards in Proposed after your OK |
+| `/wakil.plan` | `/wakil.plan` or `/wakil-plan` | `$wakil-plan` | Plan work as structured markdown (plan file + task files) visible in the Wakil Desktop Kanban – never on Trello; then run it task by task |
+| `/wakil.plan.trello` | `/wakil.plan.trello` or `/wakil-plan-trello` | `$wakil-plan-trello` | Plan work as structured markdown (visible in the Wakil Desktop Kanban) AND create one Trello card per task in Proposed |
+| `/wakil.process` | `/wakil.process` or `/wakil-process` | `$wakil-process` | Process a client's boards – audit, sync, reviews, approved cards, report |
+| `/wakil.profile` | `/wakil.profile` or `/wakil-profile` | `$wakil-profile` | Show or update what Claude knows about you (ecosystem/PROFILE.md) |
+| `/wakil.reply` | `/wakil.reply` or `/wakil-reply` | `$wakil-reply` | Record an email reply (a person's result or a reviewer's answer) on the right card |
+| `/wakil.resume` | `/wakil.resume` or `/wakil-resume` | `$wakil-resume` | Resume where you stopped last time – in general, or for a client, project, team or one of your skills |
+| `/wakil.schedule-local` | `/wakil.schedule-local` or `/wakil-schedule-local` | `$wakil-schedule-local` | Schedule a command to run automatically on this computer (e.g. /wakil.process every 30 min on workdays) |
+| `/wakil.setup-trello` | `/wakil.setup-trello` or `/wakil-setup-trello` | `$wakil-setup-trello` | Create the Trello templates, or a client's boards, from board-spec.md |
+| `/wakil.setup` | `/wakil.setup` or `/wakil-setup` | `$wakil-setup` | First-run guide – check the tools, create your private ecosystem, learn who you are, then set up skills, news and clients |
+| `/wakil.skill-project` | `/wakil.skill-project` or `/wakil-skill-project` | `$wakil-skill-project` | Create, update or close a practice (academic) project for one of your skills |
+| `/wakil.skills` | `/wakil.skills` or `/wakil-skills` | `$wakil-skills` | Interview about your skills, or show your skills, learning progress and next steps (knowledge/SKILLS.md) |
+| `/wakil.sync-tools` | `/wakil.sync-tools` or `/wakil-sync-tools` | `$wakil-sync-tools` | Regenerate the files Cursor and Codex read (AGENTS.md, .agents/skills, .cursor/agents, .codex/agents) from .claude/ and CLAUDE.md |
+| `/wakil.sync` | `/wakil.sync` or `/wakil-sync` | `$wakil-sync` | Only read team boards (comments, files, Ready for Review) into the Command Center and context files |
+| `/wakil.task` | `/wakil.task` or `/wakil-task` | `$wakil-task` | Show, move or import local task files (tasks/) that mirror the Trello cards – used by the Kanban in Wakil Desktop |
+| `/wakil.todo` | `/wakil.todo` or `/wakil-todo` | `$wakil-todo` | Show, add or tick today's to-do items (news/YYYY/MM/DD/TODO.md) |
+| `/wakil.update-context` | `/wakil.update-context` or `/wakil-update-context` | `$wakil-update-context` | Save new information about a client into the right context file, with a dated log entry |
 
 How to run one (any tool): open `.claude/commands/<name>.md` (e.g. `/wakil.news` → `.claude/commands/wakil.news.md`),
 treat the text the user wrote after the command as **the arguments** (`$ARGUMENTS` in the file), and follow its
@@ -107,6 +108,8 @@ Each agent's skills are indexed in `.claude/agents/<agent>/skills/INDEX.md`. The
 - Connectors (Trello, Gmail/Outlook, Figma, GitHub…) are configured per tool. If the one a command needs is missing in
   your tool, say so and stop (`NEEDS_INFO`) – never work around it. `tools/outlook-draft.ps1` works from any tool.
 - Changed an agent, a skill or a command in `.claude/`? Run `node tools/sync-ai-tools.cjs` (or `/wakil.sync-tools`).
+- Commands missing because the tool is open on a sub-folder (a project's code repo)? Run
+  `node tools/sync-ai-tools.cjs --global` once: the commands are then installed for the user and work in any folder.
 - Never edit the generated files (`AGENTS.md`, `.agents/skills/`, `.cursor/commands/`, `.cursor/agents/`, `.codex/agents/`).
 
 ---
@@ -174,6 +177,8 @@ entities/
       tasks/T-NNN-<slug>.md                     <- one file per Trello card (status, agent, criteria, log) – /wakil.task
     documents/INDEX.md + files                  <- client documents (confidential ones: location only)
 tools/outlook-draft.ps1          <- creates email DRAFTS in the owner's Outlook (never sends)
+tools/file-lock.cjs              <- file locks: two agents never edit the same file at once (hooks + /wakil.locks);
+                                    store .wakil/locks/ (PRIVATE, git-ignored)
 .claude/commands/wakil.<name>.md <- slash commands (/wakil.process, /wakil.overview, /wakil.new-task …) – one file per command
 COMMANDS.md                      <- catalog of all commands, their arguments and schedules
 tools/sync-ai-tools.cjs          <- /wakil.sync-tools: mirrors .claude/ + CLAUDE.md for Cursor and Codex (generated, never edit):
@@ -183,9 +188,10 @@ tools/sync-ai-tools.cjs          <- /wakil.sync-tools: mirrors .claude/ + CLAUDE
 ## Execution modes (even when the entity has a Trello board)
 | Owner writes | Mode | Plan file / task files | Trello | Kanban in Wakil Desktop |
 |---|---|---|---|---|
-| a plain request ("refais le header du site acme") | **Direct** – do it now | none | **never** | no |
-| `/wakil.plan <entity> <project> <goal>` | **Local plan** | `plans/PLAN-*.md` + `tasks/T-NNN-*.md` (`sync: local`) | **never** | yes |
-| `/wakil.plan.trello <entity> <project> <goal>` | **Trello plan** | same files (`sync: trello`, `trello:` = card URL) | cards in 📥 Proposed | yes |
+| a plain request ("refais le header du site acme") or `/wakil.do [--agent <a>] <request>` | **Direct** – do it now | none | **never** | no |
+| `/wakil.plan [<entity> <project>] [--agent <a>] <goal>` | **Local plan** | `plans/PLAN-*.md` + `tasks/T-NNN-*.md` (`sync: local`) | **never** | yes |
+| `/wakil.plan.trello [<entity> <project>] [--agent <a>] <goal>` | **Trello plan** | same files (`sync: trello`, `trello:` = card URL) | cards in 📥 Proposed | yes |
+- Entity / project default to the focus (`/wakil.focus`); `--agent` picks the agent (default: the manager chooses).
 - **Direct**: the manager (or the specialist it briefs) does the work immediately – no card, no task file, no approval
   step for the task itself (approval gates of rule 4 still apply). Briefs identify the client and project. Never turn a direct request into a card or a task file unless the owner asks.
 - **Local plan**: the plan lives only in markdown; it is executed with `/wakil.plan run …` once the owner approves.
@@ -197,7 +203,8 @@ tools/sync-ai-tools.cjs          <- /wakil.sync-tools: mirrors .claude/ + CLAUDE
 The same ecosystem works in **Claude Code, Cursor and OpenAI Codex**. `.claude/` and this file are the only sources;
 `/wakil.sync-tools` (`node tools/sync-ai-tools.cjs`) generates what the other tools read. Command forms:
 Claude Code `/wakil.news` · Cursor `/wakil.news` (or `/wakil-news`) · Codex `$wakil-news` (or pick it in `/skills`).
-Open Cursor / Codex on this folder (the ecosystem root), not a sub-folder. After any change to an agent, a skill or a
+Open Cursor / Codex on this folder (the ecosystem root); for a sub-folder (a project's code repo), install the commands
+once for the user with `node tools/sync-ai-tools.cjs --global`. After any change to an agent, a skill or a
 command, run `/wakil.sync-tools` and commit the generated files with the change.
 
 ## Entity consultants and assigned skills
